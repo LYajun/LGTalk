@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LGTalk"
-  s.version      = "1.0.0"
+  s.version      = "1.0.1"
   s.summary      = "在线讨论"
 
 
@@ -33,13 +33,29 @@ Pod::Spec.new do |s|
   end
 
  s.subspec "Utils" do |ss|
-    ss.source_files =  "LGTalk/Utils/ActivityIndicatorView/*.{h,m}","LGTalk/Utils/ImagePickerController/*.{h,m}","LGTalk/Utils/Photo/*.{h,m}","LGTalk/Utils/PresentPushAnimation/*.{h,m}"
+    
+    ss.subspec "ImagePickerController" do |sss|
+      sss.source_files =  "LGTalk/Utils/ImagePickerController/*.{h,m}"
+    end
 
-    ss.dependency "LGTalk/Const"
-    ss.dependency "LGTalk/Category"
+    ss.subspec "Photo" do |sss|
+      sss.source_files =  "LGTalk/Utils/Photo/*.{h,m}"
 
-    ss.dependency 'SDWebImage'
-    ss.dependency 'Masonry'
+      sss.dependency "LGTalk/Const"
+      sss.dependency "LGTalk/Category"
+
+      sss.dependency 'SDWebImage'
+      sss.dependency 'Masonry'
+    end
+
+    ss.subspec "ActivityIndicatorView" do |sss|
+      sss.source_files =  "LGTalk/Utils/ActivityIndicatorView/*.{h,m}"
+    end
+
+    ss.subspec "PresentPushAnimation" do |sss|
+      sss.source_files =  "LGTalk/Utils/PresentPushAnimation/*.{h,m}"
+    end
+
   end
 
   s.resources = "LGTalk/LGTalk.bundle"
