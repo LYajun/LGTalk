@@ -1,0 +1,970 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9995953400D5AE981553F3B4 /* Pods_LGTalkDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C456CB5B8DF05D1D0B39F9E /* Pods_LGTalkDemo.framework */; };
+		BAE0AB02222F5ACF0002BABA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB01222F5ACF0002BABA /* AppDelegate.m */; };
+		BAE0AB05222F5ACF0002BABA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB04222F5ACF0002BABA /* ViewController.m */; };
+		BAE0AB08222F5ACF0002BABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAE0AB06222F5ACF0002BABA /* Main.storyboard */; };
+		BAE0AB0A222F5AD30002BABA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAE0AB09222F5AD30002BABA /* Assets.xcassets */; };
+		BAE0AB0D222F5AD30002BABA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAE0AB0B222F5AD30002BABA /* LaunchScreen.storyboard */; };
+		BAE0AB10222F5AD30002BABA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB0F222F5AD30002BABA /* main.m */; };
+		BAE0AB18222F65570002BABA /* LGTalk.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAE0AB17222F65570002BABA /* LGTalk.bundle */; };
+		BAE0AB20222F77D80002BABA /* LGTalkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB1F222F77D80002BABA /* LGTalkManager.m */; };
+		BAE0AB27222F78DE0002BABA /* LGTPresentPushAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB26222F78DE0002BABA /* LGTPresentPushAnimation.m */; };
+		BAE0AB2C222F7A050002BABA /* LGTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB28222F7A050002BABA /* LGTBaseNavigationController.m */; };
+		BAE0AB2D222F7A050002BABA /* LGTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB29222F7A050002BABA /* LGTBaseViewController.m */; };
+		BAE0AB30222F7A360002BABA /* LGTConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB2F222F7A360002BABA /* LGTConst.m */; };
+		BAE0AB43222F94240002BABA /* NSBundle+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB39222F94230002BABA /* NSBundle+LGT.m */; };
+		BAE0AB44222F94240002BABA /* NSDate+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB3A222F94230002BABA /* NSDate+LGT.m */; };
+		BAE0AB45222F94240002BABA /* NSArray+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB3B222F94230002BABA /* NSArray+LGT.m */; };
+		BAE0AB46222F94240002BABA /* UIImage+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB3C222F94230002BABA /* UIImage+LGT.m */; };
+		BAE0AB47222F94240002BABA /* UIView+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB3E222F94230002BABA /* UIView+LGT.m */; };
+		BAE0AB48222F94240002BABA /* NSObject+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB3F222F94240002BABA /* NSObject+LGT.m */; };
+		BAE0AB4A222F94240002BABA /* NSMutableAttributedString+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB41222F94240002BABA /* NSMutableAttributedString+LGT.m */; };
+		BAE0AB4B222F94240002BABA /* NSString+LGT.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB42222F94240002BABA /* NSString+LGT.m */; };
+		BAE0AB53222F9A910002BABA /* LGTBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB4D222F9A900002BABA /* LGTBaseModel.m */; };
+		BAE0AB54222F9A910002BABA /* LGTBaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB51222F9A910002BABA /* LGTBaseService.m */; };
+		BAE0AB55222F9A910002BABA /* LGTBaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB52222F9A910002BABA /* LGTBaseTableViewCell.m */; };
+		BAE0AB5D222F9B390002BABA /* LGTResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB58222F9B390002BABA /* LGTResponseModel.m */; };
+		BAE0AB5E222F9B390002BABA /* LGTNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB59222F9B390002BABA /* LGTNetworking.m */; };
+		BAE0AB5F222F9B390002BABA /* NSError+LGTNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB5A222F9B390002BABA /* NSError+LGTNetworking.m */; };
+		BAE0AB62222F9DC60002BABA /* NSString+LGTEncrypt.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB61222F9DC60002BABA /* NSString+LGTEncrypt.m */; };
+		BAE0AB6B222FA21E0002BABA /* LGTActivityIndicatorAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB65222FA21E0002BABA /* LGTActivityIndicatorAnimation.m */; };
+		BAE0AB6C222FA21E0002BABA /* LGTActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB66222FA21E0002BABA /* LGTActivityIndicatorView.m */; };
+		BAE0AB6D222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB67222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.m */; };
+		BAE0AB70222FA8C80002BABA /* LGTBaseTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB6E222FA8C80002BABA /* LGTBaseTableView.m */; };
+		BAE0AB73222FAE400002BABA /* LGTBaseTableService.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB72222FAE400002BABA /* LGTBaseTableService.m */; };
+		BAE0AB80222FB6300002BABA /* LGTMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB7F222FB6300002BABA /* LGTMainViewController.m */; };
+		BAE0AB83222FB8290002BABA /* LGTMainTableService.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB82222FB8290002BABA /* LGTMainTableService.m */; };
+		BAE0AB89222FD7480002BABA /* LGTTalkModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB88222FD7480002BABA /* LGTTalkModel.m */; };
+		BAE0AB8C222FDCF70002BABA /* LGTMainTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB8B222FDCF70002BABA /* LGTMainTableView.m */; };
+		BAE0AB8F2230C3FD0002BABA /* LGTMainTableReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB8E2230C3FD0002BABA /* LGTMainTableReplyCell.m */; };
+		BAE0AB932230C4A00002BABA /* LGTClipView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB912230C4A00002BABA /* LGTClipView.m */; };
+		BAE0AB962230CB530002BABA /* LGTMainTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB952230CB530002BABA /* LGTMainTableHeaderView.m */; };
+		BAE0AB992230CC220002BABA /* LGTTalkItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB982230CC220002BABA /* LGTTalkItemView.m */; };
+		BAE0ABA12230E83B0002BABA /* LGTPhotoBrowserAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB9B2230E83B0002BABA /* LGTPhotoBrowserAnimator.m */; };
+		BAE0ABA22230E83B0002BABA /* LGTPhotoBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB9E2230E83B0002BABA /* LGTPhotoBrowserViewController.m */; };
+		BAE0ABA32230E83B0002BABA /* LGTPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABA02230E83B0002BABA /* LGTPhotoBrowser.m */; };
+		BAE0ABA72230FD7B0002BABA /* LGTChatBox.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABA52230FD7B0002BABA /* LGTChatBox.m */; };
+		BAE0ABAA2230FE650002BABA /* LGTBaseTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABA82230FE640002BABA /* LGTBaseTextView.m */; };
+		BAE0ABAD223101F50002BABA /* LGTMainTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABAC223101F50002BABA /* LGTMainTableFooterView.m */; };
+		BAE0ABB0223111A10002BABA /* LGTTalkReplyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABAF223111A10002BABA /* LGTTalkReplyModel.m */; };
+		BAE0ABB322312F5D0002BABA /* LGTAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABB222312F5D0002BABA /* LGTAddViewController.m */; };
+		BAE0ABB72231303B0002BABA /* LGTPhotoManage.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABB52231303B0002BABA /* LGTPhotoManage.m */; };
+		BAE0ABDB2231330C0002BABA /* LGTImagePickerGroupCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABC32231330C0002BABA /* LGTImagePickerGroupCell.m */; };
+		BAE0ABDC2231330C0002BABA /* LGTAssetsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABC62231330C0002BABA /* LGTAssetsCollectionViewCell.m */; };
+		BAE0ABDD2231330C0002BABA /* LGTAssetsCollectionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABC82231330C0002BABA /* LGTAssetsCollectionFooterView.m */; };
+		BAE0ABE02231330C0002BABA /* LGTAssetsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABD12231330C0002BABA /* LGTAssetsCollectionViewController.m */; };
+		BAE0ABE12231330C0002BABA /* LGTImagePickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABD32231330C0002BABA /* LGTImagePickerController.m */; };
+		BAE0ABE22231330C0002BABA /* LGTAssetsCollectionCheckmarkView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABD52231330C0002BABA /* LGTAssetsCollectionCheckmarkView.m */; };
+		BAE0ABE32231330C0002BABA /* LGTImagePickerThumbnailView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABD62231330C0002BABA /* LGTImagePickerThumbnailView.m */; };
+		BAE0ABE42231330C0002BABA /* LGTAssetsCollectionOverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABD82231330C0002BABA /* LGTAssetsCollectionOverlayView.m */; };
+		BAE0ABE52231330C0002BABA /* LGTAssetsCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABD92231330C0002BABA /* LGTAssetsCollectionViewLayout.m */; };
+		BAE0ABE8223136F60002BABA /* LGTTalkUploadModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABE6223136F60002BABA /* LGTTalkUploadModel.m */; };
+		BAE0ABEB223137550002BABA /* LGTUploadCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABEA223137550002BABA /* LGTUploadCell.m */; };
+		BAE0ABEE223137670002BABA /* LGTBarProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0ABEC223137670002BABA /* LGTBarProgressView.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		263D8CE6365412AE09C2873C /* Pods-LGTalkDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGTalkDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGTalkDemo/Pods-LGTalkDemo.release.xcconfig"; sourceTree = "<group>"; };
+		6C456CB5B8DF05D1D0B39F9E /* Pods_LGTalkDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LGTalkDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA411FA9223652EC0078DC6F /* LGTalk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTalk.h; sourceTree = "<group>"; };
+		BAE0AAFD222F5ACF0002BABA /* LGTalkDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGTalkDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BAE0AB00222F5ACF0002BABA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BAE0AB01222F5ACF0002BABA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BAE0AB03222F5ACF0002BABA /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BAE0AB04222F5ACF0002BABA /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BAE0AB07222F5ACF0002BABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BAE0AB09222F5AD30002BABA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BAE0AB0C222F5AD30002BABA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BAE0AB0E222F5AD30002BABA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BAE0AB0F222F5AD30002BABA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BAE0AB17222F65570002BABA /* LGTalk.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGTalk.bundle; sourceTree = "<group>"; };
+		BAE0AB1E222F77D80002BABA /* LGTalkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTalkManager.h; sourceTree = "<group>"; };
+		BAE0AB1F222F77D80002BABA /* LGTalkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTalkManager.m; sourceTree = "<group>"; };
+		BAE0AB25222F78DE0002BABA /* LGTPresentPushAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTPresentPushAnimation.h; sourceTree = "<group>"; };
+		BAE0AB26222F78DE0002BABA /* LGTPresentPushAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTPresentPushAnimation.m; sourceTree = "<group>"; };
+		BAE0AB28222F7A050002BABA /* LGTBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseNavigationController.m; sourceTree = "<group>"; };
+		BAE0AB29222F7A050002BABA /* LGTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseViewController.m; sourceTree = "<group>"; };
+		BAE0AB2A222F7A050002BABA /* LGTBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseNavigationController.h; sourceTree = "<group>"; };
+		BAE0AB2B222F7A050002BABA /* LGTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseViewController.h; sourceTree = "<group>"; };
+		BAE0AB2E222F7A350002BABA /* LGTConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTConst.h; sourceTree = "<group>"; };
+		BAE0AB2F222F7A360002BABA /* LGTConst.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTConst.m; sourceTree = "<group>"; };
+		BAE0AB31222F94220002BABA /* NSObject+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB33222F94220002BABA /* NSArray+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB34222F94220002BABA /* NSMutableAttributedString+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableAttributedString+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB35222F94220002BABA /* UIImage+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB36222F94220002BABA /* NSBundle+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB37222F94230002BABA /* NSString+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB38222F94230002BABA /* UIView+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB39222F94230002BABA /* NSBundle+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB3A222F94230002BABA /* NSDate+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB3B222F94230002BABA /* NSArray+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB3C222F94230002BABA /* UIImage+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB3D222F94230002BABA /* NSDate+LGT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+LGT.h"; sourceTree = "<group>"; };
+		BAE0AB3E222F94230002BABA /* UIView+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB3F222F94240002BABA /* NSObject+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB41222F94240002BABA /* NSMutableAttributedString+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableAttributedString+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB42222F94240002BABA /* NSString+LGT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGT.m"; sourceTree = "<group>"; };
+		BAE0AB4C222F943F0002BABA /* LGTExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTExtension.h; sourceTree = "<group>"; };
+		BAE0AB4D222F9A900002BABA /* LGTBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseModel.m; sourceTree = "<group>"; };
+		BAE0AB4E222F9A900002BABA /* LGTBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseModel.h; sourceTree = "<group>"; };
+		BAE0AB4F222F9A900002BABA /* LGTBaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseService.h; sourceTree = "<group>"; };
+		BAE0AB50222F9A900002BABA /* LGTBaseTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseTableViewCell.h; sourceTree = "<group>"; };
+		BAE0AB51222F9A910002BABA /* LGTBaseService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseService.m; sourceTree = "<group>"; };
+		BAE0AB52222F9A910002BABA /* LGTBaseTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseTableViewCell.m; sourceTree = "<group>"; };
+		BAE0AB57222F9B390002BABA /* NSError+LGTNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+LGTNetworking.h"; sourceTree = "<group>"; };
+		BAE0AB58222F9B390002BABA /* LGTResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTResponseModel.m; sourceTree = "<group>"; };
+		BAE0AB59222F9B390002BABA /* LGTNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTNetworking.m; sourceTree = "<group>"; };
+		BAE0AB5A222F9B390002BABA /* NSError+LGTNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+LGTNetworking.m"; sourceTree = "<group>"; };
+		BAE0AB5B222F9B390002BABA /* LGTResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTResponseModel.h; sourceTree = "<group>"; };
+		BAE0AB5C222F9B390002BABA /* LGTNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTNetworking.h; sourceTree = "<group>"; };
+		BAE0AB60222F9DC50002BABA /* NSString+LGTEncrypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LGTEncrypt.h"; sourceTree = "<group>"; };
+		BAE0AB61222F9DC60002BABA /* NSString+LGTEncrypt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LGTEncrypt.m"; sourceTree = "<group>"; };
+		BAE0AB64222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTActivityIndicatorBallPulseAnimation.h; sourceTree = "<group>"; };
+		BAE0AB65222FA21E0002BABA /* LGTActivityIndicatorAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTActivityIndicatorAnimation.m; sourceTree = "<group>"; };
+		BAE0AB66222FA21E0002BABA /* LGTActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTActivityIndicatorView.m; sourceTree = "<group>"; };
+		BAE0AB67222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTActivityIndicatorBallPulseAnimation.m; sourceTree = "<group>"; };
+		BAE0AB68222FA21E0002BABA /* LGTActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTActivityIndicatorView.h; sourceTree = "<group>"; };
+		BAE0AB69222FA21E0002BABA /* LGTActivityIndicatorAnimationProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTActivityIndicatorAnimationProtocol.h; sourceTree = "<group>"; };
+		BAE0AB6A222FA21E0002BABA /* LGTActivityIndicatorAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTActivityIndicatorAnimation.h; sourceTree = "<group>"; };
+		BAE0AB6E222FA8C80002BABA /* LGTBaseTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseTableView.m; sourceTree = "<group>"; };
+		BAE0AB6F222FA8C80002BABA /* LGTBaseTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseTableView.h; sourceTree = "<group>"; };
+		BAE0AB71222FAE400002BABA /* LGTBaseTableService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseTableService.h; sourceTree = "<group>"; };
+		BAE0AB72222FAE400002BABA /* LGTBaseTableService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseTableService.m; sourceTree = "<group>"; };
+		BAE0AB7E222FB6300002BABA /* LGTMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTMainViewController.h; sourceTree = "<group>"; };
+		BAE0AB7F222FB6300002BABA /* LGTMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTMainViewController.m; sourceTree = "<group>"; };
+		BAE0AB81222FB8290002BABA /* LGTMainTableService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTMainTableService.h; sourceTree = "<group>"; };
+		BAE0AB82222FB8290002BABA /* LGTMainTableService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTMainTableService.m; sourceTree = "<group>"; };
+		BAE0AB87222FD7480002BABA /* LGTTalkModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTTalkModel.h; sourceTree = "<group>"; };
+		BAE0AB88222FD7480002BABA /* LGTTalkModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTTalkModel.m; sourceTree = "<group>"; };
+		BAE0AB8A222FDCF70002BABA /* LGTMainTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTMainTableView.h; sourceTree = "<group>"; };
+		BAE0AB8B222FDCF70002BABA /* LGTMainTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTMainTableView.m; sourceTree = "<group>"; };
+		BAE0AB8D2230C3FD0002BABA /* LGTMainTableReplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTMainTableReplyCell.h; sourceTree = "<group>"; };
+		BAE0AB8E2230C3FD0002BABA /* LGTMainTableReplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTMainTableReplyCell.m; sourceTree = "<group>"; };
+		BAE0AB912230C4A00002BABA /* LGTClipView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTClipView.m; sourceTree = "<group>"; };
+		BAE0AB922230C4A00002BABA /* LGTClipView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTClipView.h; sourceTree = "<group>"; };
+		BAE0AB942230CB530002BABA /* LGTMainTableHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTMainTableHeaderView.h; sourceTree = "<group>"; };
+		BAE0AB952230CB530002BABA /* LGTMainTableHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTMainTableHeaderView.m; sourceTree = "<group>"; };
+		BAE0AB972230CC220002BABA /* LGTTalkItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTTalkItemView.h; sourceTree = "<group>"; };
+		BAE0AB982230CC220002BABA /* LGTTalkItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTTalkItemView.m; sourceTree = "<group>"; };
+		BAE0AB9B2230E83B0002BABA /* LGTPhotoBrowserAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTPhotoBrowserAnimator.m; sourceTree = "<group>"; };
+		BAE0AB9C2230E83B0002BABA /* LGTPhotoBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTPhotoBrowserViewController.h; sourceTree = "<group>"; };
+		BAE0AB9D2230E83B0002BABA /* LGTPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTPhotoBrowser.h; sourceTree = "<group>"; };
+		BAE0AB9E2230E83B0002BABA /* LGTPhotoBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTPhotoBrowserViewController.m; sourceTree = "<group>"; };
+		BAE0AB9F2230E83B0002BABA /* LGTPhotoBrowserAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTPhotoBrowserAnimator.h; sourceTree = "<group>"; };
+		BAE0ABA02230E83B0002BABA /* LGTPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTPhotoBrowser.m; sourceTree = "<group>"; };
+		BAE0ABA52230FD7B0002BABA /* LGTChatBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTChatBox.m; sourceTree = "<group>"; };
+		BAE0ABA62230FD7B0002BABA /* LGTChatBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTChatBox.h; sourceTree = "<group>"; };
+		BAE0ABA82230FE640002BABA /* LGTBaseTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseTextView.m; sourceTree = "<group>"; };
+		BAE0ABA92230FE640002BABA /* LGTBaseTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseTextView.h; sourceTree = "<group>"; };
+		BAE0ABAB223101F50002BABA /* LGTMainTableFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTMainTableFooterView.h; sourceTree = "<group>"; };
+		BAE0ABAC223101F50002BABA /* LGTMainTableFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTMainTableFooterView.m; sourceTree = "<group>"; };
+		BAE0ABAE223111A00002BABA /* LGTTalkReplyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTTalkReplyModel.h; sourceTree = "<group>"; };
+		BAE0ABAF223111A10002BABA /* LGTTalkReplyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTTalkReplyModel.m; sourceTree = "<group>"; };
+		BAE0ABB122312F5D0002BABA /* LGTAddViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTAddViewController.h; sourceTree = "<group>"; };
+		BAE0ABB222312F5D0002BABA /* LGTAddViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTAddViewController.m; sourceTree = "<group>"; };
+		BAE0ABB52231303B0002BABA /* LGTPhotoManage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTPhotoManage.m; sourceTree = "<group>"; };
+		BAE0ABB62231303B0002BABA /* LGTPhotoManage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTPhotoManage.h; sourceTree = "<group>"; };
+		BAE0ABC22231330C0002BABA /* LGTImagePickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTImagePickerController.h; sourceTree = "<group>"; };
+		BAE0ABC32231330C0002BABA /* LGTImagePickerGroupCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTImagePickerGroupCell.m; sourceTree = "<group>"; };
+		BAE0ABC42231330C0002BABA /* LGTImagePickerThumbnailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTImagePickerThumbnailView.h; sourceTree = "<group>"; };
+		BAE0ABC52231330C0002BABA /* LGTAssetsCollectionCheckmarkView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTAssetsCollectionCheckmarkView.h; sourceTree = "<group>"; };
+		BAE0ABC62231330C0002BABA /* LGTAssetsCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTAssetsCollectionViewCell.m; sourceTree = "<group>"; };
+		BAE0ABC72231330C0002BABA /* LGTAssetsCollectionOverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTAssetsCollectionOverlayView.h; sourceTree = "<group>"; };
+		BAE0ABC82231330C0002BABA /* LGTAssetsCollectionFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTAssetsCollectionFooterView.m; sourceTree = "<group>"; };
+		BAE0ABD02231330C0002BABA /* LGTAssetsCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTAssetsCollectionViewLayout.h; sourceTree = "<group>"; };
+		BAE0ABD12231330C0002BABA /* LGTAssetsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTAssetsCollectionViewController.m; sourceTree = "<group>"; };
+		BAE0ABD22231330C0002BABA /* LGTImagePickerGroupCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTImagePickerGroupCell.h; sourceTree = "<group>"; };
+		BAE0ABD32231330C0002BABA /* LGTImagePickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTImagePickerController.m; sourceTree = "<group>"; };
+		BAE0ABD42231330C0002BABA /* LGTAssetsCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTAssetsCollectionViewCell.h; sourceTree = "<group>"; };
+		BAE0ABD52231330C0002BABA /* LGTAssetsCollectionCheckmarkView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTAssetsCollectionCheckmarkView.m; sourceTree = "<group>"; };
+		BAE0ABD62231330C0002BABA /* LGTImagePickerThumbnailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTImagePickerThumbnailView.m; sourceTree = "<group>"; };
+		BAE0ABD72231330C0002BABA /* LGTAssetsCollectionFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTAssetsCollectionFooterView.h; sourceTree = "<group>"; };
+		BAE0ABD82231330C0002BABA /* LGTAssetsCollectionOverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTAssetsCollectionOverlayView.m; sourceTree = "<group>"; };
+		BAE0ABD92231330C0002BABA /* LGTAssetsCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTAssetsCollectionViewLayout.m; sourceTree = "<group>"; };
+		BAE0ABDA2231330C0002BABA /* LGTAssetsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTAssetsCollectionViewController.h; sourceTree = "<group>"; };
+		BAE0ABE6223136F60002BABA /* LGTTalkUploadModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTTalkUploadModel.m; sourceTree = "<group>"; };
+		BAE0ABE7223136F60002BABA /* LGTTalkUploadModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTTalkUploadModel.h; sourceTree = "<group>"; };
+		BAE0ABE9223137540002BABA /* LGTUploadCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTUploadCell.h; sourceTree = "<group>"; };
+		BAE0ABEA223137550002BABA /* LGTUploadCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTUploadCell.m; sourceTree = "<group>"; };
+		BAE0ABEC223137670002BABA /* LGTBarProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBarProgressView.m; sourceTree = "<group>"; };
+		BAE0ABED223137670002BABA /* LGTBarProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBarProgressView.h; sourceTree = "<group>"; };
+		FA4FCD1710F28B49AB129E87 /* Pods-LGTalkDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGTalkDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LGTalkDemo/Pods-LGTalkDemo.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BAE0AAFA222F5ACF0002BABA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9995953400D5AE981553F3B4 /* Pods_LGTalkDemo.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5E06A9A5B342E7E914EBB3A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6C456CB5B8DF05D1D0B39F9E /* Pods_LGTalkDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		80D6AFD525A4EEB893C3CDB2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FA4FCD1710F28B49AB129E87 /* Pods-LGTalkDemo.debug.xcconfig */,
+				263D8CE6365412AE09C2873C /* Pods-LGTalkDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BAE0AAF4222F5ACF0002BABA = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB16222F5F500002BABA /* LGTalk */,
+				BAE0AAFF222F5ACF0002BABA /* LGTalkDemo */,
+				BAE0AAFE222F5ACF0002BABA /* Products */,
+				80D6AFD525A4EEB893C3CDB2 /* Pods */,
+				5E06A9A5B342E7E914EBB3A1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BAE0AAFE222F5ACF0002BABA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AAFD222F5ACF0002BABA /* LGTalkDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BAE0AAFF222F5ACF0002BABA /* LGTalkDemo */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB00222F5ACF0002BABA /* AppDelegate.h */,
+				BAE0AB01222F5ACF0002BABA /* AppDelegate.m */,
+				BAE0AB03222F5ACF0002BABA /* ViewController.h */,
+				BAE0AB04222F5ACF0002BABA /* ViewController.m */,
+				BAE0AB06222F5ACF0002BABA /* Main.storyboard */,
+				BAE0AB09222F5AD30002BABA /* Assets.xcassets */,
+				BAE0AB0B222F5AD30002BABA /* LaunchScreen.storyboard */,
+				BAE0AB0E222F5AD30002BABA /* Info.plist */,
+				BAE0AB0F222F5AD30002BABA /* main.m */,
+			);
+			path = LGTalkDemo;
+			sourceTree = "<group>";
+		};
+		BAE0AB16222F5F500002BABA /* LGTalk */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB1D222F77500002BABA /* Enter */,
+				BAE0AB23222F78B10002BABA /* Const */,
+				BAE0AB1C222F76A10002BABA /* Common */,
+				BAE0AB1B222F76730002BABA /* Module */,
+				BAE0AB1A222F65990002BABA /* Utils */,
+				BAE0AB19222F65660002BABA /* Category */,
+				BAE0AB17222F65570002BABA /* LGTalk.bundle */,
+				BA411FA9223652EC0078DC6F /* LGTalk.h */,
+			);
+			path = LGTalk;
+			sourceTree = "<group>";
+		};
+		BAE0AB19222F65660002BABA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB4C222F943F0002BABA /* LGTExtension.h */,
+				BAE0AB33222F94220002BABA /* NSArray+LGT.h */,
+				BAE0AB3B222F94230002BABA /* NSArray+LGT.m */,
+				BAE0AB36222F94220002BABA /* NSBundle+LGT.h */,
+				BAE0AB39222F94230002BABA /* NSBundle+LGT.m */,
+				BAE0AB3D222F94230002BABA /* NSDate+LGT.h */,
+				BAE0AB3A222F94230002BABA /* NSDate+LGT.m */,
+				BAE0AB34222F94220002BABA /* NSMutableAttributedString+LGT.h */,
+				BAE0AB41222F94240002BABA /* NSMutableAttributedString+LGT.m */,
+				BAE0AB31222F94220002BABA /* NSObject+LGT.h */,
+				BAE0AB3F222F94240002BABA /* NSObject+LGT.m */,
+				BAE0AB37222F94230002BABA /* NSString+LGT.h */,
+				BAE0AB42222F94240002BABA /* NSString+LGT.m */,
+				BAE0AB35222F94220002BABA /* UIImage+LGT.h */,
+				BAE0AB3C222F94230002BABA /* UIImage+LGT.m */,
+				BAE0AB38222F94230002BABA /* UIView+LGT.h */,
+				BAE0AB3E222F94230002BABA /* UIView+LGT.m */,
+				BAE0AB60222F9DC50002BABA /* NSString+LGTEncrypt.h */,
+				BAE0AB61222F9DC60002BABA /* NSString+LGTEncrypt.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		BAE0AB1A222F65990002BABA /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABC12231330C0002BABA /* ImagePickerController */,
+				BAE0AB9A2230E83B0002BABA /* Photo */,
+				BAE0AB63222FA21E0002BABA /* ActivityIndicatorView */,
+				BAE0AB56222F9B390002BABA /* Network */,
+				BAE0AB24222F78CB0002BABA /* PresentPushAnimation */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		BAE0AB1B222F76730002BABA /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB74222FB4990002BABA /* Main */,
+				BAE0AB75222FB4A10002BABA /* AddTalk */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		BAE0AB1C222F76A10002BABA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB22222F787C0002BABA /* View */,
+				BAE0AB21222F786E0002BABA /* Base */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BAE0AB1D222F77500002BABA /* Enter */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB1E222F77D80002BABA /* LGTalkManager.h */,
+				BAE0AB1F222F77D80002BABA /* LGTalkManager.m */,
+			);
+			path = Enter;
+			sourceTree = "<group>";
+		};
+		BAE0AB21222F786E0002BABA /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB2A222F7A050002BABA /* LGTBaseNavigationController.h */,
+				BAE0AB28222F7A050002BABA /* LGTBaseNavigationController.m */,
+				BAE0AB2B222F7A050002BABA /* LGTBaseViewController.h */,
+				BAE0AB29222F7A050002BABA /* LGTBaseViewController.m */,
+				BAE0AB6F222FA8C80002BABA /* LGTBaseTableView.h */,
+				BAE0AB6E222FA8C80002BABA /* LGTBaseTableView.m */,
+				BAE0AB50222F9A900002BABA /* LGTBaseTableViewCell.h */,
+				BAE0AB52222F9A910002BABA /* LGTBaseTableViewCell.m */,
+				BAE0AB4E222F9A900002BABA /* LGTBaseModel.h */,
+				BAE0AB4D222F9A900002BABA /* LGTBaseModel.m */,
+				BAE0AB4F222F9A900002BABA /* LGTBaseService.h */,
+				BAE0AB51222F9A910002BABA /* LGTBaseService.m */,
+				BAE0AB71222FAE400002BABA /* LGTBaseTableService.h */,
+				BAE0AB72222FAE400002BABA /* LGTBaseTableService.m */,
+				BAE0ABA92230FE640002BABA /* LGTBaseTextView.h */,
+				BAE0ABA82230FE640002BABA /* LGTBaseTextView.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		BAE0AB22222F787C0002BABA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABA42230FD7B0002BABA /* ChatBox */,
+				BAE0AB902230C4A00002BABA /* ClipView */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BAE0AB23222F78B10002BABA /* Const */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB2E222F7A350002BABA /* LGTConst.h */,
+				BAE0AB2F222F7A360002BABA /* LGTConst.m */,
+			);
+			path = Const;
+			sourceTree = "<group>";
+		};
+		BAE0AB24222F78CB0002BABA /* PresentPushAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB25222F78DE0002BABA /* LGTPresentPushAnimation.h */,
+				BAE0AB26222F78DE0002BABA /* LGTPresentPushAnimation.m */,
+			);
+			path = PresentPushAnimation;
+			sourceTree = "<group>";
+		};
+		BAE0AB56222F9B390002BABA /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB5C222F9B390002BABA /* LGTNetworking.h */,
+				BAE0AB59222F9B390002BABA /* LGTNetworking.m */,
+				BAE0AB5B222F9B390002BABA /* LGTResponseModel.h */,
+				BAE0AB58222F9B390002BABA /* LGTResponseModel.m */,
+				BAE0AB57222F9B390002BABA /* NSError+LGTNetworking.h */,
+				BAE0AB5A222F9B390002BABA /* NSError+LGTNetworking.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		BAE0AB63222FA21E0002BABA /* ActivityIndicatorView */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB6A222FA21E0002BABA /* LGTActivityIndicatorAnimation.h */,
+				BAE0AB65222FA21E0002BABA /* LGTActivityIndicatorAnimation.m */,
+				BAE0AB69222FA21E0002BABA /* LGTActivityIndicatorAnimationProtocol.h */,
+				BAE0AB64222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.h */,
+				BAE0AB67222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.m */,
+				BAE0AB68222FA21E0002BABA /* LGTActivityIndicatorView.h */,
+				BAE0AB66222FA21E0002BABA /* LGTActivityIndicatorView.m */,
+			);
+			path = ActivityIndicatorView;
+			sourceTree = "<group>";
+		};
+		BAE0AB74222FB4990002BABA /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB76222FB4CE0002BABA /* Controller */,
+				BAE0AB79222FB4E20002BABA /* View */,
+				BAE0AB78222FB4DC0002BABA /* Model */,
+				BAE0AB77222FB4D40002BABA /* Service */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		BAE0AB75222FB4A10002BABA /* AddTalk */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB7D222FB5110002BABA /* Controller */,
+				BAE0AB7C222FB50C0002BABA /* View */,
+				BAE0AB7B222FB4F30002BABA /* Model */,
+				BAE0AB7A222FB4EC0002BABA /* Service */,
+			);
+			path = AddTalk;
+			sourceTree = "<group>";
+		};
+		BAE0AB76222FB4CE0002BABA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB7E222FB6300002BABA /* LGTMainViewController.h */,
+				BAE0AB7F222FB6300002BABA /* LGTMainViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BAE0AB77222FB4D40002BABA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB81222FB8290002BABA /* LGTMainTableService.h */,
+				BAE0AB82222FB8290002BABA /* LGTMainTableService.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BAE0AB78222FB4DC0002BABA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABAE223111A00002BABA /* LGTTalkReplyModel.h */,
+				BAE0ABAF223111A10002BABA /* LGTTalkReplyModel.m */,
+				BAE0AB87222FD7480002BABA /* LGTTalkModel.h */,
+				BAE0AB88222FD7480002BABA /* LGTTalkModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BAE0AB79222FB4E20002BABA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB8A222FDCF70002BABA /* LGTMainTableView.h */,
+				BAE0AB8B222FDCF70002BABA /* LGTMainTableView.m */,
+				BAE0AB8D2230C3FD0002BABA /* LGTMainTableReplyCell.h */,
+				BAE0AB8E2230C3FD0002BABA /* LGTMainTableReplyCell.m */,
+				BAE0AB942230CB530002BABA /* LGTMainTableHeaderView.h */,
+				BAE0AB952230CB530002BABA /* LGTMainTableHeaderView.m */,
+				BAE0ABAB223101F50002BABA /* LGTMainTableFooterView.h */,
+				BAE0ABAC223101F50002BABA /* LGTMainTableFooterView.m */,
+				BAE0AB972230CC220002BABA /* LGTTalkItemView.h */,
+				BAE0AB982230CC220002BABA /* LGTTalkItemView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BAE0AB7A222FB4EC0002BABA /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABB62231303B0002BABA /* LGTPhotoManage.h */,
+				BAE0ABB52231303B0002BABA /* LGTPhotoManage.m */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BAE0AB7B222FB4F30002BABA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABE7223136F60002BABA /* LGTTalkUploadModel.h */,
+				BAE0ABE6223136F60002BABA /* LGTTalkUploadModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		BAE0AB7C222FB50C0002BABA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABE9223137540002BABA /* LGTUploadCell.h */,
+				BAE0ABEA223137550002BABA /* LGTUploadCell.m */,
+				BAE0ABED223137670002BABA /* LGTBarProgressView.h */,
+				BAE0ABEC223137670002BABA /* LGTBarProgressView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		BAE0AB7D222FB5110002BABA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABB122312F5D0002BABA /* LGTAddViewController.h */,
+				BAE0ABB222312F5D0002BABA /* LGTAddViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BAE0AB902230C4A00002BABA /* ClipView */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB922230C4A00002BABA /* LGTClipView.h */,
+				BAE0AB912230C4A00002BABA /* LGTClipView.m */,
+			);
+			path = ClipView;
+			sourceTree = "<group>";
+		};
+		BAE0AB9A2230E83B0002BABA /* Photo */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0AB9D2230E83B0002BABA /* LGTPhotoBrowser.h */,
+				BAE0ABA02230E83B0002BABA /* LGTPhotoBrowser.m */,
+				BAE0AB9F2230E83B0002BABA /* LGTPhotoBrowserAnimator.h */,
+				BAE0AB9B2230E83B0002BABA /* LGTPhotoBrowserAnimator.m */,
+				BAE0AB9C2230E83B0002BABA /* LGTPhotoBrowserViewController.h */,
+				BAE0AB9E2230E83B0002BABA /* LGTPhotoBrowserViewController.m */,
+			);
+			path = Photo;
+			sourceTree = "<group>";
+		};
+		BAE0ABA42230FD7B0002BABA /* ChatBox */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABA62230FD7B0002BABA /* LGTChatBox.h */,
+				BAE0ABA52230FD7B0002BABA /* LGTChatBox.m */,
+			);
+			path = ChatBox;
+			sourceTree = "<group>";
+		};
+		BAE0ABC12231330C0002BABA /* ImagePickerController */ = {
+			isa = PBXGroup;
+			children = (
+				BAE0ABC52231330C0002BABA /* LGTAssetsCollectionCheckmarkView.h */,
+				BAE0ABD52231330C0002BABA /* LGTAssetsCollectionCheckmarkView.m */,
+				BAE0ABD72231330C0002BABA /* LGTAssetsCollectionFooterView.h */,
+				BAE0ABC82231330C0002BABA /* LGTAssetsCollectionFooterView.m */,
+				BAE0ABC72231330C0002BABA /* LGTAssetsCollectionOverlayView.h */,
+				BAE0ABD82231330C0002BABA /* LGTAssetsCollectionOverlayView.m */,
+				BAE0ABD42231330C0002BABA /* LGTAssetsCollectionViewCell.h */,
+				BAE0ABC62231330C0002BABA /* LGTAssetsCollectionViewCell.m */,
+				BAE0ABDA2231330C0002BABA /* LGTAssetsCollectionViewController.h */,
+				BAE0ABD12231330C0002BABA /* LGTAssetsCollectionViewController.m */,
+				BAE0ABD02231330C0002BABA /* LGTAssetsCollectionViewLayout.h */,
+				BAE0ABD92231330C0002BABA /* LGTAssetsCollectionViewLayout.m */,
+				BAE0ABC22231330C0002BABA /* LGTImagePickerController.h */,
+				BAE0ABD32231330C0002BABA /* LGTImagePickerController.m */,
+				BAE0ABD22231330C0002BABA /* LGTImagePickerGroupCell.h */,
+				BAE0ABC32231330C0002BABA /* LGTImagePickerGroupCell.m */,
+				BAE0ABC42231330C0002BABA /* LGTImagePickerThumbnailView.h */,
+				BAE0ABD62231330C0002BABA /* LGTImagePickerThumbnailView.m */,
+			);
+			path = ImagePickerController;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BAE0AAFC222F5ACF0002BABA /* LGTalkDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BAE0AB13222F5AD30002BABA /* Build configuration list for PBXNativeTarget "LGTalkDemo" */;
+			buildPhases = (
+				6D113BBC75055AA9A70CF37C /* [CP] Check Pods Manifest.lock */,
+				BAE0AAF9222F5ACF0002BABA /* Sources */,
+				BAE0AAFA222F5ACF0002BABA /* Frameworks */,
+				BAE0AAFB222F5ACF0002BABA /* Resources */,
+				6069883362B91F36EBF82B58 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LGTalkDemo;
+			productName = LGTalkDemo;
+			productReference = BAE0AAFD222F5ACF0002BABA /* LGTalkDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BAE0AAF5222F5ACF0002BABA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "刘亚军";
+				TargetAttributes = {
+					BAE0AAFC222F5ACF0002BABA = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = BAE0AAF8222F5ACF0002BABA /* Build configuration list for PBXProject "LGTalkDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ja,
+			);
+			mainGroup = BAE0AAF4222F5ACF0002BABA;
+			productRefGroup = BAE0AAFE222F5ACF0002BABA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BAE0AAFC222F5ACF0002BABA /* LGTalkDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BAE0AAFB222F5ACF0002BABA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE0AB18222F65570002BABA /* LGTalk.bundle in Resources */,
+				BAE0AB0D222F5AD30002BABA /* LaunchScreen.storyboard in Resources */,
+				BAE0AB0A222F5AD30002BABA /* Assets.xcassets in Resources */,
+				BAE0AB08222F5ACF0002BABA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6069883362B91F36EBF82B58 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LGTalkDemo/Pods-LGTalkDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/LGAlertHUD/LGAlertHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+				"${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework",
+				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework",
+				"${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LGAlertHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJExtension.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MarqueeLabel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TFHpple.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/XMLDictionary.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LGTalkDemo/Pods-LGTalkDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6D113BBC75055AA9A70CF37C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LGTalkDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BAE0AAF9222F5ACF0002BABA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAE0AB20222F77D80002BABA /* LGTalkManager.m in Sources */,
+				BAE0AB6C222FA21E0002BABA /* LGTActivityIndicatorView.m in Sources */,
+				BAE0AB2C222F7A050002BABA /* LGTBaseNavigationController.m in Sources */,
+				BAE0ABE8223136F60002BABA /* LGTTalkUploadModel.m in Sources */,
+				BAE0AB43222F94240002BABA /* NSBundle+LGT.m in Sources */,
+				BAE0ABDC2231330C0002BABA /* LGTAssetsCollectionViewCell.m in Sources */,
+				BAE0ABAA2230FE650002BABA /* LGTBaseTextView.m in Sources */,
+				BAE0ABE12231330C0002BABA /* LGTImagePickerController.m in Sources */,
+				BAE0ABA12230E83B0002BABA /* LGTPhotoBrowserAnimator.m in Sources */,
+				BAE0ABB72231303B0002BABA /* LGTPhotoManage.m in Sources */,
+				BAE0AB53222F9A910002BABA /* LGTBaseModel.m in Sources */,
+				BAE0AB6D222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.m in Sources */,
+				BAE0AB73222FAE400002BABA /* LGTBaseTableService.m in Sources */,
+				BAE0AB44222F94240002BABA /* NSDate+LGT.m in Sources */,
+				BAE0AB962230CB530002BABA /* LGTMainTableHeaderView.m in Sources */,
+				BAE0ABE32231330C0002BABA /* LGTImagePickerThumbnailView.m in Sources */,
+				BAE0ABE02231330C0002BABA /* LGTAssetsCollectionViewController.m in Sources */,
+				BAE0AB992230CC220002BABA /* LGTTalkItemView.m in Sources */,
+				BAE0AB47222F94240002BABA /* UIView+LGT.m in Sources */,
+				BAE0AB4B222F94240002BABA /* NSString+LGT.m in Sources */,
+				BAE0AB30222F7A360002BABA /* LGTConst.m in Sources */,
+				BAE0ABEE223137670002BABA /* LGTBarProgressView.m in Sources */,
+				BAE0AB932230C4A00002BABA /* LGTClipView.m in Sources */,
+				BAE0AB62222F9DC60002BABA /* NSString+LGTEncrypt.m in Sources */,
+				BAE0AB89222FD7480002BABA /* LGTTalkModel.m in Sources */,
+				BAE0AB5D222F9B390002BABA /* LGTResponseModel.m in Sources */,
+				BAE0ABA72230FD7B0002BABA /* LGTChatBox.m in Sources */,
+				BAE0ABE22231330C0002BABA /* LGTAssetsCollectionCheckmarkView.m in Sources */,
+				BAE0AB6B222FA21E0002BABA /* LGTActivityIndicatorAnimation.m in Sources */,
+				BAE0AB48222F94240002BABA /* NSObject+LGT.m in Sources */,
+				BAE0ABA32230E83B0002BABA /* LGTPhotoBrowser.m in Sources */,
+				BAE0AB55222F9A910002BABA /* LGTBaseTableViewCell.m in Sources */,
+				BAE0AB80222FB6300002BABA /* LGTMainViewController.m in Sources */,
+				BAE0ABE42231330C0002BABA /* LGTAssetsCollectionOverlayView.m in Sources */,
+				BAE0ABDB2231330C0002BABA /* LGTImagePickerGroupCell.m in Sources */,
+				BAE0AB45222F94240002BABA /* NSArray+LGT.m in Sources */,
+				BAE0ABB0223111A10002BABA /* LGTTalkReplyModel.m in Sources */,
+				BAE0AB5F222F9B390002BABA /* NSError+LGTNetworking.m in Sources */,
+				BAE0ABE52231330C0002BABA /* LGTAssetsCollectionViewLayout.m in Sources */,
+				BAE0AB46222F94240002BABA /* UIImage+LGT.m in Sources */,
+				BAE0AB05222F5ACF0002BABA /* ViewController.m in Sources */,
+				BAE0AB8F2230C3FD0002BABA /* LGTMainTableReplyCell.m in Sources */,
+				BAE0AB10222F5AD30002BABA /* main.m in Sources */,
+				BAE0AB5E222F9B390002BABA /* LGTNetworking.m in Sources */,
+				BAE0AB2D222F7A050002BABA /* LGTBaseViewController.m in Sources */,
+				BAE0ABDD2231330C0002BABA /* LGTAssetsCollectionFooterView.m in Sources */,
+				BAE0AB70222FA8C80002BABA /* LGTBaseTableView.m in Sources */,
+				BAE0AB83222FB8290002BABA /* LGTMainTableService.m in Sources */,
+				BAE0ABB322312F5D0002BABA /* LGTAddViewController.m in Sources */,
+				BAE0AB4A222F94240002BABA /* NSMutableAttributedString+LGT.m in Sources */,
+				BAE0AB8C222FDCF70002BABA /* LGTMainTableView.m in Sources */,
+				BAE0AB54222F9A910002BABA /* LGTBaseService.m in Sources */,
+				BAE0ABA22230E83B0002BABA /* LGTPhotoBrowserViewController.m in Sources */,
+				BAE0ABAD223101F50002BABA /* LGTMainTableFooterView.m in Sources */,
+				BAE0AB02222F5ACF0002BABA /* AppDelegate.m in Sources */,
+				BAE0ABEB223137550002BABA /* LGTUploadCell.m in Sources */,
+				BAE0AB27222F78DE0002BABA /* LGTPresentPushAnimation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		BAE0AB06222F5ACF0002BABA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAE0AB07222F5ACF0002BABA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BAE0AB0B222F5AD30002BABA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BAE0AB0C222F5AD30002BABA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BAE0AB11222F5AD30002BABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BAE0AB12222F5AD30002BABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BAE0AB14222F5AD30002BABA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FA4FCD1710F28B49AB129E87 /* Pods-LGTalkDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z35S33J39R;
+				INFOPLIST_FILE = LGTalkDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lancoo.LGTalkDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		BAE0AB15222F5AD30002BABA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 263D8CE6365412AE09C2873C /* Pods-LGTalkDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Z35S33J39R;
+				INFOPLIST_FILE = LGTalkDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.lancoo.LGTalkDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BAE0AAF8222F5ACF0002BABA /* Build configuration list for PBXProject "LGTalkDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAE0AB11222F5AD30002BABA /* Debug */,
+				BAE0AB12222F5AD30002BABA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BAE0AB13222F5AD30002BABA /* Build configuration list for PBXNativeTarget "LGTalkDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BAE0AB14222F5AD30002BABA /* Debug */,
+				BAE0AB15222F5AD30002BABA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BAE0AAF5222F5ACF0002BABA /* Project object */;
+}

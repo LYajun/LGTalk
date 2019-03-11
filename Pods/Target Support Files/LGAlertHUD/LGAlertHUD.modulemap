@@ -1,0 +1,6 @@
+framework module LGAlertHUD {
+  umbrella header "LGAlertHUD-umbrella.h"
+
+  export *
+  module * { export * }
+}

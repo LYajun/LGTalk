@@ -1,0 +1,66 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - LGAlertHUD (1.0.1)
+  - MarqueeLabel (3.2.0):
+    - MarqueeLabel/ObjC (= 3.2.0)
+  - MarqueeLabel/ObjC (3.2.0)
+  - Masonry (1.1.0)
+  - MJExtension (3.0.15.1)
+  - MJRefresh (3.1.15.7)
+  - SDWebImage (4.4.6):
+    - SDWebImage/Core (= 4.4.6)
+  - SDWebImage/Core (4.4.6)
+  - TFHpple (2.0.0)
+  - XMLDictionary (1.4.1)
+
+DEPENDENCIES:
+  - AFNetworking
+  - LGAlertHUD
+  - MarqueeLabel
+  - Masonry
+  - MJExtension
+  - MJRefresh
+  - SDWebImage
+  - TFHpple
+  - XMLDictionary
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - LGAlertHUD
+    - MarqueeLabel
+    - Masonry
+    - MJExtension
+    - MJRefresh
+    - SDWebImage
+    - TFHpple
+    - XMLDictionary
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  LGAlertHUD: 067a33dbdff0e4142248c342f65f3a7ceaff241b
+  MarqueeLabel: 440a502b91a9179bd98f9fff00ba1150650a1c0e
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
+  TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
+  XMLDictionary: fa07b6ff422b3a91d47a5de9bc82e3fc04fbd167
+
+PODFILE CHECKSUM: d490e48d05077affb16ab8994579fcdbc301113c
+
+COCOAPODS: 1.5.0

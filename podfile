@@ -1,0 +1,15 @@
+platform :ios,'8.0'
+use_frameworks!
+
+target 'LGTalkDemo’ do
+pod 'Masonry'
+pod 'MJExtension'
+pod 'MJRefresh'
+pod 'SDWebImage'
+pod 'LGAlertHUD'
+pod 'TFHpple'
+pod 'XMLDictionary'
+pod 'AFNetworking'
+pod 'MarqueeLabel'
+
+end

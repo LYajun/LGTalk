@@ -1,0 +1,59 @@
+Pod::Spec.new do |s|
+
+  s.name         = "LGTalk"
+  s.version      = "1.0.0"
+  s.summary      = "在线讨论"
+
+
+  s.homepage     = "https://github.com/LYajun/LGTalk"
+ 
+
+  s.license      = "MIT"
+ 
+  s.author             = { "刘亚军" => "liuyajun1999@icloud.com" }
+ 
+
+  s.platform     = :ios, "8.0"
+
+  s.ios.deployment_target = "8.0"
+
+  s.source       = { :git => "https://github.com/LYajun/LGTalk.git", :tag => s.version }
+
+
+  s.source_files  = "LGTalk/LGTalk.h","LGTalk/Enter/*.{h,m}","LGTalk/Module/**/*.{h,m}","LGTalk/Utils/Network/*.{h,m}","LGTalk/Common/**/*.{h,m}"
+
+  s.subspec "Category" do |ss|
+    ss.source_files =  "LGTalk/Category/*.{h,m}"
+    ss.dependency "LGTalk/Const"
+    ss.dependency "TFHpple"
+  end
+
+  s.subspec "Const" do |ss|
+    ss.source_files =  "LGTalk/Const/*.{h,m}"
+  end
+
+ s.subspec "Utils" do |ss|
+    ss.source_files =  "LGTalk/Utils/ActivityIndicatorView/*.{h,m}","LGTalk/Utils/ImagePickerController/*.{h,m}","LGTalk/Utils/Photo/*.{h,m}","LGTalk/Utils/PresentPushAnimation/*.{h,m}"
+
+    ss.dependency "LGTalk/Const"
+    ss.dependency "LGTalk/Category"
+
+    ss.dependency 'SDWebImage'
+    ss.dependency 'Masonry'
+  end
+
+  s.resources = "LGTalk/LGTalk.bundle"
+
+  s.requires_arc = true
+
+  s.dependency 'Masonry'
+  s.dependency 'MJExtension'
+  s.dependency 'MJRefresh'
+  s.dependency 'SDWebImage'
+  s.dependency 'LGAlertHUD'
+  s.dependency 'TFHpple'
+  s.dependency 'XMLDictionary'
+  s.dependency 'AFNetworking'
+  s.dependency 'MarqueeLabel'
+
+end
