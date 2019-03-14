@@ -3,7 +3,7 @@
 
 <div align="left">
 <img src="https://github.com/LYajun/LGTalk/blob/master/Assets/Shot1.png" width ="375" height ="812" >
-<img src="https://github.com/LYajun/LGTalk/blob/master/Assets/Shot2.png" width ="375" height ="667" >
+<img src="https://github.com/LYajun/LGTalk/blob/master/Assets/Shot2.png" width ="375" height ="812" >
  </div>
  
 ## 使用方式
