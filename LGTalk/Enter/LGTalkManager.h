@@ -12,10 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LGTalkManager : NSObject
-/** 资料名 */
+/** 服务器地址（登录的服务器设置地址） */
 @property (nonatomic,copy) NSString *apiUrl;
-
-
 /** 用户ID */
 @property (nonatomic,copy) NSString *userID;
 /** 用户名 */
@@ -26,12 +24,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *photoPath;
 /** 学校ID */
 @property (nonatomic,copy) NSString *schoolID;
+
 /** 任务ID */
 @property (nonatomic,copy) NSString *assignmentID;
 /** 资料ID */
 @property (nonatomic,copy) NSString *resID;
 /** 资料名 */
 @property (nonatomic,copy) NSString *resName;
+
 + (LGTalkManager *)defaultManager;
 
 - (void)presentKnowledgeControllerBy:(UIViewController *)controller;
