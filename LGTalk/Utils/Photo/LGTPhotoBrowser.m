@@ -14,10 +14,10 @@
 #import "LGTConst.h"
 #import "LGTExtension.h"
 
-@interface PhotoBrowserCell : UICollectionViewCell
+@interface LGTPhotoBrowserCell : UICollectionViewCell
 @property (nonatomic,strong)UIImageView *imageView;
 @end
-@implementation PhotoBrowserCell
+@implementation LGTPhotoBrowserCell
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
@@ -69,7 +69,7 @@
     return self.imageUrls.count;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    PhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([PhotoBrowserCell class]) forIndexPath:indexPath];
+    LGTPhotoBrowserCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LGTPhotoBrowserCell class]) forIndexPath:indexPath];
     if (!LGT_IsArrEmpty(self.imageNames)){
         cell.imageView.image = [UIImage imageNamed:self.imageNames[indexPath.row]];
     }else{
@@ -96,11 +96,11 @@
 }
 #pragma mark LGTPhotoBrowserAnimator delegate
 - (CGRect)startRect:(NSInteger)index{
-    PhotoBrowserCell *cell = (PhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    LGTPhotoBrowserCell *cell = (LGTPhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     return [self convertRect:cell.frame toView:[UIApplication sharedApplication].keyWindow];
 }
 - (CGRect)endRect:(NSInteger)index{
-   PhotoBrowserCell *cell = (PhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+   LGTPhotoBrowserCell *cell = (LGTPhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     UIImage *image = cell.imageView.image;
     //计算imageView的frame
     CGFloat x = 0;
@@ -113,7 +113,7 @@
     return CGRectMake(x, y, width, height);
 }
 - (UIImageView *)currentBrowseImageView:(NSInteger)index{
-    PhotoBrowserCell *cell = (PhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
+    LGTPhotoBrowserCell *cell = (LGTPhotoBrowserCell *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0]];
     UIImageView *imageView = [[UIImageView alloc] init];
     imageView.image = cell.imageView.image;
     imageView.contentMode = UIViewContentModeScaleToFill;
@@ -135,7 +135,7 @@
         _collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
-        [_collectionView registerClass:[PhotoBrowserCell class] forCellWithReuseIdentifier:NSStringFromClass([PhotoBrowserCell class])];
+        [_collectionView registerClass:[LGTPhotoBrowserCell class] forCellWithReuseIdentifier:NSStringFromClass([LGTPhotoBrowserCell class])];
     }
     return _collectionView;
 }
