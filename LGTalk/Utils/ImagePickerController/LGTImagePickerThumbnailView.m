@@ -34,33 +34,49 @@
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
-    
     CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextSetRGBFillColor(context, 1.0, 1.0, 1.0, 1.0);
-    
-    if (self.thumbnailImages.count == 3) {
-        UIImage *thumbnailImage = [self.thumbnailImages objectAtIndex:2];
-        
-        CGRect thumbnailImageRect = CGRectMake(4.0, 0, 62.0, 62.0);
-        CGContextFillRect(context, thumbnailImageRect);
-        [thumbnailImage drawInRect:CGRectInset(thumbnailImageRect, 0.5, 0.5)];
-    }
-    
-    if (self.thumbnailImages.count >= 2) {
-        UIImage *thumbnailImage = [self.thumbnailImages objectAtIndex:1];
-        
-        CGRect thumbnailImageRect = CGRectMake(2.0, 2.0, 66.0, 66.0);
-        CGContextFillRect(context, thumbnailImageRect);
-        [thumbnailImage drawInRect:CGRectInset(thumbnailImageRect, 0.5, 0.5)];
-    }
-    
-    UIImage *thumbnailImage = [self.thumbnailImages objectAtIndex:0];
-    
-    CGRect thumbnailImageRect = CGRectMake(0, 4.0, 70.0, 70.0);
-    CGContextFillRect(context, thumbnailImageRect);
-    [thumbnailImage drawInRect:CGRectInset(thumbnailImageRect, 0.5, 0.5)];
+     if (self.thumbnailImages && self.thumbnailImages.count > 0) {
+         
+         if (self.thumbnailImages.count == 3) {
+             UIImage *thumbnailImage = [self.thumbnailImages objectAtIndex:2];
+             
+             CGRect thumbnailImageRect = CGRectMake(4.0, 0, 62.0, 62.0);
+             CGContextFillRect(context, thumbnailImageRect);
+             [thumbnailImage drawInRect:CGRectInset(thumbnailImageRect, 0.5, 0.5)];
+         }
+         
+         if (self.thumbnailImages.count >= 2) {
+             UIImage *thumbnailImage = [self.thumbnailImages objectAtIndex:1];
+             
+             CGRect thumbnailImageRect = CGRectMake(2.0, 2.0, 66.0, 66.0);
+             CGContextFillRect(context, thumbnailImageRect);
+             [thumbnailImage drawInRect:CGRectInset(thumbnailImageRect, 0.5, 0.5)];
+         }
+         
+         UIImage *thumbnailImage = [self.thumbnailImages objectAtIndex:0];
+         
+         CGRect thumbnailImageRect = CGRectMake(0, 4.0, 70.0, 70.0);
+         CGContextFillRect(context, thumbnailImageRect);
+         [thumbnailImage drawInRect:CGRectInset(thumbnailImageRect, 0.5, 0.5)];
+     }else{
+         UIImage *thumbnailImage = [self imageWithColor:[UIColor lightGrayColor] size:[UIScreen mainScreen].bounds.size];
+         
+         CGRect thumbnailImageRect = CGRectMake(0, 4.0, 70.0, 70.0);
+         CGContextFillRect(context, thumbnailImageRect);
+         [thumbnailImage drawInRect:CGRectInset(thumbnailImageRect, 0.5, 0.5)];
+     }
 }
-
+- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size{
+    CGRect rect = CGRectMake(0.0f, 0.0f, size.width, size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 
 #pragma mark - Accessors
 

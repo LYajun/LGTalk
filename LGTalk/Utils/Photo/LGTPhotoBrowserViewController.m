@@ -11,13 +11,13 @@
 #import "LGTConst.h"
 #import "LGTExtension.h"
 
-@interface PhotoScrollView : UIScrollView<UIScrollViewDelegate>
+@interface LGTPhotoScrollView : UIScrollView<UIScrollViewDelegate>
 @property (nonatomic,strong) NSString *imageName;
 @property (nonatomic,strong) NSString *imageUrl;
 @property (nonatomic,strong) UIImageView *imageView;
 @property (nonatomic,copy) void (^ClickBlock) (void);
 @end
-@implementation PhotoScrollView
+@implementation LGTPhotoScrollView
 
 - (instancetype) initWithFrame:(CGRect)frame
 {
@@ -93,7 +93,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
      [self.view addSubview:self.scrollView];
     for (int i = 0; i < count; i++) {
-        PhotoScrollView *photoView = [[PhotoScrollView alloc] initWithFrame:CGRectMake(LGT_ScreenWidth*i, 0, LGT_ScreenWidth, LGT_ScreenHeight)];
+        LGTPhotoScrollView *photoView = [[LGTPhotoScrollView alloc] initWithFrame:CGRectMake(LGT_ScreenWidth*i, 0, LGT_ScreenWidth, LGT_ScreenHeight)];
         if (!LGT_IsArrEmpty(self.imageNames)) {
             photoView.imageName = self.imageNames[i];
         }else{
@@ -118,7 +118,7 @@
     if (fabs(_dragOffsetX - contenOffset) > LGT_ScreenWidth / 2) {
         //通过滚动算出在哪一页
         int page = contenOffset / LGT_ScreenWidth;
-        PhotoScrollView *photo = scrollView.subviews[self.pageControl.currentPage];
+        LGTPhotoScrollView *photo = scrollView.subviews[self.pageControl.currentPage];
         if (photo.zoomScale != 1) {
             photo.zoomScale = 1.0;
         }
