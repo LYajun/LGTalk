@@ -22,7 +22,8 @@
 
 - (IBAction)talk:(UIButton *)sender {
     [LGTalkManager defaultManager].apiUrl = @"http://192.168.3.158:10103";
-    
+//    [LGTalkManager defaultManager].homeTitle = @"zaixain";
+//    [LGTalkManager defaultManager].forbidAddTalk = YES;
     [LGTalkManager defaultManager].userID = @"zxstu55";
     [LGTalkManager defaultManager].userName = @"王玉宁";
     [LGTalkManager defaultManager].userType = 2;

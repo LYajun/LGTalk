@@ -8,7 +8,6 @@
 
 #import "LGTBaseViewController.h"
 #import <Masonry/Masonry.h>
-#import <MarqueeLabel/MarqueeLabel.h>
 #import "LGTActivityIndicatorView.h"
 #import "LGTExtension.h"
 
@@ -24,7 +23,7 @@
 @property (strong, nonatomic) UIView *viewNoData;
 /** 发生错误 */
 @property (strong, nonatomic) UIView *viewLoadError;
-@property (strong, nonatomic) MarqueeLabel *marqueeTitleLabel;
+@property (strong, nonatomic) UILabel *marqueeTitleLabel;
 
 @property (nonatomic,strong) UIButton *backBtn;
 @end
@@ -287,15 +286,15 @@
     return _backBtn;
 }
 
-- (MarqueeLabel *)marqueeTitleLabel{
+- (UILabel *)marqueeTitleLabel{
     if (!_marqueeTitleLabel) {
-        _marqueeTitleLabel = [[MarqueeLabel alloc] initWithFrame:CGRectMake(0, 0,LGT_ScreenWidth-180, 25) rate:10 andFadeLength:5];
-        _marqueeTitleLabel.animationDelay = 2.0;
+        _marqueeTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,LGT_ScreenWidth-180, 25)];
+//        _marqueeTitleLabel.animationDelay = 2.0;
         _marqueeTitleLabel.font = [UIFont systemFontOfSize:18];
         _marqueeTitleLabel.textColor = [UIColor whiteColor];
         _marqueeTitleLabel.textAlignment = NSTextAlignmentCenter;
-        _marqueeTitleLabel.trailingBuffer = 24;
-        _marqueeTitleLabel.marqueeType = MLContinuous;
+//        _marqueeTitleLabel.trailingBuffer = 24;
+//        _marqueeTitleLabel.marqueeType = MLContinuous;
     }
     return _marqueeTitleLabel;
 }

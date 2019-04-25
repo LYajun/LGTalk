@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LGTalk"
-  s.version      = "1.0.3"
+  s.version      = "1.0.4"
   s.summary      = "在线讨论"
 
 
@@ -70,6 +70,5 @@ Pod::Spec.new do |s|
   s.dependency 'TFHpple'
   s.dependency 'XMLDictionary'
   s.dependency 'AFNetworking'
-  s.dependency 'MarqueeLabel'
 
 end

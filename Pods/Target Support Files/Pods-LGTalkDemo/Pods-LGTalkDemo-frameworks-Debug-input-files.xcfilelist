@@ -1,0 +1,9 @@
+${PODS_ROOT}/Target Support Files/Pods-LGTalkDemo/Pods-LGTalkDemo-frameworks.sh
+${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
+${BUILT_PRODUCTS_DIR}/LGAlertHUD/LGAlertHUD.framework
+${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
+${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
+${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
+${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework
+${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework

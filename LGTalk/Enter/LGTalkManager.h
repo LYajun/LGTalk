@@ -14,6 +14,12 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LGTalkManager : NSObject
 /** 服务器地址（登录的服务器设置地址） */
 @property (nonatomic,copy) NSString *apiUrl;
+
+/** 主页标题 默认：在线讨论*/
+@property (nonatomic,copy) NSString *homeTitle;
+/** 是否静止新建讨论功能 默认：NO*/
+@property (nonatomic,assign) BOOL forbidAddTalk;
+
 /** 用户ID */
 @property (nonatomic,copy) NSString *userID;
 /** 用户名 */

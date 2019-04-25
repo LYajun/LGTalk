@@ -11,6 +11,7 @@
 #import <Masonry/Masonry.h>
 #import "LGTExtension.h"
 #import "LGTAddViewController.h"
+#import "LGTalkManager.h"
 
 @interface LGTMainViewController ()
 @property (nonatomic,strong) LGTMainTableView *tableView;
@@ -21,8 +22,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navBar_leftItemType = LGTNavBarLeftItemTypeMenu;
-    self.marqueeTitle = @"在线讨论";
-    [self setNavBar_rightItemImages:@[[UIImage lgt_imageNamed:@"add" atDir:@"NavBar"]]];
+    self.marqueeTitle = ([LGTalkManager defaultManager].homeTitle != nil && [LGTalkManager defaultManager].homeTitle.length > 0) ?  [LGTalkManager defaultManager].homeTitle : @"在线讨论";
+    if (![LGTalkManager defaultManager].forbidAddTalk) {
+        [self setNavBar_rightItemImages:@[[UIImage lgt_imageNamed:@"add" atDir:@"NavBar"]]];
+    }
     [self layoutUI];
 }
 - (void)layoutUI{
