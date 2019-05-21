@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		9995953400D5AE981553F3B4 /* Pods_LGTalkDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C456CB5B8DF05D1D0B39F9E /* Pods_LGTalkDemo.framework */; };
+		BA4F6549229389650004A545 /* LGTImageDeleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4F6547229389640004A545 /* LGTImageDeleteView.m */; };
 		BAE0AB02222F5ACF0002BABA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB01222F5ACF0002BABA /* AppDelegate.m */; };
 		BAE0AB05222F5ACF0002BABA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB04222F5ACF0002BABA /* ViewController.m */; };
 		BAE0AB08222F5ACF0002BABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAE0AB06222F5ACF0002BABA /* Main.storyboard */; };
@@ -75,6 +76,8 @@
 		263D8CE6365412AE09C2873C /* Pods-LGTalkDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LGTalkDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-LGTalkDemo/Pods-LGTalkDemo.release.xcconfig"; sourceTree = "<group>"; };
 		6C456CB5B8DF05D1D0B39F9E /* Pods_LGTalkDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LGTalkDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA411FA9223652EC0078DC6F /* LGTalk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTalk.h; sourceTree = "<group>"; };
+		BA4F6547229389640004A545 /* LGTImageDeleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTImageDeleteView.m; sourceTree = "<group>"; };
+		BA4F6548229389640004A545 /* LGTImageDeleteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTImageDeleteView.h; sourceTree = "<group>"; };
 		BAE0AAFD222F5ACF0002BABA /* LGTalkDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGTalkDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE0AB00222F5ACF0002BABA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BAE0AB01222F5ACF0002BABA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -509,6 +512,8 @@
 		BAE0AB7C222FB50C0002BABA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA4F6548229389640004A545 /* LGTImageDeleteView.h */,
+				BA4F6547229389640004A545 /* LGTImageDeleteView.m */,
 				BAE0ABE9223137540002BABA /* LGTUploadCell.h */,
 				BAE0ABEA223137550002BABA /* LGTUploadCell.m */,
 				BAE0ABED223137670002BABA /* LGTBarProgressView.h */,
@@ -706,6 +711,7 @@
 				BAE0ABB72231303B0002BABA /* LGTPhotoManage.m in Sources */,
 				BAE0AB53222F9A910002BABA /* LGTBaseModel.m in Sources */,
 				BAE0AB6D222FA21E0002BABA /* LGTActivityIndicatorBallPulseAnimation.m in Sources */,
+				BA4F6549229389650004A545 /* LGTImageDeleteView.m in Sources */,
 				BAE0AB73222FAE400002BABA /* LGTBaseTableService.m in Sources */,
 				BAE0AB44222F94240002BABA /* NSDate+LGT.m in Sources */,
 				BAE0AB962230CB530002BABA /* LGTMainTableHeaderView.m in Sources */,

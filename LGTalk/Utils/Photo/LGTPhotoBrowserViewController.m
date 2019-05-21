@@ -62,13 +62,33 @@
     return _imageView;
 }
 #pragma mark - 指定缩放视图（必须得是scrollView的子视图）
-- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
-{
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return self.imageView;
+}
+- (void)scrollViewDidZoom:(UIScrollView *)scrollView{
+    CGSize boundsSize = scrollView.bounds.size;
+    CGRect imgFrame = self.imageView.frame;
+    CGSize contentSize = scrollView.contentSize;
+    CGPoint centerPoint = CGPointMake(contentSize.width / 2, contentSize.height / 2);
+    
+    // center horizontally如果图片的宽比scrollView的宽小，那么就用scrollView的宽
+    if (imgFrame.size.width <= boundsSize.width){
+        centerPoint.x = boundsSize.width / 2;
+    }
+    // center vertically如果图片的宽比scrollView的高小，那么就用scrollView的高
+    if (imgFrame.size.height <= boundsSize.height){
+        centerPoint.y = boundsSize.height / 2;
+    }
+    
+    self.imageView.center = centerPoint;
+    
 }
 - (void)scrollViewDidEndZooming:(UIScrollView *)scrollView withView:(UIView *)view atScale:(CGFloat)scale{
     if (scrollView.zoomScale < 1){
-        self.zoomScale = 1;
+        __weak typeof(self) weakSelf = self;
+        [UIView animateWithDuration:0.3 animations:^{
+            weakSelf.zoomScale = 1;
+        }];
     }
 }
 

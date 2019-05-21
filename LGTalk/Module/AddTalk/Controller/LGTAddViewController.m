@@ -24,11 +24,11 @@ static NSInteger maxUploadCount = 3;
 @property (nonatomic,strong)LGTBaseTextView *textView;
 @property (nonatomic,strong)NSMutableArray *imageArr;
 @property (nonatomic,strong)NSArray *imageArr_copy;
-@property (nonatomic,assign) NSInteger deleteIndexPath;
+
 @property (nonatomic,assign)BOOL isMore;
-@property (nonatomic,assign)BOOL isEdit;
+
 @property (nonatomic,assign)NSInteger currentIndex;
-@property (nonatomic,strong)UIButton *deleteBtn;
+
 @end
 
 @implementation LGTAddViewController
@@ -157,55 +157,25 @@ static NSInteger maxUploadCount = 3;
         
     } atController:self];
 }
-- (void)handleLongPressRecognizer:(UILongPressGestureRecognizer *) longPress{
-    switch (longPress.state) {
-        case UIGestureRecognizerStateBegan:
-        {
-            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[longPress locationInView:self.collectionView]];
-            if ([[self.collectionView cellForItemAtIndexPath:indexPath] isKindOfClass:[LGTUploadCell class]]) {
-                self.isEdit = YES;
-                LGTUploadCell *cell = (LGTUploadCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
-                [cell addSubview:self.deleteBtn];
-                __weak typeof(self) weakSelf = self;
-                [UIView animateWithDuration:0.5 animations:^{
-                    weakSelf.deleteIndexPath = indexPath.row;
-                    [weakSelf.deleteBtn bringSubviewToFront:self.collectionView];
-                }];
-            }
-        }
-            break;
-            
-        default:
-            break;
-    }
-}
-- (void)deleteAction:(UIButton *) button{
-    [self.imageArr removeObjectAtIndex:self.deleteIndexPath];
+
+- (void)deleteCellImgAtIndex:(NSInteger)index{
+    [self.imageArr removeObjectAtIndex:index];
     if (self.imageArr.count < maxUploadCount && ![self.imageArr.lastObject isKindOfClass:[NSString class]]) {
         [self.imageArr addObject:@""];
     }
-    [self.deleteBtn removeFromSuperview];
-    self.deleteBtn = nil;
-    self.isEdit = NO;
     [self.collectionView reloadData];
 }
 #pragma mark - YJPhotoManageDelegate
 - (void)LGTPhotoManage:(LGTPhotoManage *)manage cameraDidSelectImage:(UIImage *)selectImage{
-    if (self.isMore) {
-        [self.imageArr insertObject:selectImage atIndex:self.imageArr.count-1];
-    }else{
-        if (self.imageArr.count > 1) {
-            [self.imageArr replaceObjectAtIndex:self.currentIndex withObject:selectImage];
-        }else{
-            [self.imageArr insertObject:selectImage atIndex:self.imageArr.count-1];
-        }
-    }
-    if (self.imageArr.count == maxUploadCount+1) {
-        [self.imageArr removeObjectAtIndex:self.imageArr.count-1];
-    }
-    [self.collectionView reloadData];
+    [self photoManageDidSelectImage:@[selectImage]];
 }
 - (void)LGTPhotoManage:(LGTPhotoManage *)manage albumDidSelectImage:(NSArray *)selectImages{
+    [self photoManageDidSelectImage:selectImages];
+}
+- (void)photoManageDidSelectImage:(NSArray *)selectImages{
+    if (LGT_IsArrEmpty(selectImages)) {
+        return;
+    }
     if (self.isMore) {
         for (UIImage *image in selectImages) {
             [self.imageArr insertObject:image atIndex:self.imageArr.count-1];
@@ -239,28 +209,26 @@ static NSInteger maxUploadCount = 3;
     }else{
         LGTUploadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([LGTUploadCell class]) forIndexPath:indexPath];
         [cell setTaskImage:image];
+        __weak typeof(self) weakSelf = self;
+        cell.deleteBlock = ^{
+            [weakSelf deleteCellImgAtIndex:indexPath.row];
+        };
         return cell;
     }
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     [self.view endEditing:YES];
-    if (self.isEdit && self.deleteIndexPath == indexPath.row) {
-        [self.deleteBtn removeFromSuperview];
-        self.deleteBtn = nil;
-        self.isEdit = NO;
+    self.currentIndex = indexPath.row;
+    id image = self.imageArr[indexPath.row];
+    if ([image isKindOfClass:[NSString class]]) {
+        self.isMore = YES;
+        NSInteger count = maxUploadCount - (self.imageArr.count-1);
+        [LGTPhotoManage manage].maximumNumberOfSelection = count > 3 ? 3:count;
     }else{
-        self.currentIndex = indexPath.row;
-        id image = self.imageArr[indexPath.row];
-        if ([image isKindOfClass:[NSString class]]) {
-            self.isMore = YES;
-            NSInteger count = maxUploadCount - (self.imageArr.count-1);
-            [LGTPhotoManage manage].maximumNumberOfSelection = count > 3 ? 3:count;
-        }else{
-            self.isMore = NO;
-            [LGTPhotoManage manage].maximumNumberOfSelection = 1;
-        }
-        [self selectImagesAction];
+        self.isMore = NO;
+        [LGTPhotoManage manage].maximumNumberOfSelection = 1;
     }
+    [self selectImagesAction];
 }
 #pragma mark - Property init
 - (UICollectionView *)collectionView{
@@ -277,20 +245,8 @@ static NSInteger maxUploadCount = 3;
         _collectionView.delegate = self;
         [_collectionView registerClass:[LGTMoreCell class] forCellWithReuseIdentifier:NSStringFromClass([LGTMoreCell class])];
         [_collectionView registerClass:[LGTUploadCell class] forCellWithReuseIdentifier:NSStringFromClass([LGTUploadCell class])];
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handleLongPressRecognizer:)];
-        [_collectionView addGestureRecognizer:longPress];
     }
     return _collectionView;
-}
-- (UIButton *)deleteBtn{
-    if (!_deleteBtn) {
-        _deleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _deleteBtn.frame = CGRectMake(0, 0, 25, 25);
-        [_deleteBtn setImage:[UIImage lgt_imageNamed:@"delete" atDir:@"Main"] forState:UIControlStateNormal];
-        [_deleteBtn setImage:[UIImage lgt_imageNamed:@"delete_h" atDir:@"Main"] forState:UIControlStateHighlighted];
-        [_deleteBtn addTarget:self action:@selector(deleteAction:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _deleteBtn;
 }
 - (LGTBaseTextView *)textView{
     if (!_textView) {

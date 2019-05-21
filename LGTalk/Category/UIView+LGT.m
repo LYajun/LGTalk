@@ -167,7 +167,37 @@ static NSInteger kShadowViewTag = 2132;
     frame.size.height = height;
     self.frame = frame;
 }
+- (void)setTop:(CGFloat)t{
+    self.frame = CGRectMake(self.left, t, self.width, self.height);
+}
 
+- (CGFloat)top{
+    return self.frame.origin.y;
+}
+
+- (void)setBottom:(CGFloat)b{
+    self.frame = CGRectMake(self.left, b - self.height, self.width, self.height);
+}
+
+- (CGFloat)bottom{
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+- (void)setLeft:(CGFloat)l{
+    self.frame = CGRectMake(l, self.top, self.width, self.height);
+}
+
+- (CGFloat)left{
+    return self.frame.origin.x;
+}
+
+- (void)setRight:(CGFloat)r{
+    self.frame = CGRectMake(r - self.width, self.top, self.width, self.height);
+}
+
+- (CGFloat)right{
+    return self.frame.origin.x + self.frame.size.width;
+}
 #pragma mark Getter&Setter
 
 - (NSArray *)colors {

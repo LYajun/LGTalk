@@ -16,6 +16,7 @@
 #pragma mark -
 
 @interface LGTUploadCell : UICollectionViewCell
+@property (nonatomic,copy) void (^deleteBlock) (void);
 - (void)setTaskImage:(UIImage *) taskImage;
 - (void)setUploadProgress:(CGFloat) progress;
 @end

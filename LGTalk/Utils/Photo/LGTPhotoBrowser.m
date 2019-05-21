@@ -21,6 +21,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         self.imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:self.imageView];
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.contentView);
