@@ -28,6 +28,7 @@
             make.left.equalTo(self.contentView.mas_left).offset(1);
             make.top.equalTo(self.contentView.mas_top).offset(1);
         }];
+        self.imageView.clipsToBounds = YES;
     }
     return self;
 }

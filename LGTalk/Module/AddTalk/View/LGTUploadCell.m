@@ -66,6 +66,8 @@
     self.imageView.userInteractionEnabled = YES;
     self.imageView.bounds = self.contentView.bounds;
     self.imageView.center = self.contentView.center;
+    self.imageView.clipsToBounds = YES;
+    
     [self.contentView addSubview:self.imageView];
     
     [self.imageView lgt_clipLayerWithRadius:0 width:1 color:[UIColor lightGrayColor]];

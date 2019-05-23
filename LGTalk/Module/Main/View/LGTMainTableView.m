@@ -168,11 +168,11 @@
     }];
     
 }
-- (void)setTop:(BOOL) isTop{
+- (void)setHeaderTop:(BOOL)top{
     NSString *urlStr = [LGTNet.apiUrl stringByAppendingString:@"/api/Tutor/SetOrCancelTutorThemeTop"];
     WeakSelf;
     NSString *isTopStr = @"true";
-    if (isTop) {
+    if (top) {
         isTopStr = @"false";
     }
     LGTTalkModel *model = self.service.models[self.currentIndexPath.section];
@@ -291,7 +291,7 @@
                 sure = @"置顶";
             }
             [LGAlert alertSheetWithTitle:nil message:nil canceTitle:cancel confirmTitle:sure cancelBlock:^{} confirmBlock:^{
-                [selfWeak setTop:isTop];
+                [selfWeak setHeaderTop:isTop];
             } atController:selfWeak.service.ownController];
         }
     };
