@@ -27,13 +27,16 @@
 @implementation LGTMainTableView
 - (void)setDefaultValue{
     [super setDefaultValue];
+    self.estimatedRowHeight = 0;
+    self.estimatedSectionHeaderHeight = 0;
+    self.estimatedSectionFooterHeight = 0;
+    
     self.currentIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self registerClass:[LGTMainTableReplyCell class] forCellReuseIdentifier:NSStringFromClass([LGTMainTableReplyCell class])];
     [self registerClass:[LGTMainTableHeaderView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([LGTMainTableHeaderView class])];
     [self registerClass:[LGTMainTableFooterView class] forHeaderFooterViewReuseIdentifier:NSStringFromClass([LGTMainTableFooterView class])];
     self.delegate = self;
     self.dataSource = self;
-    
     [self installRefreshHeader:YES footer:YES];
 }
 

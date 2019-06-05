@@ -33,11 +33,22 @@ pod 'LGTalk'
 
 /** 任务ID */
 @property (nonatomic,copy) NSString *assignmentID;
+/** 任务名 */
+@property (nonatomic,copy) NSString *assignmentName;
 /** 资料ID */
 @property (nonatomic,copy) NSString *resID;
 /** 资料名 */
 @property (nonatomic,copy) NSString *resName;
-
+/** 教师ID */
+@property (nonatomic,copy) NSString *teacherID;
+/** 教师名 */
+@property (nonatomic,copy) NSString *teachertName;
+/** 学科ID */
+@property (nonatomic,copy) NSString *subjectID;
+/** 学科名 */
+@property (nonatomic,copy) NSString *subjectName;
+/** 系统ID */
+@property (nonatomic,copy) NSString *systemID;
 
 ```
 

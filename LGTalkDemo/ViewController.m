@@ -31,7 +31,16 @@
     [LGTalkManager defaultManager].schoolID = @"S15-410-3086";
     
     [LGTalkManager defaultManager].assignmentID = @"YXRW-tc001-000000000000000000000000000000000000004-803d2219-2908-49c3-bdec-41973e1adc41";
+    [LGTalkManager defaultManager].assignmentName = @"教案1";
     [LGTalkManager defaultManager].resName = @"作业_课前预习";
+    [LGTalkManager defaultManager].resID = @"";
+    
+    [LGTalkManager defaultManager].systemID = @"510";
+    [LGTalkManager defaultManager].subjectID = @"S2-English";
+    [LGTalkManager defaultManager].subjectName = @"英语";
+    [LGTalkManager defaultManager].teacherID = @"zengruiyan1";
+    [LGTalkManager defaultManager].teachertName = @"曾老师";
+    
     
     [[LGTalkManager defaultManager] presentKnowledgeControllerBy:self];
 }

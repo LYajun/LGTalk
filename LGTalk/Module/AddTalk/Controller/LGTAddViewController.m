@@ -97,8 +97,16 @@ static NSInteger maxUploadCount = 3;
     model.UserName = [LGTalkManager defaultManager].userName;
     model.Content = self.textView.text;
     model.AssignmentID = [LGTalkManager defaultManager].assignmentID;
+    model.AssignmentName = [LGTalkManager defaultManager].assignmentName;
     model.ResID = [LGTalkManager defaultManager].resID;
-  
+    model.ResName = [LGTalkManager defaultManager].resName;
+    
+    model.TeacherID = [LGTalkManager defaultManager].teacherID;
+    model.TeacherName = [LGTalkManager defaultManager].teachertName;
+    model.SubjectID = [LGTalkManager defaultManager].subjectID;
+    model.SubjectName = [LGTalkManager defaultManager].subjectName;
+    model.SysID = [LGTalkManager defaultManager].systemID;
+    
     model.FromTopicInfo = [LGTalkManager defaultManager].resName;
     model.FromTopicIndex = -1;
    
