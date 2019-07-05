@@ -12,6 +12,8 @@
 #import "LGTAssetsCollectionViewCell.h"
 #import "LGTAssetsCollectionFooterView.h"
 
+#import <LGAlertHUD/LGAlertHUD.h>
+
 @interface LGTAssetsCollectionViewController ()
 
 @property (nonatomic, strong) NSMutableArray *assets;
@@ -168,6 +170,9 @@
     NSUInteger minimumNumberOfSelection = MAX(1, self.minimumNumberOfSelection);
     
     if (minimumNumberOfSelection <= self.maximumNumberOfSelection) {
+        if (numberOfSelections > self.maximumNumberOfSelection) {
+            [LGAlert showStatus:@"图片选择已达上限"];
+        }
         return (numberOfSelections <= self.maximumNumberOfSelection);
     }
     

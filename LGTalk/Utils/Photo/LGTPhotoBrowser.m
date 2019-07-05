@@ -129,7 +129,7 @@
         layout.minimumInteritemSpacing = 0;
         layout.minimumLineSpacing = 0;
         layout.itemSize = CGSizeMake(self.selfWidth/3, self.selfWidth/3);
-        layout.headerReferenceSize = CGSizeMake(LGT_ScreenWidth, 1);
+//        layout.headerReferenceSize = CGSizeMake(LGT_ScreenWidth, 1);
         layout.sectionInset = UIEdgeInsetsZero;
         layout.collectionView.backgroundColor = [UIColor whiteColor];
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];

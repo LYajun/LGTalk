@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LGTalk"
-  s.version      = "1.0.8"
+  s.version      = "1.0.9"
   s.summary      = "在线讨论"
 
 
@@ -36,6 +36,7 @@ Pod::Spec.new do |s|
     
     ss.subspec "ImagePickerController" do |sss|
       sss.source_files =  "LGTalk/Utils/ImagePickerController/*.{h,m}"
+      sss.dependency 'LGAlertHUD'
     end
 
     ss.subspec "Photo" do |sss|

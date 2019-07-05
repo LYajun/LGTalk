@@ -45,7 +45,7 @@
 
 #pragma mark -
 
-@interface LGTUploadCell ()
+@interface LGTUploadCell ()<UIGestureRecognizerDelegate>
 @property (nonatomic,strong)UIImageView *imageView;
 @property (nonatomic, strong) LGTImageDeleteView *deleteView;
 @property (nonatomic, assign) CGPoint oriCenter;
@@ -66,17 +66,30 @@
     self.imageView.userInteractionEnabled = YES;
     self.imageView.bounds = self.contentView.bounds;
     self.imageView.center = self.contentView.center;
-    self.imageView.clipsToBounds = YES;
+     self.imageView.contentMode = UIViewContentModeScaleAspectFill;
     
     [self.contentView addSubview:self.imageView];
     
-    [self.imageView lgt_clipLayerWithRadius:0 width:1 color:[UIColor lightGrayColor]];
+    [self.imageView lgt_clipLayerWithRadius:0 width:1 color:LGT_ColorWithHex(0xe5e5e5)];
     
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
     [self.imageView addGestureRecognizer:pan];
     
-
+    UILongPressGestureRecognizer *longGes = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longGes:)];
+    longGes.delegate = self;
+    longGes.minimumPressDuration = 0.3;
+    [self.imageView addGestureRecognizer:longGes];
+}
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    return YES;
+}
+- (void)longGes:(UILongPressGestureRecognizer *)longGes{
+    if (longGes.state == UIGestureRecognizerStateBegan) {
+        self.deleteView = [LGTImageDeleteView showTalkImageDeleteViewAtBottom:YES];
+    }else if (longGes.state == UIGestureRecognizerStateEnded){
+        [self.deleteView hide];
+    }
 }
 - (void)pan:(UIPanGestureRecognizer *)pan{
     [[[UIApplication sharedApplication] keyWindow] endEditing:YES];
@@ -92,8 +105,9 @@
         [UIView animateWithDuration:-.25 animations:^{
             tagButton.transform = CGAffineTransformMakeScale(1.2, 1.2);
         }];
-        
-        self.deleteView = [LGTImageDeleteView showTalkImageDeleteViewAtBottom:YES];
+        if (!self.deleteView || !self.deleteView.superview) {
+            self.deleteView = [LGTImageDeleteView showTalkImageDeleteViewAtBottom:YES];
+        }
         
         [[UIApplication sharedApplication].keyWindow addSubview:tagButton];
         

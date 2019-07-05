@@ -64,7 +64,7 @@
 - (CGFloat)tableHeaderHeight{
     CGFloat imageBgHeight = 0;
     if (!LGT_IsArrEmpty(self.ImgUrlList)) {
-        CGFloat imageBgW = LGT_ScreenWidth - 44 - 10 - 2 - 2 - 26 - 10;
+        CGFloat imageBgW = LGT_ScreenWidth - 44 - 10 - 2  - 10;
         imageBgHeight = imageBgW/3;
     }
     return 54 + 3 + self.contentHeight + 3 + imageBgHeight + 5 + 20 + 10;

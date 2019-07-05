@@ -122,7 +122,7 @@
               make.height.mas_equalTo(0);
         }];
     }else{
-        CGFloat imageBgW = LGT_ScreenWidth - 44 - 10 - 2 - 2 - 26 - 10;
+        CGFloat imageBgW = LGT_ScreenWidth - 44 - 10 - 2 - 10;
         [self.imageBgV mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(imageBgW/3);
         }];
