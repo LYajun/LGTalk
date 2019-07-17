@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9995953400D5AE981553F3B4 /* Pods_LGTalkDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C456CB5B8DF05D1D0B39F9E /* Pods_LGTalkDemo.framework */; };
 		BA4F6549229389650004A545 /* LGTImageDeleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4F6547229389640004A545 /* LGTImageDeleteView.m */; };
+		BAD8568822DF35460012F1D5 /* LGTWrittingImageBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD8568422DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.m */; };
+		BAD8568922DF35460012F1D5 /* LGTWrittingImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD8568722DF35450012F1D5 /* LGTWrittingImageViewer.m */; };
 		BAE0AB02222F5ACF0002BABA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB01222F5ACF0002BABA /* AppDelegate.m */; };
 		BAE0AB05222F5ACF0002BABA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB04222F5ACF0002BABA /* ViewController.m */; };
 		BAE0AB08222F5ACF0002BABA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAE0AB06222F5ACF0002BABA /* Main.storyboard */; };
@@ -78,6 +80,10 @@
 		BA411FA9223652EC0078DC6F /* LGTalk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTalk.h; sourceTree = "<group>"; };
 		BA4F6547229389640004A545 /* LGTImageDeleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTImageDeleteView.m; sourceTree = "<group>"; };
 		BA4F6548229389640004A545 /* LGTImageDeleteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTImageDeleteView.h; sourceTree = "<group>"; };
+		BAD8568422DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTWrittingImageBrowserScrollView.m; sourceTree = "<group>"; };
+		BAD8568522DF35450012F1D5 /* LGTWrittingImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTWrittingImageViewer.h; sourceTree = "<group>"; };
+		BAD8568622DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTWrittingImageBrowserScrollView.h; sourceTree = "<group>"; };
+		BAD8568722DF35450012F1D5 /* LGTWrittingImageViewer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTWrittingImageViewer.m; sourceTree = "<group>"; };
 		BAE0AAFD222F5ACF0002BABA /* LGTalkDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LGTalkDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE0AB00222F5ACF0002BABA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BAE0AB01222F5ACF0002BABA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -512,6 +518,10 @@
 		BAE0AB7C222FB50C0002BABA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BAD8568622DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.h */,
+				BAD8568422DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.m */,
+				BAD8568522DF35450012F1D5 /* LGTWrittingImageViewer.h */,
+				BAD8568722DF35450012F1D5 /* LGTWrittingImageViewer.m */,
 				BA4F6548229389640004A545 /* LGTImageDeleteView.h */,
 				BA4F6547229389640004A545 /* LGTImageDeleteView.m */,
 				BAE0ABE9223137540002BABA /* LGTUploadCell.h */,
@@ -737,6 +747,7 @@
 				BAE0ABDB2231330C0002BABA /* LGTImagePickerGroupCell.m in Sources */,
 				BAE0AB45222F94240002BABA /* NSArray+LGT.m in Sources */,
 				BAE0ABB0223111A10002BABA /* LGTTalkReplyModel.m in Sources */,
+				BAD8568922DF35460012F1D5 /* LGTWrittingImageViewer.m in Sources */,
 				BAE0AB5F222F9B390002BABA /* NSError+LGTNetworking.m in Sources */,
 				BAE0ABE52231330C0002BABA /* LGTAssetsCollectionViewLayout.m in Sources */,
 				BAE0AB46222F94240002BABA /* UIImage+LGT.m in Sources */,
@@ -748,6 +759,7 @@
 				BAE0ABDD2231330C0002BABA /* LGTAssetsCollectionFooterView.m in Sources */,
 				BAE0AB70222FA8C80002BABA /* LGTBaseTableView.m in Sources */,
 				BAE0AB83222FB8290002BABA /* LGTMainTableService.m in Sources */,
+				BAD8568822DF35460012F1D5 /* LGTWrittingImageBrowserScrollView.m in Sources */,
 				BAE0ABB322312F5D0002BABA /* LGTAddViewController.m in Sources */,
 				BAE0AB4A222F94240002BABA /* NSMutableAttributedString+LGT.m in Sources */,
 				BAE0AB8C222FDCF70002BABA /* LGTMainTableView.m in Sources */,

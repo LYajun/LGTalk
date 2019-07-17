@@ -17,6 +17,7 @@
 #import <LGAlertHUD/LGAlertHUD.h>
 #import "LGTalkManager.h"
 #import "LGTNetworking.h"
+#import "LGTWrittingImageViewer.h"
 
 static NSInteger maxUploadCount = 3;
 @interface LGTAddViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,LGTPhotoManageDelegate>
@@ -228,15 +229,28 @@ static NSInteger maxUploadCount = 3;
     [self.view endEditing:YES];
     self.currentIndex = indexPath.row;
     id image = self.imageArr[indexPath.row];
+//    if ([image isKindOfClass:[NSString class]]) {
+//        self.isMore = YES;
+//        NSInteger count = maxUploadCount - (self.imageArr.count-1);
+//        [LGTPhotoManage manage].maximumNumberOfSelection = count > 3 ? 3:count;
+//    }else{
+//        self.isMore = NO;
+//        [LGTPhotoManage manage].maximumNumberOfSelection = 1;
+//    }
+//    [self selectImagesAction];
     if ([image isKindOfClass:[NSString class]]) {
         self.isMore = YES;
         NSInteger count = maxUploadCount - (self.imageArr.count-1);
         [LGTPhotoManage manage].maximumNumberOfSelection = count > 3 ? 3:count;
+        [self selectImagesAction];
     }else{
         self.isMore = NO;
-        [LGTPhotoManage manage].maximumNumberOfSelection = 1;
+        NSMutableArray *imgs = self.imageArr.mutableCopy;
+        if ([imgs.lastObject isKindOfClass:NSString.class]) {
+            [imgs removeObjectAtIndex:imgs.count-1];
+        }
+        [LGTWrittingImageViewer showWithImages:imgs atIndex:indexPath.row];
     }
-    [self selectImagesAction];
 }
 #pragma mark - Property init
 - (UICollectionView *)collectionView{

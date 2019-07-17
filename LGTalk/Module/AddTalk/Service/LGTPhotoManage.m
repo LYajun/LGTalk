@@ -32,12 +32,12 @@
     {
         UIImagePickerControllerSourceType sourceType = UIImagePickerControllerSourceTypeCamera;//设置类型为相机
         UIImagePickerController *picker = [[UIImagePickerController alloc] init];//初始化
-        picker.delegate = self;//设置代理
 //        picker.allowsEditing = YES;//设置照片可编辑
         picker.sourceType = sourceType;
         //        picker.showsCameraControls = NO;//默认为YES
         picker.cameraDevice=UIImagePickerControllerCameraDeviceRear;//选择前置摄像头或后置摄像头
         [self.ownController presentViewController:picker animated:YES completion:NULL];
+        picker.delegate = self;//设置代理
     }else {
         [LGAlert showInfoWithStatus:@"本设备无相机"];
     }
@@ -51,6 +51,7 @@
     imagePickerController.allowsMultipleSelection = YES;
     imagePickerController.filterType = LGTImagePickerControllerFilterTypePhotos;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
+    navigationController.navigationBar.translucent = NO;
     [self.ownController presentViewController:navigationController animated:YES completion:NULL];
 }
 - (void)dismissImagePickerController
