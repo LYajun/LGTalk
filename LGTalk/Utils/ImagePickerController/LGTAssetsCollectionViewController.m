@@ -76,7 +76,8 @@
     _assetsGroup = assetsGroup;
     
     // Set title
-    self.title = [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
+    NSString *title = [self.assetsGroup valueForProperty:ALAssetsGroupPropertyName];
+    self.title = [NSString stringWithFormat:@"%@(可选%li张)",title,self.maximumNumberOfSelection];
     
     // Get the number of photos and videos
     [self.assetsGroup setAssetsFilter:[ALAssetsFilter allPhotos]];

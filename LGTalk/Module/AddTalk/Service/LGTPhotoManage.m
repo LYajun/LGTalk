@@ -49,6 +49,7 @@
     imagePickerController.maximumNumberOfSelection = self.maximumNumberOfSelection;
     imagePickerController.title = @"相册";
     imagePickerController.allowsMultipleSelection = YES;
+    imagePickerController.filterType = LGTImagePickerControllerFilterTypePhotos;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
     [self.ownController presentViewController:navigationController animated:YES completion:NULL];
 }
