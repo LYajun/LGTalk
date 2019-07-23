@@ -21,10 +21,10 @@
 }
 
 - (IBAction)talk:(UIButton *)sender {
-    [LGTalkManager defaultManager].apiUrl = @"http://192.168.129.8:10103";
+    [LGTalkManager defaultManager].apiUrl = @"http://192.168.129.129:10103";
 //    [LGTalkManager defaultManager].homeTitle = @"zaixain";
 //    [LGTalkManager defaultManager].forbidAddTalk = YES;
-    [LGTalkManager defaultManager].userID = @"S100532";
+    [LGTalkManager defaultManager].userID = @"bkstu34";
     [LGTalkManager defaultManager].userName = @"冯永杰";
     [LGTalkManager defaultManager].userType = 2;
     [LGTalkManager defaultManager].photoPath = @"http://192.168.129.8:10101/lgftp/UserInfo/Photo/Default/Nopic.jpg";
