@@ -164,6 +164,7 @@
     if([text isEqualToString:@"\n"]){
         if (self.lgtDelegate && [self.lgtDelegate respondsToSelector:@selector(lgt_textViewShouldReturn:)]) {
             [self.lgtDelegate lgt_textViewShouldReturn:self];
+            return NO;
         }
         return YES;
     }

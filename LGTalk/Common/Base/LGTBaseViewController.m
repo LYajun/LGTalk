@@ -219,19 +219,19 @@
     if (!_viewNoData) {
         _viewNoData = [[UIView alloc]init];
         _viewNoData.backgroundColor = self.view.backgroundColor;
-        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage lgt_imageNamed:@"lg_statusView_empty" atDir:@"Empty"]];
+        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage lgt_imageNamed:@"task_statusView_empty" atDir:@"Empty"]];
         [_viewNoData addSubview:img];
         __weak typeof(self) weakSelf = self;
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(weakSelf.viewNoData);
-            make.centerY.equalTo(weakSelf.viewNoData).offset(-10);
+            make.centerY.equalTo(weakSelf.viewNoData).offset(-40);
         }];
         UILabel *lab = [[UILabel alloc] init];
         lab.tag = 11;
         lab.font = [UIFont systemFontOfSize:14];
         lab.textAlignment = NSTextAlignmentCenter;
-        lab.textColor =  LGT_ColorWithHex(0x666666);
-        lab.text = @"无任何讨论";
+        lab.textColor =  LGT_ColorWithHex(0x989898);
+        lab.text = @"什么都没有，去其他地方看看吧~";
         [_viewNoData addSubview:lab];
         [lab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.width.equalTo(self.viewNoData);
@@ -244,18 +244,18 @@
     if (!_viewLoadError) {
         _viewLoadError = [[UIView alloc]init];
         _viewLoadError.backgroundColor = self.view.backgroundColor;
-        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage lgt_imageNamed:@"lg_statusView_error" atDir:@"Empty"]];
+        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage lgt_imageNamed:@"task_statusView_error" atDir:@"Empty"]];
         [_viewLoadError addSubview:img];
         __weak typeof(self) weakSelf = self;
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(weakSelf.viewLoadError);
-            make.centerY.equalTo(weakSelf.viewLoadError).offset(-10);
+            make.centerY.equalTo(weakSelf.viewLoadError).offset(-15);
         }];
         UILabel *lab = [[UILabel alloc]init];
         lab.tag = 11;
         lab.font = [UIFont systemFontOfSize:14];
         lab.textAlignment = NSTextAlignmentCenter;
-        lab.textColor = LGT_ColorWithHex(0xAAAAAA);
+        lab.textColor = LGT_ColorWithHex(0x989898);
         lab.text = @"加载失败，轻触刷新";;
         [_viewLoadError addSubview:lab];
         [lab mas_makeConstraints:^(MASConstraintMaker *make) {
