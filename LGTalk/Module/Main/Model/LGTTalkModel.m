@@ -12,6 +12,9 @@
 
 @implementation LGTTalkQuesModel
 - (void)setContent:(NSString *)Content{
+    if (!LGT_IsStrEmpty(Content)) {
+        Content = [Content stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
+    }
     _Content = Content;
     _Content_Attr = Content.lgt_htmlImgFrameAdjust.lgt_toHtmlMutableAttributedString;
     [_Content_Attr lgt_setFont:15];
@@ -52,6 +55,9 @@
     return @{@"CommentList":[LGTTalkQuesModel class]};
 }
 - (void)setContent:(NSString *)Content{
+    if (!LGT_IsStrEmpty(Content)) {
+        Content = [Content stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
+    }
     _Content = Content;
     _Content_Attr = Content.lgt_htmlImgFrameAdjust.lgt_toHtmlMutableAttributedString;
     [_Content_Attr lgt_setFont:17];
