@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LGTalk"
-  s.version      = "1.1.5"
+  s.version      = "1.1.6"
   s.summary      = "在线讨论"
 
 
@@ -53,10 +53,6 @@ Pod::Spec.new do |s|
       sss.source_files =  "LGTalk/Utils/ActivityIndicatorView/*.{h,m}"
     end
 
-    ss.subspec "PresentPushAnimation" do |sss|
-      sss.source_files =  "LGTalk/Utils/PresentPushAnimation/*.{h,m}"
-    end
-
   end
 
   s.resources = "LGTalk/LGTalk.bundle"
@@ -71,5 +67,5 @@ Pod::Spec.new do |s|
   s.dependency 'TFHpple'
   s.dependency 'XMLDictionary'
   s.dependency 'AFNetworking'
-
+  s.dependency 'YJPresentAnimation'
 end

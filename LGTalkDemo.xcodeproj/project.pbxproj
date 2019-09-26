@@ -19,7 +19,6 @@
 		BAE0AB10222F5AD30002BABA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB0F222F5AD30002BABA /* main.m */; };
 		BAE0AB18222F65570002BABA /* LGTalk.bundle in Resources */ = {isa = PBXBuildFile; fileRef = BAE0AB17222F65570002BABA /* LGTalk.bundle */; };
 		BAE0AB20222F77D80002BABA /* LGTalkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB1F222F77D80002BABA /* LGTalkManager.m */; };
-		BAE0AB27222F78DE0002BABA /* LGTPresentPushAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB26222F78DE0002BABA /* LGTPresentPushAnimation.m */; };
 		BAE0AB2C222F7A050002BABA /* LGTBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB28222F7A050002BABA /* LGTBaseNavigationController.m */; };
 		BAE0AB2D222F7A050002BABA /* LGTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB29222F7A050002BABA /* LGTBaseViewController.m */; };
 		BAE0AB30222F7A360002BABA /* LGTConst.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB2F222F7A360002BABA /* LGTConst.m */; };
@@ -97,8 +96,6 @@
 		BAE0AB17222F65570002BABA /* LGTalk.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = LGTalk.bundle; sourceTree = "<group>"; };
 		BAE0AB1E222F77D80002BABA /* LGTalkManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTalkManager.h; sourceTree = "<group>"; };
 		BAE0AB1F222F77D80002BABA /* LGTalkManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTalkManager.m; sourceTree = "<group>"; };
-		BAE0AB25222F78DE0002BABA /* LGTPresentPushAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTPresentPushAnimation.h; sourceTree = "<group>"; };
-		BAE0AB26222F78DE0002BABA /* LGTPresentPushAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTPresentPushAnimation.m; sourceTree = "<group>"; };
 		BAE0AB28222F7A050002BABA /* LGTBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseNavigationController.m; sourceTree = "<group>"; };
 		BAE0AB29222F7A050002BABA /* LGTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTBaseViewController.m; sourceTree = "<group>"; };
 		BAE0AB2A222F7A050002BABA /* LGTBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTBaseNavigationController.h; sourceTree = "<group>"; };
@@ -320,7 +317,6 @@
 				BAE0AB9A2230E83B0002BABA /* Photo */,
 				BAE0AB63222FA21E0002BABA /* ActivityIndicatorView */,
 				BAE0AB56222F9B390002BABA /* Network */,
-				BAE0AB24222F78CB0002BABA /* PresentPushAnimation */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -391,15 +387,6 @@
 				BAE0AB2F222F7A360002BABA /* LGTConst.m */,
 			);
 			path = Const;
-			sourceTree = "<group>";
-		};
-		BAE0AB24222F78CB0002BABA /* PresentPushAnimation */ = {
-			isa = PBXGroup;
-			children = (
-				BAE0AB25222F78DE0002BABA /* LGTPresentPushAnimation.h */,
-				BAE0AB26222F78DE0002BABA /* LGTPresentPushAnimation.m */,
-			);
-			path = PresentPushAnimation;
 			sourceTree = "<group>";
 		};
 		BAE0AB56222F9B390002BABA /* Network */ = {
@@ -768,7 +755,6 @@
 				BAE0ABAD223101F50002BABA /* LGTMainTableFooterView.m in Sources */,
 				BAE0AB02222F5ACF0002BABA /* AppDelegate.m in Sources */,
 				BAE0ABEB223137550002BABA /* LGTUploadCell.m in Sources */,
-				BAE0AB27222F78DE0002BABA /* LGTPresentPushAnimation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
