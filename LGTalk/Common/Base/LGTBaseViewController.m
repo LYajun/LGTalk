@@ -98,7 +98,7 @@
     if (self.navBar_leftItemType == LGTNavBarLeftItemTypeBack){
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-        [self dismissViewControllerAnimated:NO completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 - (void)setNavBar_rightItemTitles:(NSArray *)titles{

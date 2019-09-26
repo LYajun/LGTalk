@@ -25,7 +25,9 @@
 - (void)initNavigationBar {
     self.navigationBar.translucent = NO;
     NSString *imageName = @"lg_navBar_bg";
-    if (LGT_IsIPhoneX()) {
+    if (LGT_IsIPad()) {
+        imageName = @"lg_navBar_bg_ipad";
+    }else if (LGT_IsIPhoneX()) {
         imageName = @"lg_navBar_bg_x";
     }
     [self.navigationBar setBackgroundImage:[UIImage lgt_imageNamed:imageName atDir:@"NavBar"]

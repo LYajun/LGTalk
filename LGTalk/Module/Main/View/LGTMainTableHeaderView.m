@@ -105,7 +105,8 @@
     
     [self.imageBgV addSubview:self.photoBrowser];
     [self.photoBrowser mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.imageBgV);
+        make.left.top.height.equalTo(self.imageBgV);
+        make.width.mas_equalTo(self.imageBgV.mas_height).multipliedBy(3);
     }];
     
     [self.contentView addSubview:self.msgContentL];
@@ -123,6 +124,9 @@
         }];
     }else{
         CGFloat imageBgW = LGT_ScreenWidth - 44 - 10 - 2 - 10;
+        if (LGT_IsIPad()) {
+            imageBgW = 120 * 3;
+        }
         [self.imageBgV mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(imageBgW/3);
         }];
@@ -280,6 +284,9 @@
 - (LGTPhotoBrowser *)photoBrowser{
     if (!_photoBrowser) {
         CGFloat imageBgW = LGT_ScreenWidth - 44 - 10 - 2 - 10;
+        if (LGT_IsIPad()) {
+            imageBgW = 120 * 3;
+        }
         _photoBrowser = [[LGTPhotoBrowser alloc] initWithFrame:CGRectZero width:imageBgW];
     }
     return _photoBrowser;

@@ -38,7 +38,7 @@
 #define StrongObj(o)    __strong typeof(o) o##Strong = o
 #define WeakSelf        WeakObj(self)
 
-
+BOOL LGT_IsIPad(void);
 BOOL LGT_IsIPhoneX(void);
 CGFloat LGT_StateBarSpace(void);
 CGFloat LGT_TabbarBarSpace(void);

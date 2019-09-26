@@ -53,10 +53,18 @@ static NSInteger maxUploadCount = 3;
         make.height.mas_equalTo(LGT_ScreenHeight*0.3);
     }];
     
-    [self.view addSubview:self.collectionView];
-    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.bottom.equalTo(self.view);
+    UIView *collectionBgView = [UIView new];
+    collectionBgView.backgroundColor = LGT_ColorWithHex(0xF4F4F4);
+    [self.view addSubview:collectionBgView];
+    [collectionBgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.textView.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    [collectionBgView addSubview:self.collectionView];
+    [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo([self collectionViewWidth]);
+        make.top.left.bottom.equalTo(collectionBgView);
     }];
 }
 - (void)navBar_rightItemPressed:(UIBarButtonItem *)sender{
@@ -252,14 +260,24 @@ static NSInteger maxUploadCount = 3;
         [LGTWrittingImageViewer showWithImages:imgs atIndex:indexPath.row];
     }
 }
+- (CGFloat)collectionViewWidth{
+    if (LGT_IsIPad()) {
+        return 120*3 + 10*3 + 20*2;
+    }else{
+        return ((LGT_ScreenWidth-20*2 - 10*3)/4)*3 + 10*3 + 20*2;
+    }
+}
 #pragma mark - Property init
 - (UICollectionView *)collectionView{
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.minimumLineSpacing = 20;
-        layout.minimumInteritemSpacing = 20;
+        layout.minimumLineSpacing = 10;
+        layout.minimumInteritemSpacing = 10;
         layout.sectionInset = UIEdgeInsetsMake(20, 20, 20, 20);
-        CGFloat itemW = (LGT_ScreenWidth-20*5)/4;
+        CGFloat itemW = (LGT_ScreenWidth-20*2 - 10*3)/4;
+        if (LGT_IsIPad()) {
+            itemW = 120;
+        }
         layout.itemSize = CGSizeMake(itemW, itemW);
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         _collectionView.backgroundColor = LGT_ColorWithHex(0xF4F4F4);

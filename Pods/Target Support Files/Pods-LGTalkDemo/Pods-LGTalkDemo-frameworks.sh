@@ -169,6 +169,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YJPresentAnimation/YJPresentAnimation.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework"
@@ -179,6 +180,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YJPresentAnimation/YJPresentAnimation.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

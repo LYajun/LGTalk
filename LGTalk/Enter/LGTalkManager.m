@@ -10,7 +10,8 @@
 #import "LGTBaseNavigationController.h"
 #import "LGTMainViewController.h"
 #import "LGTNetworking.h"
-#import "LGTPresentPushAnimation.h"
+#import <YJPresentAnimation/YJPresentPushAnimation.h>
+#import <YJPresentAnimation/YJPresentPopAnimation.h>
 
 @interface LGTalkManager ()<UIViewControllerTransitioningDelegate>
 
@@ -37,9 +38,10 @@
 #pragma mark UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
-    LGTPresentPushAnimation* leftPresentAnimation = [[LGTPresentPushAnimation alloc] init];
-    leftPresentAnimation.isPresent = YES;
-    return leftPresentAnimation;
+    return [YJPresentPushAnimation new];
+}
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+    return [YJPresentPopAnimation new];
 }
 
 @end

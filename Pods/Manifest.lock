@@ -23,6 +23,7 @@ PODS:
   - SDWebImage/Core (4.4.6)
   - TFHpple (2.0.0)
   - XMLDictionary (1.4.1)
+  - YJPresentAnimation (1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - SDWebImage
   - TFHpple
   - XMLDictionary
+  - YJPresentAnimation
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -44,6 +46,7 @@ SPEC REPOS:
     - SDWebImage
     - TFHpple
     - XMLDictionary
+    - YJPresentAnimation
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -54,7 +57,8 @@ SPEC CHECKSUMS:
   SDWebImage: 3f3f0c02f09798048c47a5ed0a13f17b063572d8
   TFHpple: a916fe0799eb30aa29b2670d14d5868cdd3a5b81
   XMLDictionary: fa07b6ff422b3a91d47a5de9bc82e3fc04fbd167
+  YJPresentAnimation: 58af2bfff17028cb286ecd442d418af8997f8740
 
-PODFILE CHECKSUM: 9e9015451cf24138cc32cc626c9a598d66593dd3
+PODFILE CHECKSUM: 6eb45dd021e63f627840a44d84dc69dffe89b8d5
 
 COCOAPODS: 1.7.0.beta.3

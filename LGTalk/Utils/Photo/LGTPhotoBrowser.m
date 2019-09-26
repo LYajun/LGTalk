@@ -25,8 +25,13 @@
         [self.contentView addSubview:self.imageView];
         [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.equalTo(self.contentView);
-            make.left.equalTo(self.contentView.mas_left).offset(1);
-            make.top.equalTo(self.contentView.mas_top).offset(1);
+            if (LGT_IsIPad()) {
+                make.left.equalTo(self.contentView.mas_left).offset(2.5);
+                make.top.equalTo(self.contentView.mas_top).offset(2.5);
+            }else{
+                make.left.equalTo(self.contentView.mas_left).offset(1);
+                make.top.equalTo(self.contentView.mas_top).offset(1);
+            }
         }];
         self.imageView.clipsToBounds = YES;
     }

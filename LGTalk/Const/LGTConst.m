@@ -7,13 +7,22 @@
 //
 
 #import "LGTConst.h"
-
+BOOL LGT_IsIPad(void){
+    BOOL isIpad = (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad);
+    return isIpad;
+}
 BOOL LGT_IsIPhoneX(void){
-    CGFloat ScreenHeight = [UIScreen mainScreen].bounds.size.height;
-    if (ScreenHeight == 812.0f || ScreenHeight == 896.0f) {
-        return YES;
+    BOOL iPhoneX = NO;
+    if (UIDevice.currentDevice.userInterfaceIdiom != UIUserInterfaceIdiomPhone) {
+        return iPhoneX;
     }
-    return NO;
+    if (@available(iOS 11.0, *)) {
+        UIWindow *mainWindow = [[[UIApplication sharedApplication] delegate] window];
+        if (mainWindow.safeAreaInsets.bottom > 0.0) {
+            iPhoneX = YES;
+        }
+    }
+    return iPhoneX;
 }
 CGFloat LGT_StateBarSpace(void){
     return (LGT_IsIPhoneX() ? 24 : 0);

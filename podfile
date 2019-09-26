@@ -11,5 +11,5 @@ pod 'TFHpple'
 pod 'XMLDictionary'
 pod 'AFNetworking'
 #pod 'MarqueeLabel'
-
+pod 'YJPresentAnimation'
 end
