@@ -18,6 +18,6 @@
 
 - (void)lgt_setBoldFont:(CGFloat)font;
 - (void)lgt_setBoldFont:(CGFloat)font atRange:(NSRange)range;
-
+- (void)lgt_addParagraphLineSpacing:(CGFloat)lineSpacing;
 + (NSMutableAttributedString *)lgt_AttributedStringByHtmls:(NSArray *)htmls colors:(NSArray *)colors fonts:(NSArray *)fonts;
 @end

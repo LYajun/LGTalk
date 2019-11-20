@@ -21,6 +21,11 @@
 - (void)lgt_setBoldFont:(CGFloat)font{
     [self lgt_setBoldFont:font atRange:NSMakeRange(0, self.length)];
 }
+- (void)lgt_addParagraphLineSpacing:(CGFloat)lineSpacing{
+    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+    paragraphStyle.lineSpacing = lineSpacing;
+    [self addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, self.length)];
+}
 - (void)lgt_setBoldFont:(CGFloat)font atRange:(NSRange)range{
     [self addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:font] range:range];
 }

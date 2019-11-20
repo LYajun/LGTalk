@@ -32,7 +32,7 @@
 #define LGT_IsArrEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]) ||([(_ref) count] == 0))
 #define LGT_IsObjEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]))
 #define LGT_ApiParams(_ref)    (LGT_IsObjEmpty(_ref) ? @"" : _ref)
-
+#define IsIPad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 //弱引用化
 #define WeakObj(o)      __weak typeof(o) o##Weak = o
 #define StrongObj(o)    __strong typeof(o) o##Strong = o

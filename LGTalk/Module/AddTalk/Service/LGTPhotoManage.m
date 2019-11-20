@@ -88,11 +88,17 @@
     for (int i = 0; i < assets.count; i++) {
         ALAsset *asset_sign=[assets objectAtIndex:i];
          UIImage *image =[UIImage imageWithCGImage:asset_sign.defaultRepresentation.fullScreenImage];
-        [selectimgs addObject:image];
+        if (image) {
+            [selectimgs addObject:image];
+        }
     }
     NSLog(@"selectimgs==%@",selectimgs);
-    if (self.delegate &&[self.delegate respondsToSelector:@selector(LGTPhotoManage:albumDidSelectImage:)]) {
-        [self.delegate LGTPhotoManage:self albumDidSelectImage:selectimgs];
+    if (selectimgs.count > 0) {
+        if (self.delegate &&[self.delegate respondsToSelector:@selector(LGTPhotoManage:albumDidSelectImage:)]) {
+            [self.delegate LGTPhotoManage:self albumDidSelectImage:selectimgs];
+        }
+    }else{
+        [LGAlert showInfoWithStatus:@"图片选择失败，可尝试选择其它的"];
     }
 }
 

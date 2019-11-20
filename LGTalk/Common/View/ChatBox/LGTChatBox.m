@@ -131,6 +131,7 @@
         _textView.returnKeyType = UIReturnKeySend;
         _textView.enablesReturnKeyAutomatically = YES; //这里设置为无文字就灰色不可点
         _textView.placeholder = @"回复:";
+        _textView.maxLength = 300;
         _textView.limitType = LGTBaseTextViewLimitTypeEmojiLimit;
         [_textView lgt_clipLayerWithRadius:4 width:0.5 color:LGT_ColorWithHex(0xEDEDED)];
         _textView.lgtDelegate = self;

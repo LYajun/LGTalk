@@ -38,8 +38,8 @@
     [self.contentView addSubview:self.contentBg];
     [self.contentBg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.top.equalTo(self.contentView);
-        make.left.equalTo(self.contentView).offset(56);
-        make.right.equalTo(self.contentView).offset(-38);
+        make.left.equalTo(self.contentView).offset(IsIPad ? 74 : 64);
+        make.right.equalTo(self.contentView).offset(IsIPad ? -22 : -12);
     }];
     
     [self.contentBg addSubview:self.msgContentL];
@@ -100,6 +100,7 @@
         [attr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
         [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@":"]];
         [attr appendAttributedString:quesModel.Content_Attr];
+        [attr lgt_addParagraphLineSpacing:5];
         self.msgContentL.attributedText = attr;
     }else{
         NSMutableAttributedString *attr = [[NSMutableAttributedString alloc] initWithString:@"回复"];
@@ -114,6 +115,7 @@
         [attr appendAttributedString:userNameToAttr];
         [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@":"]];
         [attr appendAttributedString:quesModel.Content_Attr];
+        [attr lgt_addParagraphLineSpacing:5];
         self.msgContentL.attributedText = attr;
     }
     self.msgContentL.lineBreakMode = NSLineBreakByTruncatingTail;

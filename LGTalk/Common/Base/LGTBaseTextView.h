@@ -35,7 +35,7 @@ typedef NS_ENUM(NSInteger, LGTBaseTextViewLimitType)
 @property (nonatomic,assign) LGTBaseTextViewLimitType limitType;
 @property (nonatomic,assign) NSInteger maxLength;
 @property (nullable,nonatomic,weak) id<LGTBaseTextViewDelegate> lgtDelegate;
-
+@property (nonatomic,assign) CGPoint placeholdOrigin;
 /** 移除辅助视图 */
 - (void)deleteAccessoryView;
 @end
