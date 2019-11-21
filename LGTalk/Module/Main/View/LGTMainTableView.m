@@ -58,27 +58,32 @@
     replyModel.UserID = [LGTalkManager defaultManager].userID;
     replyModel.UserImg = [LGTalkManager defaultManager].photoPath;
     replyModel.UserName = [LGTalkManager defaultManager].userName;
+    replyModel.UserType = [NSString stringWithFormat:@"%li", [LGTalkManager defaultManager].userType];
     replyModel.IsComment = self.isCommentSelf;
     if (self.isCommentSelf) {
         if ([model.UserID isEqualToString:[LGTalkManager defaultManager].userID]) {
             replyModel.UserIDTo = [LGTalkManager defaultManager].userID;
             replyModel.UserNameTo = [LGTalkManager defaultManager].userName;
             replyModel.UserImgTo = [LGTalkManager defaultManager].photoPath;
+            replyModel.UserTypeTo = [NSString stringWithFormat:@"%li", [LGTalkManager defaultManager].userType];
         }else{
             replyModel.UserIDTo = model.UserID;
             replyModel.UserNameTo = model.UserName;
             replyModel.UserImgTo = model.UserImg;
+            replyModel.UserTypeTo = @"2";
         }
     }else{
         if (LGT_IsArrEmpty(model.CommentList)) {
             replyModel.UserIDTo = model.UserID;
             replyModel.UserNameTo = model.UserName;
             replyModel.UserImgTo = model.UserImg;
+            replyModel.UserTypeTo = @"2";
         }else{
             LGTTalkQuesModel *quesModel = model.CommentList[self.currentIndexPath.row];
             replyModel.UserIDTo = quesModel.UserID;
             replyModel.UserNameTo = quesModel.UserName;
             replyModel.UserImgTo = quesModel.UserImg;
+            replyModel.UserTypeTo = quesModel.UserType;
         }
     }
     replyModel.Content = sendContent;

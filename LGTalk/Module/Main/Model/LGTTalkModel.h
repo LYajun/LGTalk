@@ -19,10 +19,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *UserImg;
 /** 用户名 */
 @property (nonatomic,copy) NSString *UserName;
+/** 用户类型 */
+@property (nonatomic,copy) NSString *UserType;
 /** 回复用户ID */
 @property (nonatomic,copy) NSString *UserIDTo;
 /** 回复用户头像 */
 @property (nonatomic,copy) NSString *UserNameTo;
+/** 回复用户类型 */
+@property (nonatomic,copy) NSString *UserTypeTo;
 /** 回复用户名 */
 @property (nonatomic,copy) NSString *UserImgTo;
 /** 主题内容 */

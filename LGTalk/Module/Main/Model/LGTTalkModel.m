@@ -11,6 +11,18 @@
 #import "LGTExtension.h"
 
 @implementation LGTTalkQuesModel
+- (NSString *)UserType{
+    if (!_UserType) {
+        return @"2";
+    }
+    return _UserType;
+}
+- (NSString *)UserTypeTo{
+    if (!_UserTypeTo) {
+        return @"2";
+    }
+    return _UserTypeTo;
+}
 - (void)setContent:(NSString *)Content{
     if (!LGT_IsStrEmpty(Content)) {
         Content = [Content stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];

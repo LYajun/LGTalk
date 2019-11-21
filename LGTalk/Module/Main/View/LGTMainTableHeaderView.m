@@ -170,9 +170,9 @@
         self.foldBtn.hidden = NO;
     }
     if (talkModel.isFold) {
-        self.foldBtn.imageView.transform = CGAffineTransformMakeRotation(-M_PI);
-    }else{
         self.foldBtn.imageView.transform = CGAffineTransformIdentity;
+    }else{
+        self.foldBtn.imageView.transform = CGAffineTransformMakeRotation(-M_PI);
     }
 }
 #pragma mark - Action

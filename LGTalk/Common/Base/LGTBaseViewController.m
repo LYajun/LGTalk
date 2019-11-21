@@ -203,7 +203,7 @@
     if (!_viewLoading) {
         _viewLoading = [[UIView alloc]init];
         _viewLoading.backgroundColor = self.view.backgroundColor;
-        LGTActivityIndicatorView *activityIndicatorView = [[LGTActivityIndicatorView alloc] initWithType:LGTActivityIndicatorAnimationTypeBallPulse tintColor:[UIColor darkGrayColor]];
+        LGTActivityIndicatorView *activityIndicatorView = [[LGTActivityIndicatorView alloc] initWithType:LGTActivityIndicatorAnimationTypeBallPulse tintColor:LGT_ColorWithHex(0x989898)];
         [_viewLoading addSubview:activityIndicatorView];
         __weak typeof(self) weakSelf = self;
         [activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -237,6 +237,9 @@
             make.centerX.width.equalTo(self.viewNoData);
             make.top.equalTo(img.mas_bottom).offset(18);
         }];
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadErrorUpdate)];
+        [_viewNoData addGestureRecognizer:tap];
     }
     return _viewNoData;
 }

@@ -97,7 +97,11 @@
     if (quesModel.IsComment) {
         NSMutableAttributedString *attr = quesModel.UserName.lgt_toMutableAttributedString;
         [attr lgt_setFont:15];
-        [attr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
+        if ([quesModel.UserType integerValue] != 2) {
+            [attr lgt_setColor:[UIColor redColor]];
+        }else{
+            [attr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
+        }
         [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@":"]];
         [attr appendAttributedString:quesModel.Content_Attr];
         [attr lgt_addParagraphLineSpacing:5];
@@ -107,11 +111,19 @@
          [attr lgt_setFont:15];
         NSMutableAttributedString *userNameAttr = quesModel.UserName.lgt_toMutableAttributedString;
         [userNameAttr lgt_setFont:15];
-        [userNameAttr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
+        if ([quesModel.UserType integerValue] != 2) {
+             [userNameAttr lgt_setColor:[UIColor redColor]];
+        }else{
+            [userNameAttr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
+        }
         [attr insertAttributedString:userNameAttr atIndex:0];
         NSMutableAttributedString *userNameToAttr = quesModel.UserNameTo.lgt_toMutableAttributedString;
         [userNameToAttr lgt_setFont:15];
-        [userNameToAttr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
+         if ([quesModel.UserTypeTo integerValue] != 2) {
+             [userNameToAttr lgt_setColor:[UIColor redColor]];
+         }else{
+             [userNameToAttr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
+         }
         [attr appendAttributedString:userNameToAttr];
         [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@":"]];
         [attr appendAttributedString:quesModel.Content_Attr];
