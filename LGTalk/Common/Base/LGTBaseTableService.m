@@ -69,4 +69,10 @@
     }
 }
 
+- (NSArray *)mutiFilterTitleArray{
+    return @[];
+}
+- (NSArray *)mutiFilterTextArray{
+    return @[];
+}
 @end

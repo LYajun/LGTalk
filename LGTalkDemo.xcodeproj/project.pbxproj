@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9995953400D5AE981553F3B4 /* Pods_LGTalkDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C456CB5B8DF05D1D0B39F9E /* Pods_LGTalkDemo.framework */; };
 		BA4F6549229389650004A545 /* LGTImageDeleteView.m in Sources */ = {isa = PBXBuildFile; fileRef = BA4F6547229389640004A545 /* LGTImageDeleteView.m */; };
+		BA7F303A238E97F100C3DDC3 /* LGTPullDownMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7F3039238E97F100C3DDC3 /* LGTPullDownMenu.m */; };
+		BA7F303D238EA2D000C3DDC3 /* LGTMutiFilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA7F303C238EA2D000C3DDC3 /* LGTMutiFilterModel.m */; };
 		BAD8568822DF35460012F1D5 /* LGTWrittingImageBrowserScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD8568422DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.m */; };
 		BAD8568922DF35460012F1D5 /* LGTWrittingImageViewer.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD8568722DF35450012F1D5 /* LGTWrittingImageViewer.m */; };
 		BAE0AB02222F5ACF0002BABA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAE0AB01222F5ACF0002BABA /* AppDelegate.m */; };
@@ -79,6 +81,10 @@
 		BA411FA9223652EC0078DC6F /* LGTalk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTalk.h; sourceTree = "<group>"; };
 		BA4F6547229389640004A545 /* LGTImageDeleteView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTImageDeleteView.m; sourceTree = "<group>"; };
 		BA4F6548229389640004A545 /* LGTImageDeleteView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTImageDeleteView.h; sourceTree = "<group>"; };
+		BA7F3038238E97F100C3DDC3 /* LGTPullDownMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTPullDownMenu.h; sourceTree = "<group>"; };
+		BA7F3039238E97F100C3DDC3 /* LGTPullDownMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTPullDownMenu.m; sourceTree = "<group>"; };
+		BA7F303B238EA2D000C3DDC3 /* LGTMutiFilterModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGTMutiFilterModel.h; sourceTree = "<group>"; };
+		BA7F303C238EA2D000C3DDC3 /* LGTMutiFilterModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGTMutiFilterModel.m; sourceTree = "<group>"; };
 		BAD8568422DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGTWrittingImageBrowserScrollView.m; sourceTree = "<group>"; };
 		BAD8568522DF35450012F1D5 /* LGTWrittingImageViewer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTWrittingImageViewer.h; sourceTree = "<group>"; };
 		BAD8568622DF35450012F1D5 /* LGTWrittingImageBrowserScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGTWrittingImageBrowserScrollView.h; sourceTree = "<group>"; };
@@ -234,6 +240,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		BA7F3037238E97F100C3DDC3 /* PullDownMenu */ = {
+			isa = PBXGroup;
+			children = (
+				BA7F3038238E97F100C3DDC3 /* LGTPullDownMenu.h */,
+				BA7F3039238E97F100C3DDC3 /* LGTPullDownMenu.m */,
+			);
+			path = PullDownMenu;
+			sourceTree = "<group>";
+		};
 		BAE0AAF4222F5ACF0002BABA = {
 			isa = PBXGroup;
 			children = (
@@ -374,6 +389,7 @@
 		BAE0AB22222F787C0002BABA /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BA7F3037238E97F100C3DDC3 /* PullDownMenu */,
 				BAE0ABA42230FD7B0002BABA /* ChatBox */,
 				BAE0AB902230C4A00002BABA /* ClipView */,
 			);
@@ -463,6 +479,8 @@
 				BAE0ABAF223111A10002BABA /* LGTTalkReplyModel.m */,
 				BAE0AB87222FD7480002BABA /* LGTTalkModel.h */,
 				BAE0AB88222FD7480002BABA /* LGTTalkModel.m */,
+				BA7F303B238EA2D000C3DDC3 /* LGTMutiFilterModel.h */,
+				BA7F303C238EA2D000C3DDC3 /* LGTMutiFilterModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -752,9 +770,11 @@
 				BAE0AB8C222FDCF70002BABA /* LGTMainTableView.m in Sources */,
 				BAE0AB54222F9A910002BABA /* LGTBaseService.m in Sources */,
 				BAE0ABA22230E83B0002BABA /* LGTPhotoBrowserViewController.m in Sources */,
+				BA7F303A238E97F100C3DDC3 /* LGTPullDownMenu.m in Sources */,
 				BAE0ABAD223101F50002BABA /* LGTMainTableFooterView.m in Sources */,
 				BAE0AB02222F5ACF0002BABA /* AppDelegate.m in Sources */,
 				BAE0ABEB223137550002BABA /* LGTUploadCell.m in Sources */,
+				BA7F303D238EA2D000C3DDC3 /* LGTMutiFilterModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

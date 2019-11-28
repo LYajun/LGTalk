@@ -26,7 +26,9 @@ typedef NS_ENUM(NSUInteger, LGTNavBarLeftItemType) {
 @property (nonatomic,strong) LGTBaseService *service;
 /** 跑马灯标题 */
 @property (copy, nonatomic) NSString *marqueeTitle;
-
+/** 加载视图与顶部的间距 */
+@property (nonatomic,assign) CGFloat yj_loadingViewTopSpace;
+@property (nonatomic,weak) UIView *aboveView;
 /** 空页面 */
 - (void)setViewLoadingShow:(BOOL)show;
 - (void)setViewNoDataShow:(BOOL)show;

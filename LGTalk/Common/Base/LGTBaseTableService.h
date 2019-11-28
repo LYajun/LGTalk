@@ -11,6 +11,9 @@
 #import "LGTBaseModel.h"
 
 @interface LGTBaseTableService : NSObject
+
+@property (nonatomic,copy) NSString *resID;
+
 /** 所属的控制器 */
 @property (weak, nonatomic) UIViewController *ownController;
 /** 表格 当前页码 */
@@ -57,5 +60,10 @@
  *  @param success    成功回调，noMore表示分页数据是否还有更多
  */
 - (void)handleResponseDataList:(NSArray *)dataList modelClass:(Class)modelClass totalCount:(NSInteger)totalCount success:(void(^)(BOOL noMore))success;
+
+/** 教材筛选信息 */
+- (NSArray *)mutiFilterTitleArray;
+- (NSArray *)mutiFilterTextArray;
+
 
 @end

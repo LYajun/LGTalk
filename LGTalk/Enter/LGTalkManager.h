@@ -51,6 +51,9 @@ NS_ASSUME_NONNULL_BEGIN
 /** 系统ID */
 @property (nonatomic,copy) NSString *systemID;
 
+/** 教材筛选Url */
+@property (nonatomic,assign) NSString *mutiFilterUrl;
+
 + (LGTalkManager *)defaultManager;
 
 - (void)presentKnowledgeControllerBy:(UIViewController *)controller;

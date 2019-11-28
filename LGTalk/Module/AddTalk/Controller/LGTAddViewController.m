@@ -164,7 +164,7 @@ static NSInteger maxUploadCount = 3;
     }];
 }
 - (void)selectImagesAction{
-    [LGAlert alertSheetWithTitle:@"作业图片" message:nil canceTitle:@"取消" buttonTitles:@[@"拍摄照片",@"从手机相册中选取"] buttonBlock:^(NSInteger index) {
+    [LGAlert alertSheetWithTitle:@"作业图片" message:nil canceTitle:@"取消" buttonTitles:@[@"拍摄照片",@"从本地相册中选取"] buttonBlock:^(NSInteger index) {
         if (index == 0) {
             [[LGTPhotoManage manage] photoFromCamera];
         }else{

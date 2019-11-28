@@ -12,29 +12,57 @@
 #import "LGTExtension.h"
 #import "LGTAddViewController.h"
 #import "LGTalkManager.h"
+#import "LGTPullDownMenu.h"
 
 @interface LGTMainViewController ()
 @property (nonatomic,strong) LGTMainTableView *tableView;
+@property (nonatomic, strong) LGTPullDownMenu *pullDownMenu;
 @end
 
 @implementation LGTMainViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self layoutUI];
+    [self.tableView loadFirstPage];
+    __weak typeof(self) weakSelf = self;
+    self.tableView.TotalCountBlock = ^(NSInteger count){
+        [weakSelf.pullDownMenu setTitle:[NSString stringWithFormat:@"共%li组讨论",count]];
+    };
+}
+- (void)updateData{
+    if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+        self.pullDownMenu.menuDataArray = @[@[],self.tableView.service.mutiFilterTitleArray];
+        [self.pullDownMenu setDefauldSelectedCell];
+        if (!self.pullDownMenu.superview) {
+            [self.view addSubview:self.pullDownMenu];
+            self.pullDownMenu.currentSelTitle = [LGTalkManager defaultManager].resName;
+        }
+    }
+}
+- (void)layoutUI{
     self.navBar_leftItemType = LGTNavBarLeftItemTypeMenu;
     self.marqueeTitle = ([LGTalkManager defaultManager].homeTitle != nil && [LGTalkManager defaultManager].homeTitle.length > 0) ?  [LGTalkManager defaultManager].homeTitle : @"在线讨论";
     if (![LGTalkManager defaultManager].forbidAddTalk) {
         [self setNavBar_rightItemImages:@[[UIImage lgt_imageNamed:@"add" atDir:@"NavBar"]]];
     }
-    [self layoutUI];
-}
-- (void)layoutUI{
+    
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.view);
+        make.centerX.left.bottom.equalTo(self.view);
+        if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+            make.top.equalTo(self.view).offset(40);
+        }else{
+            make.top.equalTo(self.view);
+        }
     }];
     
-    [self.tableView loadFirstPage];
+    if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+        self.yj_loadingViewTopSpace = 40;
+        self.aboveView = self.pullDownMenu;
+    }
+    self.tableView.service.resID = [LGTalkManager defaultManager].resID;
+  
 }
 - (void)loadErrorUpdate{
      [self.tableView loadFirstPage];
@@ -44,11 +72,28 @@
     LGTAddViewController *uploadVC = [[LGTAddViewController alloc] init];
     WeakSelf;
     uploadVC.addSccessBlock = ^{
+        if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+            selfWeak.pullDownMenu.currentSelTitle = @"全部来源";
+        }
         [selfWeak.tableView loadFirstPage];
     };
     [self.navigationController pushViewController:uploadVC animated:NO];
 }
-
+- (LGTPullDownMenu *)pullDownMenu{
+    if (!_pullDownMenu) {
+        _pullDownMenu = [[LGTPullDownMenu alloc] initWithFrame:CGRectMake(0, 0, LGT_ScreenWidth, 40) menuTitleArray:@[@"共0组讨论",@"全部来源"]];
+        _pullDownMenu.menuDataArray = @[@[],self.tableView.service.mutiFilterTitleArray];
+        __weak typeof(self) weakSelf = self;
+        [_pullDownMenu setHandleSelectDataBlock:^(NSString *selectTitle, NSUInteger selectIndex, NSUInteger selectButtonTag) {
+            if (selectButtonTag == 0) {
+            }else{
+                weakSelf.tableView.service.resID = [weakSelf.tableView.service.mutiFilterTextArray lgt_objectAtIndex:selectIndex];
+            }
+            [weakSelf.tableView loadFirstPage];
+        }];
+    }
+    return _pullDownMenu;
+}
 - (LGTMainTableView *)tableView{
     if (!_tableView) {
         _tableView = [[LGTMainTableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped ownController:self serviceName:@"LGTMainTableService"];

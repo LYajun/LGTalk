@@ -32,6 +32,15 @@
 - (void)lgt_setFont:(CGFloat)font atRange:(NSRange)range{
     [self addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:font] range:range];
 }
+- (void)lgt_setChineseForegroundColor:(UIColor *)color font:(CGFloat)font{
+    for (int i=0; i<self.string.length; i++) {
+        unichar ch = [self.string characterAtIndex:i];
+        if (0x4e00 < ch  && ch < 0x9fff) {
+            [self addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(i, 1)];
+            [self addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:font] range:NSMakeRange(i, 1)];
+        }
+    }
+}
 + (NSMutableAttributedString *)lgt_AttributedStringByHtmls:(NSArray *)htmls colors:(NSArray *)colors fonts:(NSArray *)fonts{
     NSMutableArray *atts = [NSMutableArray array];
     for (int i = 0; i < htmls.count; i++) {

@@ -59,6 +59,7 @@
     WeakSelf;
     [self.service updateDataWithPage:page success:^(BOOL noMore) {
         [(LGTBaseViewController *)selfWeak.service.ownController setViewLoadingShow:NO];
+        [(LGTBaseViewController *)selfWeak.service.ownController updateData];
         if (selfWeak.mj_header) {
             [selfWeak.mj_header endRefreshing];
         }

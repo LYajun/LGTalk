@@ -188,10 +188,15 @@
         if (aView.superview) {
             [aView removeFromSuperview];
         }
-        [self.view addSubview:aView];
-        [self.view bringSubviewToFront:aView];
+        if (self.aboveView) {
+            [self.view insertSubview:aView belowSubview:self.aboveView];
+        }else{
+            [self.view addSubview:aView];
+            [self.view bringSubviewToFront:aView];
+        }
         [aView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.edges.equalTo(self.view);
+            make.top.equalTo(self.view).offset(self.yj_loadingViewTopSpace);
+            make.centerX.left.bottom.equalTo(self.view);
         }];
     }
     else {
@@ -300,5 +305,17 @@
 //        _marqueeTitleLabel.marqueeType = MLContinuous;
     }
     return _marqueeTitleLabel;
+}
+
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
 }
 @end
