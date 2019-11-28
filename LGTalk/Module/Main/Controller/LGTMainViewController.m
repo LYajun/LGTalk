@@ -17,6 +17,7 @@
 @interface LGTMainViewController ()
 @property (nonatomic,strong) LGTMainTableView *tableView;
 @property (nonatomic, strong) LGTPullDownMenu *pullDownMenu;
+@property (nonatomic, copy) NSString *currentFilterTitle;
 @end
 
 @implementation LGTMainViewController
@@ -56,7 +57,7 @@
             make.top.equalTo(self.view);
         }
     }];
-    
+    self.currentFilterTitle = [LGTalkManager defaultManager].resName;
     if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
         self.yj_loadingViewTopSpace = 40;
         self.aboveView = self.pullDownMenu;
@@ -70,11 +71,21 @@
 
 - (void)navBar_rightItemPressed:(UIBarButtonItem *)sender{
     LGTAddViewController *uploadVC = [[LGTAddViewController alloc] init];
+    
+    if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+        uploadVC.resID = LGT_ApiParams(self.tableView.service.resID);
+        uploadVC.resName = self.currentFilterTitle;
+    }else{
+        uploadVC.resID = [LGTalkManager defaultManager].resID;
+        uploadVC.resName = [LGTalkManager defaultManager].resName;
+    }
+    
     WeakSelf;
     uploadVC.addSccessBlock = ^{
-        if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
-            selfWeak.pullDownMenu.currentSelTitle = @"全部来源";
-        }
+//        if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+//            selfWeak.pullDownMenu.currentSelTitle = @"全部来源";
+//            selfWeak.tableView.service.resID = @"";
+//        }
         [selfWeak.tableView loadFirstPage];
     };
     [self.navigationController pushViewController:uploadVC animated:NO];
@@ -87,6 +98,11 @@
         [_pullDownMenu setHandleSelectDataBlock:^(NSString *selectTitle, NSUInteger selectIndex, NSUInteger selectButtonTag) {
             if (selectButtonTag == 0) {
             }else{
+                if (selectIndex == 0) {
+                    weakSelf.currentFilterTitle = @"";
+                }else{
+                    weakSelf.currentFilterTitle = [weakSelf.tableView.service.mutiFilterTitleArray lgt_objectAtIndex:selectIndex];
+                }
                 weakSelf.tableView.service.resID = [weakSelf.tableView.service.mutiFilterTextArray lgt_objectAtIndex:selectIndex];
             }
             [weakSelf.tableView loadFirstPage];

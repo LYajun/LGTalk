@@ -30,6 +30,7 @@ static NSInteger maxUploadCount = 3;
 
 @property (nonatomic,assign)NSInteger currentIndex;
 
+@property (nonatomic,strong) UILabel *sourceLab;
 @end
 
 @implementation LGTAddViewController
@@ -53,11 +54,38 @@ static NSInteger maxUploadCount = 3;
         make.height.mas_equalTo(LGT_ScreenHeight*0.3);
     }];
     
+    [self.view addSubview:self.sourceLab];
+    [self.sourceLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.textView.mas_bottom);
+        make.centerX.equalTo(self.view);
+        make.right.equalTo(self.view).offset(-20);
+        if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+             make.height.mas_equalTo(35);
+        }else{
+            make.height.mas_equalTo(0);
+        }
+    }];
+    self.sourceLab.hidden = ![[LGTalkManager defaultManager].systemID isEqualToString:@"930"];
+    if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
+        NSMutableAttributedString *topicTitleAttr = [[NSMutableAttributedString alloc] initWithString:@"来自"];
+        [topicTitleAttr lgt_setColor:LGT_ColorWithHex(0x636363)];
+        [topicTitleAttr lgt_setFont:16];
+        NSMutableAttributedString *topicSourceAttr = [[NSMutableAttributedString alloc] initWithString:LGT_IsStrEmpty(self.resName) ? [LGTalkManager defaultManager].assignmentName:self.resName];
+        [topicSourceAttr lgt_setColor:LGT_ColorWithHex(0x47A9EA)];
+        [topicSourceAttr lgt_setFont:16];
+        [topicTitleAttr appendAttributedString:topicSourceAttr];
+        NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
+        paragraphStyle.alignment = NSTextAlignmentRight;
+        [topicTitleAttr addAttribute:NSParagraphStyleAttributeName value:paragraphStyle range:NSMakeRange(0, topicTitleAttr.length)];
+        self.sourceLab.attributedText = topicTitleAttr;
+    }
+    
+    
     UIView *collectionBgView = [UIView new];
     collectionBgView.backgroundColor = LGT_ColorWithHex(0xF4F4F4);
     [self.view addSubview:collectionBgView];
     [collectionBgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.textView.mas_bottom);
+        make.top.equalTo(self.sourceLab.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
     
@@ -107,8 +135,8 @@ static NSInteger maxUploadCount = 3;
     model.Content = self.textView.text;
     model.AssignmentID = [LGTalkManager defaultManager].assignmentID;
     model.AssignmentName = [LGTalkManager defaultManager].assignmentName;
-    model.ResID = [LGTalkManager defaultManager].resID;
-    model.ResName = [LGTalkManager defaultManager].resName;
+    model.ResID = self.resID;
+    model.ResName = self.resName;
     
     model.TeacherID = [LGTalkManager defaultManager].teacherID;
     model.TeacherName = [LGTalkManager defaultManager].teachertName;
@@ -116,7 +144,7 @@ static NSInteger maxUploadCount = 3;
     model.SubjectName = [LGTalkManager defaultManager].subjectName;
     model.SysID = [LGTalkManager defaultManager].systemID;
     
-    model.FromTopicInfo = [LGTalkManager defaultManager].resName;
+    model.FromTopicInfo = LGT_IsStrEmpty(self.resName) ? [LGTalkManager defaultManager].assignmentName : self.resName;
     model.FromTopicIndex = -1;
    
     model.CreateTime = [NSDate date].lgt_string;
@@ -304,5 +332,11 @@ static NSInteger maxUploadCount = 3;
         _imageArr = [NSMutableArray arrayWithObjects:@"", nil];
     }
     return _imageArr;
+}
+- (UILabel *)sourceLab{
+    if (!_sourceLab) {
+        _sourceLab = [UILabel new];
+    }
+    return _sourceLab;
 }
 @end

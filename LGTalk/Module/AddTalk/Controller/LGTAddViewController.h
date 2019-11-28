@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LGTAddViewController : LGTBaseViewController
 
+/** 资料ID */
+@property (nonatomic,copy) NSString *resID;
+/** 资料名 */
+@property (nonatomic,copy) NSString *resName;
 /** 发布成功回调 */
 @property (nonatomic,copy) void (^addSccessBlock) (void);
 @end

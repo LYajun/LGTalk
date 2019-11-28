@@ -147,7 +147,7 @@
     [sourceAttr lgt_setFont:13];
   
     NSMutableAttributedString *textAttr = [[NSMutableAttributedString alloc] initWithString:talkModel.FromTopicInfo];
-    [textAttr lgt_setColor:[UIColor orangeColor]];
+    [textAttr lgt_setColor:LGT_ColorWithHex(0x47A9EA)];
     [textAttr lgt_setFont:14];
     [sourceAttr appendAttributedString:textAttr];
     self.msgSourceL.attributedText = sourceAttr;

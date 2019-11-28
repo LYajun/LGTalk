@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) NSString *systemID;
 
 /** 教材筛选Url */
-@property (nonatomic,assign) NSString *mutiFilterUrl;
+@property (nonatomic,copy) NSString *mutiFilterUrl;
 
 + (LGTalkManager *)defaultManager;
 
