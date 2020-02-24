@@ -72,7 +72,10 @@
 - (NSArray *)mutiFilterTitleArray{
     return @[];
 }
-- (NSArray *)mutiFilterTextArray{
+- (NSArray *)mutiFilterNameArray{
+    return @[];
+}
+- (NSArray *)mutiFilterIDArray{
     return @[];
 }
 @end

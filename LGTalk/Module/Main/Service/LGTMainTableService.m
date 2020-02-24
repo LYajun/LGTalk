@@ -97,15 +97,23 @@
 - (NSArray *)mutiFilterTitleArray{
     NSMutableArray *array = [NSMutableArray array];
     [array addObject:@"全部来源"];
-//    for (int i = 0; i < self.filterModel.TeachMaterilaAllDatas.count; i++) {
-//        [array addObject:[NSString stringWithFormat:@"第%i课时",i+1]];
-//    }
+    for (int i = 0; i < self.filterModel.TeachMaterilaAllDatas.count; i++) {
+        LGTMutiFilterSubModel *subModel = self.filterModel.TeachMaterilaAllDatas[i];
+        [array addObject:[NSString stringWithFormat:@"第%i课 %@",i+1,subModel.MaterialName]];
+    }
+    return array;
+}
+
+- (NSArray *)mutiFilterNameArray{
+    NSMutableArray *array = [NSMutableArray array];
+    [array addObject:@""];
     for (LGTMutiFilterSubModel *subModel in self.filterModel.TeachMaterilaAllDatas) {
         [array addObject:subModel.MaterialName];
     }
     return array;
 }
-- (NSArray *)mutiFilterTextArray{
+
+- (NSArray *)mutiFilterIDArray{
     NSMutableArray *array = [NSMutableArray array];
     [array addObject:@""];
     for (LGTMutiFilterSubModel *subModel in self.filterModel.TeachMaterilaAllDatas) {

@@ -12,11 +12,13 @@
 @interface NSString (LGT)
 - (NSString *)lgt_fileExtensionName;
 - (NSString *)lgt_deleteWhitespaceCharacter;
+- (NSString *)lgt_deleteWhitespaceAndNewlineCharacter;
 + (NSString *)LGT_Char1;
 + (NSString *)LGT_StandardAnswerSeparatedStr;
 + (NSString *)lgt_stringToASCIIStringWithIntCount:(NSInteger)intCount;
 - (NSInteger)lgt_stringToASCIIInt;
 + (NSString *)lgt_stringToSmallTopicIndexStringWithIntCount:(NSInteger)intCount;
++ (NSString *)lgt_HTML:(NSString *)html;
 - (NSMutableAttributedString *)lgt_toMutableAttributedString;
 - (NSMutableAttributedString *)lgt_toHtmlMutableAttributedString;
 - (NSString *)lgt_appendFontAttibuteWithSize:(CGFloat)size;

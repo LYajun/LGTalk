@@ -29,6 +29,8 @@
 @property (strong, nonatomic) UIButton *setTopBtn;
 @property (strong, nonatomic) UIButton *setTopFlagBtn;
 @property (strong, nonatomic) UIButton *foldBtn;
+@property (strong, nonatomic) UIButton *allContentBtn;
+
 @end
 @implementation LGTMainTableHeaderView
 - (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
@@ -111,16 +113,35 @@
         make.left.top.height.equalTo(self.imageBgV);
         make.width.mas_equalTo(self.imageBgV.mas_height).multipliedBy(3);
     }];
+    [self.contentView addSubview:self.allContentBtn];
+    [self.allContentBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.msgSourceL).offset(-5);
+        make.bottom.equalTo(self.imageBgV.mas_top).offset(-3);
+        make.width.mas_equalTo(44);
+        make.height.mas_equalTo(26);
+    }];
+
     
     [self.contentView addSubview:self.msgContentL];
     [self.msgContentL mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.msgSourceL);
         make.right.equalTo(self.setTopFlagBtn);
         make.top.equalTo(self.msgTimeL.mas_bottom).offset(3);
-        make.bottom.equalTo(self.imageBgV.mas_top).offset(-3);
+        make.bottom.equalTo(self.allContentBtn.mas_top);
     }];
 }
 - (void)configByTalkModel:(LGTTalkModel *)talkModel{
+    self.msgContentL.numberOfLines =
+    self.allContentBtn.hidden = !talkModel.tableHeaderShowAllContentEnbale;
+    self.allContentBtn.selected = talkModel.isAllContent;
+    [self.allContentBtn mas_updateConstraints:^(MASConstraintMaker *make) {
+        if (talkModel.tableHeaderShowAllContentEnbale) {
+            make.height.mas_equalTo(26);
+        }else{
+            make.height.mas_equalTo(0);
+        }
+    }];
+
     if (LGT_IsArrEmpty(talkModel.ImgUrlList)) {
         [self.imageBgV mas_updateConstraints:^(MASConstraintMaker *make) {
               make.height.mas_equalTo(0);
@@ -177,6 +198,9 @@
 }
 #pragma mark - Action
 - (void)replyAction{
+    if (self.MsgClickBlock) {
+        self.MsgClickBlock();
+    }
     CGPoint relativePoint = [self.replyBtn convertRect: self.replyBtn.bounds toView: [UIApplication sharedApplication].keyWindow].origin;
     CGSize relativeSize = [self.replyBtn convertRect: self.replyBtn.bounds toView: [UIApplication sharedApplication].keyWindow].size;
     NSArray *itemTitles;
@@ -213,6 +237,13 @@
         self.FoldBlock();
     }
 }
+- (void)allContentAction:(UIButton *)btn{
+    btn.selected = !btn.selected;
+    if (self.AllContentBlock) {
+        self.AllContentBlock();
+    }
+}
+
 #pragma mark - LGTTalkItemViewDelegate
 - (void)LGTTalkItemView:(LGTTalkItemView *)itemView didSelectedItemAtIndex:(NSInteger)index itemTitle:(NSString *)itemTitle{
     if ([itemTitle containsString:@"删除"]) {
@@ -300,6 +331,18 @@
     }
     return _imageBgV;
 }
+- (UIButton *)allContentBtn{
+    if (!_allContentBtn) {
+        _allContentBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_allContentBtn setTitle:@"全文" forState:UIControlStateNormal];
+        [_allContentBtn setTitle:@"收起" forState:UIControlStateSelected];
+        [_allContentBtn setTitleColor:LGT_ColorWithHex(0x47A9EA) forState:UIControlStateNormal];
+        _allContentBtn.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_allContentBtn addTarget:self action:@selector(allContentAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _allContentBtn;
+}
+
 - (UIButton *)foldBtn{
     if (!_foldBtn) {
         _foldBtn = [UIButton buttonWithType:UIButtonTypeCustom];

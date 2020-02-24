@@ -63,7 +63,7 @@
 
 /** 教材筛选信息 */
 - (NSArray *)mutiFilterTitleArray;
-- (NSArray *)mutiFilterTextArray;
-
+- (NSArray *)mutiFilterNameArray;
+- (NSArray *)mutiFilterIDArray;
 
 @end

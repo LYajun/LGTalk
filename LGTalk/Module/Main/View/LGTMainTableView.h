@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LGTMainTableView : LGTBaseTableView
-
+- (void)removedChatBox;
 @end
 
 NS_ASSUME_NONNULL_END

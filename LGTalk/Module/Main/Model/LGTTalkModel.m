@@ -24,11 +24,17 @@
     return _UserTypeTo;
 }
 - (void)setContent:(NSString *)Content{
+    if (LGT_IsStrEmpty(Content)) {
+        Content = [NSString stringWithFormat:@"%c",1];
+    }
     if (!LGT_IsStrEmpty(Content)) {
         Content = [Content stringByReplacingOccurrencesOfString:@"\n" withString:@"<br>"];
     }
     _Content = Content;
     _Content_Attr = Content.lgt_htmlImgFrameAdjust.lgt_toHtmlMutableAttributedString;
+    while ([_Content_Attr.string hasSuffix:@"\n"]) {
+        [_Content_Attr deleteCharactersInRange:NSMakeRange(_Content_Attr.string.length-1, 1)];
+    }
     [_Content_Attr lgt_setFont:15];
 }
 - (CGFloat)tableCellHeight{
@@ -71,7 +77,9 @@
         }
 
     }
-    
+    if (!LGT_IsArrEmpty(self.ImgUrlList)) {
+        h += IsIPad ? 100 : 60;
+    }
     return h;
 }
 @end
@@ -91,6 +99,9 @@
     }
     _Content = Content;
     _Content_Attr = Content.lgt_htmlImgFrameAdjust.lgt_toHtmlMutableAttributedString;
+    while ([_Content_Attr.string hasSuffix:@"\n"]) {
+        [_Content_Attr deleteCharactersInRange:NSMakeRange(_Content_Attr.string.length-1, 1)];
+    }
     [_Content_Attr lgt_setFont:17];
     [_Content_Attr lgt_addParagraphLineSpacing:5];
     if (LGT_IsStrEmpty(Content)) {
@@ -113,10 +124,25 @@
         }
         imageBgHeight = imageBgW/3;
     }
-    if (IsIPad) {
-        return 44 + 20 + 3 + self.contentHeight + 3 + imageBgHeight + 5 + 26 + 10;
+    CGFloat contentHeight = self.contentHeight;
+    if (!self.isAllContent && self.tableHeaderShowAllContentEnbale) {
+        contentHeight = self.tableHeaderContentDefaultMaxHeight;
     }
-    return 44 + 10 + 3 + self.contentHeight + 3 + imageBgHeight + 5 + 23 + 10;
+
+    if (IsIPad) {
+        return 44 + 20 + 3 + contentHeight + 3 + imageBgHeight + 5 + 26 + 10 + (self.tableHeaderShowAllContentEnbale ? 26 : 0);
+    }
+    return 44 + 10 + 3 + contentHeight + 3 + imageBgHeight + 5 + 23 + 10 + (self.tableHeaderShowAllContentEnbale ? 26 : 0);
 
 }
+- (BOOL)tableHeaderShowAllContentEnbale{
+    if (self.contentHeight > self.tableHeaderContentDefaultMaxHeight + 6) {
+        return YES;
+    }
+    return NO;
+}
+- (CGFloat)tableHeaderContentDefaultMaxHeight{
+    return 100;
+}
+
 @end

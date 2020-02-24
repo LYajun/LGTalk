@@ -18,6 +18,7 @@
 @property (nonatomic,strong) LGTMainTableView *tableView;
 @property (nonatomic, strong) LGTPullDownMenu *pullDownMenu;
 @property (nonatomic, copy) NSString *currentFilterTitle;
+@property (nonatomic, assign) NSInteger currentFilterIndex;
 @end
 
 @implementation LGTMainViewController
@@ -37,7 +38,7 @@
         [self.pullDownMenu setDefauldSelectedCell];
         if (!self.pullDownMenu.superview) {
             [self.view addSubview:self.pullDownMenu];
-            self.pullDownMenu.currentSelTitle = [LGTalkManager defaultManager].resName;
+            self.pullDownMenu.currentSelTitle = [NSString stringWithFormat:@"第%li课 %@",self.currentFilterIndex,self.currentFilterTitle];
         }
     }
 }
@@ -58,6 +59,7 @@
         }
     }];
     self.currentFilterTitle = [LGTalkManager defaultManager].resName;
+    self.currentFilterIndex = [LGTalkManager defaultManager].mutiFilterIndex;
     if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
         self.yj_loadingViewTopSpace = 40;
         self.aboveView = self.pullDownMenu;
@@ -70,14 +72,21 @@
 }
 
 - (void)navBar_rightItemPressed:(UIBarButtonItem *)sender{
+    [self.tableView removedChatBox];
     LGTAddViewController *uploadVC = [[LGTAddViewController alloc] init];
     
     if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
         uploadVC.resID = LGT_ApiParams(self.tableView.service.resID);
         uploadVC.resName = self.currentFilterTitle;
+        if (self.currentFilterIndex == 0) {
+            uploadVC.talkSource = [LGTalkManager defaultManager].assignmentName;
+        }else{
+            uploadVC.talkSource = [NSString stringWithFormat:@"第%li课 %@",self.currentFilterIndex,self.currentFilterTitle];
+        }
     }else{
         uploadVC.resID = [LGTalkManager defaultManager].resID;
         uploadVC.resName = [LGTalkManager defaultManager].resName;
+        uploadVC.talkSource = [LGTalkManager defaultManager].resName;
     }
     
     WeakSelf;
@@ -98,12 +107,13 @@
         [_pullDownMenu setHandleSelectDataBlock:^(NSString *selectTitle, NSUInteger selectIndex, NSUInteger selectButtonTag) {
             if (selectButtonTag == 0) {
             }else{
+                weakSelf.currentFilterIndex = selectIndex;
                 if (selectIndex == 0) {
                     weakSelf.currentFilterTitle = @"";
                 }else{
-                    weakSelf.currentFilterTitle = [weakSelf.tableView.service.mutiFilterTitleArray lgt_objectAtIndex:selectIndex];
+                    weakSelf.currentFilterTitle = [weakSelf.tableView.service.mutiFilterNameArray lgt_objectAtIndex:selectIndex];
                 }
-                weakSelf.tableView.service.resID = [weakSelf.tableView.service.mutiFilterTextArray lgt_objectAtIndex:selectIndex];
+                weakSelf.tableView.service.resID = [weakSelf.tableView.service.mutiFilterIDArray lgt_objectAtIndex:selectIndex];
             }
             [weakSelf.tableView loadFirstPage];
         }];

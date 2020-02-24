@@ -21,6 +21,9 @@
 - (NSString *)lgt_deleteWhitespaceCharacter{
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
+- (NSString *)lgt_deleteWhitespaceAndNewlineCharacter{
+    return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+}
 + (NSString *)lgt_stringToSmallTopicIndexStringWithIntCount:(NSInteger)intCount{
     NSDictionary *dic = @{
                           @"0":@"①",
@@ -63,6 +66,17 @@
         return -1;
     }
     return [self characterAtIndex:0];
+}
++ (NSString *)lgt_HTML:(NSString *)html{
+    NSScanner *theScaner = [NSScanner scannerWithString:html];
+    NSDictionary *dict = @{@"<":@"&lt;", @">":@"&gt;"};
+    while ([theScaner isAtEnd] == NO) {
+        for (int i = 0; i <[dict allKeys].count; i ++) {
+            [theScaner scanUpToString:[dict allKeys][i] intoString:NULL];
+            html = [html stringByReplacingOccurrencesOfString:[dict allKeys][i] withString:[dict allValues][i]];
+        }
+    }
+    return html;
 }
 - (NSMutableAttributedString *)lgt_toMutableAttributedString{
      return [[NSMutableAttributedString alloc] initWithString:self];

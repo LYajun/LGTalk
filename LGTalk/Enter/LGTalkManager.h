@@ -53,7 +53,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 教材筛选Url */
 @property (nonatomic,copy) NSString *mutiFilterUrl;
-
+/** 当前第几课，0-全部，1-第1课 */
+@property (nonatomic,assign) NSInteger mutiFilterIndex;
 + (LGTalkManager *)defaultManager;
 
 - (void)presentKnowledgeControllerBy:(UIViewController *)controller;

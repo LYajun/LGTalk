@@ -13,6 +13,7 @@
 @property (nonatomic, strong) NSArray<NSString *> *imageNames;
 /**图片地址信息*/
 @property (nonatomic, strong) NSArray<NSString *> *imageUrls;
-
+/** 背景颜色 */
+@property (nonatomic,strong) UIColor *bgColor;
 - (instancetype)initWithFrame:(CGRect)frame width:(CGFloat)width;
 @end

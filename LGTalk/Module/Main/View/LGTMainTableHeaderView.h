@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,copy) void (^ReplyBlock) (void);
 @property (nonatomic,copy) void (^SetTopBlock) (BOOL isTop);
 @property (nonatomic,copy) void (^ThemeDeleteBlock) (void);
+@property (nonatomic,copy) void (^MsgClickBlock) (void);
+@property (nonatomic,copy) void (^AllContentBlock) (void);
+
 /** 是否置顶 */
 @property (nonatomic,assign) BOOL isTop;
 /** 主题删除按钮可见性 */

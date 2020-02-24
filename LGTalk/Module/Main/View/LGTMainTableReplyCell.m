@@ -12,11 +12,14 @@
 #import <Masonry/Masonry.h>
 #import "LGTConst.h"
 #import "LGTExtension.h"
+#import <LGTalk/LGTPhotoBrowser.h>
 
 @interface LGTMainTableReplyCell ()
 @property (strong, nonatomic) UILabel *msgContentL;
 @property (strong, nonatomic) UIView *lineV;
 @property (strong, nonatomic) LGTClipView *contentBg;
+@property (strong, nonatomic) UIView *imageBgV;
+@property (strong,nonatomic)  LGTPhotoBrowser *photoBrowser;
 @end
 @implementation LGTMainTableReplyCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
@@ -42,12 +45,27 @@
         make.right.equalTo(self.contentView).offset(IsIPad ? -22 : -12);
     }];
     
+    [self.contentBg addSubview:self.imageBgV];
+    [self.imageBgV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(80);
+        make.left.equalTo(self.contentBg).offset(10);
+        make.right.equalTo(self.contentBg);
+        make.bottom.equalTo(self.contentBg).offset(-5);
+    }];
+    
+    [self.imageBgV addSubview:self.photoBrowser];
+    [self.photoBrowser mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.height.equalTo(self.imageBgV);
+        make.width.mas_equalTo(self.imageBgV.mas_height).multipliedBy(3);
+    }];
+    
     [self.contentBg addSubview:self.msgContentL];
     [self.msgContentL mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.center.equalTo(self.contentBg);
+        make.centerX.equalTo(self.contentBg);
         make.left.equalTo(self.contentBg).offset(10);
         make.height.mas_greaterThanOrEqualTo(26);
         make.top.equalTo(self.contentBg).offset(5);
+        make.bottom.equalTo(self.imageBgV.mas_top).offset(0);
     }];
     
     [self.contentBg addSubview:self.lineV];
@@ -94,6 +112,20 @@
     }
 }
 - (void)configByQuesModel:(LGTTalkQuesModel *)quesModel{
+    if (LGT_IsArrEmpty(quesModel.ImgUrlList)) {
+        [self.imageBgV mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(0);
+        }];
+    }else{
+        CGFloat imageBgW = 60 * 3;
+        if (IsIPad) {
+            imageBgW = 100 * 3;
+        }
+        [self.imageBgV mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(imageBgW/3);
+        }];
+        self.photoBrowser.imageUrls = quesModel.ImgUrlList;
+    }
     if (quesModel.IsComment) {
         NSMutableAttributedString *attr = quesModel.UserName.lgt_toMutableAttributedString;
         [attr lgt_setFont:15];
@@ -152,5 +184,22 @@
         _contentBg.backgroundColor = LGT_ColorWithHex(0xEBEBEB);
     }
     return _contentBg;
+}
+- (LGTPhotoBrowser *)photoBrowser{
+    if (!_photoBrowser) {
+        CGFloat imageBgW = 60*3;
+        if (IsIPad) {
+            imageBgW = 100 * 3;
+        }
+        _photoBrowser = [[LGTPhotoBrowser alloc] initWithFrame:CGRectZero width:imageBgW];
+        _photoBrowser.bgColor = LGT_ColorWithHex(0xEBEBEB);
+    }
+    return _photoBrowser;
+}
+- (UIView *)imageBgV{
+    if (!_imageBgV) {
+        _imageBgV = [UIView new];
+    }
+    return _imageBgV;
 }
 @end

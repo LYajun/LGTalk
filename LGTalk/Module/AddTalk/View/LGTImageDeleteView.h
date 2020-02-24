@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LGTImageDeleteView : UIView
 + (LGTImageDeleteView *)showTalkImageDeleteViewAtBottom:(BOOL)isBottom;
++ (LGTImageDeleteView *)showTalkImageDeleteViewAtBottom:(BOOL)isBottom keyboardHeight:(CGFloat)keyboardHeight;
 - (void)setDeleteViewDeleteState;
 - (void)setDeleteViewNormalState;
 - (void)hide;

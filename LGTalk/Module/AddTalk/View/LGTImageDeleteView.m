@@ -36,6 +36,10 @@
     return self;
 }
 + (LGTImageDeleteView *)showTalkImageDeleteViewAtBottom:(BOOL)isBottom{
+    return [self showTalkImageDeleteViewAtBottom:isBottom keyboardHeight:0];
+}
++ (LGTImageDeleteView *)showTalkImageDeleteViewAtBottom:(BOOL)isBottom keyboardHeight:(CGFloat)keyboardHeight{
+    
     for (UIView *view in [UIApplication sharedApplication].keyWindow.subviews) {
         if ([view isKindOfClass:LGTImageDeleteView.class]) {
             [view removeFromSuperview];
@@ -45,7 +49,7 @@
     CGFloat y = -[LGTImageDeleteView deleteViewHeight];
     if (isBottom) {
         height = 74;
-        y = LGT_ScreenHeight;
+        y = LGT_ScreenHeight-keyboardHeight;
     }
     LGTImageDeleteView *deleteView = [[LGTImageDeleteView alloc] initWithFrame:CGRectMake(0, y, LGT_ScreenWidth, height) atBottom:isBottom];
     [deleteView show];

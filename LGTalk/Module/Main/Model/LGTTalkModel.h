@@ -78,10 +78,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** 新增是否折叠属性 */
 @property (nonatomic,assign) BOOL isFold;
+/** 新增是否显示全文属性 */
+@property (nonatomic,assign) BOOL isAllContent;
+
 /** 问题回复数组 */
 @property (nonatomic,strong) NSArray<LGTTalkQuesModel *> *CommentList;
 
 - (CGFloat)tableHeaderHeight;
+- (BOOL)tableHeaderShowAllContentEnbale;
+
 @end
 
 NS_ASSUME_NONNULL_END

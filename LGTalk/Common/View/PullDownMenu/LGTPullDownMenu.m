@@ -73,6 +73,8 @@
 @property (nonatomic,strong) NSMutableArray *lineArray;
 @property (nonatomic,strong) UIView  *maskBackGroundView;
 @property (nonatomic,strong) UIButton  *tempButton;
+
+@property (nonatomic,assign) CGFloat btnWidth;
 @end
 
 @implementation LGTPullDownMenu
@@ -114,7 +116,7 @@
     }
     CGFloat titleW = width+(self.titleArray.count-1)*5;
     CGFloat btnW = width - 5;
-
+    self.btnWidth = (self.width - titleW - leftSpace*2)/3;
     for (int index=0; index<self.titleArray.count; index++) {
         
         if (index == 0) {
@@ -131,6 +133,7 @@
         }else{
             LGTPullDownButton *titleButton=[LGTPullDownButton buttonWithType:UIButtonTypeCustom];
             titleButton.frame= CGRectMake(btnW * (index-1)+leftSpace+titleW, 0, btnW, self.height);
+            [self setBtnWidth:titleButton title:self.titleArray[index]];
             [titleButton setTitle:self.titleArray[index] forState:UIControlStateNormal];
             [titleButton setTitleColor:LGT_ColorWithHex(0x989898) forState:UIControlStateNormal];
             [titleButton setTitleColor:LGT_ColorWithHex(0x2FB7FC) forState:UIControlStateSelected];
@@ -229,6 +232,7 @@
     cell.isSelected = YES;
     
     [self.tempButton setTitle:cell.content forState:UIControlStateNormal];
+    [self setBtnWidth:self.tempButton title:cell.content];
     
     KOBJCSetObject(self.tempButton, cell.content);
     
@@ -249,17 +253,33 @@
     [attr lgt_setChineseForegroundColor:LGT_ColorWithHex(0xb0b0b0) font:(LGT_ScreenWidth > 320 ? 13:11)];
     countLab.attributedText = attr;
 }
+- (void)setBtnWidth:(UIButton *)btn title:(NSString *)title{
+    CGFloat maxWidth = self.btnWidth * 3 - 10;
+    CGFloat width = [title boundingRectWithSize:CGSizeMake(MAXFLOAT, 30) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:btn.titleLabel.font} context:nil].size.width;
+    width += btn.height;
+    if (width > maxWidth) {
+        width = maxWidth;
+    }
+    if (width < self.btnWidth) {
+        if (IsIPad) {
+            width = 100;
+        }else{
+            width = self.btnWidth;
+        }
+    }
+    btn.width = width;
+}
 - (void)setCurrentSelTitle:(NSString *)currentSelTitle{
     _currentSelTitle = currentSelTitle;
     UIButton *btn = [self.buttonArray lastObject];
     [btn setTitle:currentSelTitle forState:UIControlStateNormal];
-    
     if (!self.tempButton) {
         self.tempButton = btn;
     }
     [self.tempButton setTitle:currentSelTitle forState:UIControlStateNormal];
     KOBJCSetObject(self.tempButton, currentSelTitle);
     
+    [self setBtnWidth:self.tempButton title:currentSelTitle];
     [self.tableView reloadData];
 }
 -(void)setDefauldSelectedCell{

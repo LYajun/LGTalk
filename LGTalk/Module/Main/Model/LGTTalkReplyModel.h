@@ -38,4 +38,6 @@
 @property (nonatomic,assign) BOOL IsComment;
 /** 主题ID */
 @property (nonatomic,copy) NSString *QuesThemeID;
+/** 资料ID */
+@property (nonatomic,copy) NSString *ResID;
 @end
