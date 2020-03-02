@@ -12,7 +12,7 @@
 #import <Masonry/Masonry.h>
 #import "LGTConst.h"
 #import "LGTExtension.h"
-#import <LGTalk/LGTPhotoBrowser.h>
+#import "LGTPhotoBrowser.h"
 
 @interface LGTMainTableReplyCell ()
 @property (strong, nonatomic) UILabel *msgContentL;

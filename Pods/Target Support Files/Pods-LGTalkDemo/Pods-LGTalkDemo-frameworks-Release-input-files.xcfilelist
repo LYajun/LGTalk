@@ -5,6 +5,7 @@ ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
 ${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
-${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework
 ${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework
+${BUILT_PRODUCTS_DIR}/YJExtensions/YJExtensions.framework
+${BUILT_PRODUCTS_DIR}/YJImageBrowser/YJImageBrowser.framework
 ${BUILT_PRODUCTS_DIR}/YJPresentAnimation/YJPresentAnimation.framework

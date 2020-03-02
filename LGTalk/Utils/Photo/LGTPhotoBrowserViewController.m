@@ -10,11 +10,13 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import "LGTConst.h"
 #import "LGTExtension.h"
+#import <YJImageBrowser/YJCircleTitleProgressView.h>
 
 @interface LGTPhotoScrollView : UIScrollView<UIScrollViewDelegate>
 @property (nonatomic,strong) NSString *imageName;
 @property (nonatomic,strong) NSString *imageUrl;
 @property (nonatomic,strong) UIImageView *imageView;
+@property (nonatomic,strong) YJCircleTitleProgressView *progressView;
 @property (nonatomic,copy) void (^ClickBlock) (void);
 @end
 @implementation LGTPhotoScrollView
@@ -23,11 +25,25 @@
 {
     if (self == [super initWithFrame:frame])
     {
-        self.imageView.frame = self.bounds;
+        self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
+        self.imageView.contentMode = UIViewContentModeScaleAspectFit;
+        [self addSubview:self.imageView];
+        
+        self.progressView = [[YJCircleTitleProgressView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        self.progressView.center = self.imageView.center;
+        self.progressView.roundedCorners = YES;
+        self.progressView.titleProgress = 0;
+        self.progressView.trackTintColor = LGT_ColorWithHex(0xEAF0F0);
+        self.progressView.progressTintColor = LGT_ColorWithHex(0x17B0F8);
+        self.progressView.innerTintColor = [UIColor clearColor];
+        self.progressView.thicknessRatio = 0.12;
+        self.progressView.progressLabel.textColor = [UIColor whiteColor];
+        self.progressView.progressLabel.font = [UIFont systemFontOfSize:14];
+        [self addSubview:self.progressView];
+        
         self.maximumZoomScale = 2;
         self.minimumZoomScale = 0.5;
         self.delegate = self;
-        //添加图片点按手势
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(click)];
         [self addGestureRecognizer:tap];
     }
@@ -46,21 +62,30 @@
     if (!LGT_IsStrEmpty(self.imageName)) {
         self.imageView.image = [UIImage imageNamed:self.imageName];
     }else{
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[UIImage lgt_imageWithColor:LGT_ColorWithHex(0x999999) size:CGSizeMake(LGT_ScreenWidth, LGT_ScreenHeight)]];
+        __weak typeof(self) weakSelf = self;
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[UIImage lgt_imageNamed:@"yj_img_placeholder" atDir:@"Main"] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (expectedSize > 0) {
+                    weakSelf.progressView.titleProgress = receivedSize * 1.0 / expectedSize;
+                }else{
+                    weakSelf.progressView.titleProgress = 0;
+                }
+            });
+        } completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                weakSelf.progressView.hidden = YES;
+                if (error) {
+                    weakSelf.imageView.image = [UIImage lgt_imageNamed:@"yj_img_bad" atDir:@"Main"];
+                }
+            });
+        }];
     }
 }
 - (void)setImageUrl:(NSString *)imageUrl{
     _imageUrl = imageUrl;
     [self layoutImageV];
 }
-- (UIImageView *)imageView{
-    if (!_imageView) {
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
-        _imageView.contentMode = UIViewContentModeScaleAspectFit;
-        [self addSubview:_imageView];
-    }
-    return _imageView;
-}
+
 #pragma mark - 指定缩放视图（必须得是scrollView的子视图）
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView{
     return self.imageView;

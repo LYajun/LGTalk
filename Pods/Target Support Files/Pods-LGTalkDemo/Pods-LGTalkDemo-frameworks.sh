@@ -167,8 +167,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YJExtensions/YJExtensions.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YJImageBrowser/YJImageBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YJPresentAnimation/YJPresentAnimation.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -178,8 +179,9 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/TFHpple/TFHpple.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/XMLDictionary/XMLDictionary.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YJExtensions/YJExtensions.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/YJImageBrowser/YJImageBrowser.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/YJPresentAnimation/YJPresentAnimation.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

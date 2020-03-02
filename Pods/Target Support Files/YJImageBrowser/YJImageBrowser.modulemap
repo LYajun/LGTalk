@@ -1,0 +1,6 @@
+framework module YJImageBrowser {
+  umbrella header "YJImageBrowser-umbrella.h"
+
+  export *
+  module * { export * }
+}

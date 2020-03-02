@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LGTalk"
-  s.version      = "1.2.0"
+  s.version      = "1.2.1"
   s.summary      = "在线讨论"
 
 
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.subspec "Category" do |ss|
     ss.source_files =  "LGTalk/Category/*.{h,m}"
     ss.dependency "LGTalk/Const"
-    ss.dependency "TFHpple"
+    ss.dependency "YJExtensions"
   end
 
   s.subspec "Const" do |ss|
@@ -45,7 +45,7 @@ Pod::Spec.new do |s|
       sss.dependency "LGTalk/Const"
       sss.dependency "LGTalk/Category"
 
-      sss.dependency 'SDWebImage'
+      sss.dependency 'YJImageBrowser'
       sss.dependency 'Masonry'
     end
 
@@ -64,7 +64,7 @@ Pod::Spec.new do |s|
   s.dependency 'MJRefresh'
   s.dependency 'SDWebImage'
   s.dependency 'LGAlertHUD'
-  s.dependency 'TFHpple'
+  s.dependency 'YJExtensions'
   s.dependency 'XMLDictionary'
   s.dependency 'AFNetworking'
   s.dependency 'YJPresentAnimation'

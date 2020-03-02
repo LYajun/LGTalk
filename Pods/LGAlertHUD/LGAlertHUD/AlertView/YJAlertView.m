@@ -1344,13 +1344,14 @@ YJAlertViewType;
     // If we try to get width of appearance object
     if (!self.isInitialized) return NSNotFound;
 
+    if (YJAlertViewHelper.isPad) {
+        return 420; // 320.0 - (16.0 * 2.0)
+    }
+    
     if (self.style == YJAlertViewStyleAlert || [YJAlertViewHelper isPadAndNotForce:self]) {
         return 280.0; // 320.0 - (20.0 * 2.0)
     }
 
-    if (YJAlertViewHelper.isPad) {
-        return 388.0; // 320.0 - (16.0 * 2.0)
-    }
 
     return MIN(size.width, size.height) - 16.0; // MIN(size.width, size.height) - (8.0 * 2.0)
 }

@@ -9,12 +9,16 @@
 #import "LGAlertHUD.h"
 #import "YJAlertView.h"
 #import "LGProgressHUD.h"
+#import <YJExtensions/YJExtensions.h>
+#import "YJSheetView.h"
+
 @interface LGAlertHUD ()
 {
     LGProgressHUD *_hud;
     NSString *_cancelTitle;
     NSString *_confirmTitle;
 }
+@property (nonatomic,strong) NSBundle *aBundle;
 @end
 @implementation LGAlertHUD
 + (LGAlertHUD *)shareInstance{
@@ -23,8 +27,12 @@
     dispatch_once(&onceToken, ^{
         macro = [[LGAlertHUD alloc]init];
         [macro configure];
+        macro.aBundle = [NSBundle yj_bundleWithCustomClass:LGProgressHUD.class bundleName:@"LGAlertHUD"];
     });
     return macro;
+}
+- (NSBundle *)alertBundle{
+    return _aBundle;
 }
 #pragma mark - public
 - (void)configure{
@@ -185,7 +193,21 @@
         [self hide];
     }
     if (LGA_IsIpad()) {
-        [self alertWithTitle:title message:msg canceTitle:canceTitle confirmTitle:confirmTitle cancelBlock:cancelBlock confirmBlock:confirmBlock];
+        YJSheetView *sheetView = [YJSheetView sheetViewWithTitle:title canceTitle:canceTitle buttonTitles:@[confirmTitle] buttonBlock:^(NSInteger index) {
+            if (confirmBlock) {
+                confirmBlock();
+            }
+        } cancelBlock:^{
+            if (cancelBlock) {
+                cancelBlock();
+            }
+        }];
+        
+        if (controller.navigationController) {
+            [sheetView showOnView:controller.navigationController.view];
+        }else{
+            [sheetView showOnView:controller.view];
+        }
     }else{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *confirmButton = [UIAlertAction actionWithTitle:confirmTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -208,15 +230,21 @@
         [self hide];
     }
     if (LGA_IsIpad()) {
-        [[[YJAlertView alloc]initWithTitle:title message:msg style:YJAlertViewStyleAlert buttonTitles:buttonTitles cancelButtonTitle:canceTitle destructiveButtonTitle:nil actionHandler:^(YJAlertView * _Nonnull alertView, NSUInteger index, NSString * _Nullable title) {
+        YJSheetView *sheetView = [YJSheetView sheetViewWithTitle:title canceTitle:canceTitle buttonTitles:buttonTitles buttonBlock:^(NSInteger index) {
             if (buttonBlock) {
                 buttonBlock(index);
             }
-        } cancelHandler:^(YJAlertView * _Nonnull alertView) {
+        } cancelBlock:^{
             if (cancelBlock) {
                 cancelBlock();
             }
-        } destructiveHandler:nil] showAnimated];
+        }];
+        
+        if (controller.navigationController) {
+            [sheetView showOnView:controller.navigationController.view];
+        }else{
+            [sheetView showOnView:controller.view];
+        }
     }else{
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelButton = [UIAlertAction actionWithTitle:canceTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
@@ -238,6 +266,9 @@
     }
 }
 #pragma mark - HUD
+- (void)setHudTextAttibute{
+    _hud.detailsLabelFont = [UIFont systemFontOfSize:15];
+}
 - (void)showIndeterminate{
     [self showIndeterminateWithStatus:nil];
 }
@@ -251,6 +282,7 @@
     }else{
         _hud.detailsLabelText = @"请稍等...";
     }
+    [self setHudTextAttibute];
 }
 - (void)showSuccessWithStatus:(NSString *)status{
     if (_hud) {
@@ -262,6 +294,7 @@
     UIImage *image = [[UIImage imageNamed:LG_GETBundleResource(@"lg_hud_success")] imageWithRenderingMode:UIImageRenderingModeAutomatic];
     _hud.customView = [[UIImageView alloc] initWithImage:image];
     _hud.detailsLabelText = status;
+    [self setHudTextAttibute];
     [_hud hide:YES afterDelay:2.0f];
 }
 - (void)showErrorWithStatus:(NSString *)status{
@@ -274,6 +307,7 @@
     UIImage *image = [[UIImage imageNamed:LG_GETBundleResource(@"lg_hud_error")] imageWithRenderingMode:UIImageRenderingModeAutomatic];
     _hud.customView = [[UIImageView alloc] initWithImage:image];
     _hud.detailsLabelText = status;
+     [self setHudTextAttibute];
     [_hud hide:YES afterDelay:2.0f];
 }
 - (void)showErrorWithError:(NSError *)error{
@@ -293,6 +327,7 @@
     UIImage *image = [[UIImage imageNamed:LG_GETBundleResource(@"lg_hud_warning")] imageWithRenderingMode:UIImageRenderingModeAutomatic];
     _hud.customView = [[UIImageView alloc] initWithImage:image];
     _hud.detailsLabelText = status;
+     [self setHudTextAttibute];
     [_hud hide:YES afterDelay:2.0f];
 }
 - (void)showStatus:(NSString *)status{
@@ -303,6 +338,7 @@
     _hud.userInteractionEnabled = NO;
     _hud.mode = LGProgressHUDModeText;
     _hud.detailsLabelText = status;
+     [self setHudTextAttibute];
     _hud.yOffset = ([UIScreen mainScreen].bounds.size.height -64)/2 - 100;
     [_hud hide:YES afterDelay:2.0f];
 }
@@ -315,6 +351,7 @@
     _hud.mode = LGProgressHUDModeText;
     _hud.detailsLabelText = status;
     _hud.detailsLabelColor = [UIColor redColor];
+     [self setHudTextAttibute];
     _hud.yOffset = ([UIScreen mainScreen].bounds.size.height -64)/2 - 100;
     [_hud hide:YES afterDelay:2.0f];
 }
@@ -358,10 +395,6 @@ UIColor *LGA_Color(NSInteger hex){
 }
 NSString *LG_GETBundleResource(NSString *fileName){
     NSString *bundlePath = [[NSBundle bundleForClass:[LGAlertHUD class]] pathForResource:@"LGAlertHUD" ofType:@"bundle"];
-//    NSString *bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Frameworks/LGAlertHUD.framework/LGAlertHUD.bundle"];
-//    if (![[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
-//        bundlePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"LGAlertHUD.bundle"];
-//    }
     NSBundle *resoureBundle = [NSBundle bundleWithPath:bundlePath];
     if (resoureBundle && fileName){
         NSString * bundlePath = [[resoureBundle resourcePath] stringByAppendingPathComponent:fileName];

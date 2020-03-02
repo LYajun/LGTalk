@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "YJLancooAlert.h"
 
 #define LGAlert [LGAlertHUD shareInstance]
 
@@ -15,6 +16,7 @@
 
 + (LGAlertHUD *)shareInstance;
 
+- (NSBundle *)alertBundle;
 /** AlertView */
 
 
