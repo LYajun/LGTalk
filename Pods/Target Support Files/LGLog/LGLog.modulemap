@@ -1,0 +1,6 @@
+framework module LGLog {
+  umbrella header "LGLog-umbrella.h"
+
+  export *
+  module * { export * }
+}

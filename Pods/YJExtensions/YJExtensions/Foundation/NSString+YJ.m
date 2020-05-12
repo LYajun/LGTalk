@@ -15,6 +15,18 @@
 #define YJ_ASSOCIATIVE_CURRENT_TEXT_KEY @"ASSOCIATIVE_CURRENT_TEXT_KEY"
 
 #define IsObjEmpty(_ref)    (((_ref) == nil) || ([(_ref) isEqual:[NSNull null]]))
+
+
+static inline NSDictionary *YJHTMLEscapeMap() {
+    return @{@"&nbsp;":@" ",
+             @"&lt;":@"<",
+             @"&gt;":@">",
+             @"&amp;":@"&",
+             @"&quot;":@"\"",
+             @"&apos;":@"'"
+    };
+}
+
 @interface NSString () <NSXMLParserDelegate>
 
 @property(nonatomic, retain)NSMutableArray *currentDictionaries;
@@ -24,6 +36,9 @@
 @end
 
 @implementation NSString (YJ)
+
+
+
 + (NSString *)yj_Char1{
     return [NSString stringWithFormat:@"%c",1];
 }
@@ -83,6 +98,23 @@
         return arr;
     }
     return @[];
+}
++ (NSString *)yj_ChineseNumbersWithNumber:(NSInteger)number{
+    NSDictionary *numberDic = @{@"0":@"零",@"1":@"一",@"2":@"二",@"3":@"三",@"4":@"四",@"5":@"五",@"6":@"六",@"7":@"七",@"8":@"八",@"9":@"九",@"10":@"十",@"100":@"一百",@"1000":@"一千"};
+    NSString *numberStr = @"零";
+    if (number <= 10 || number == 100 || number == 1000) {
+        numberStr = [numberDic objectForKey:[NSString stringWithFormat:@"%li",number]];
+    }else if (number < 100){
+        NSInteger shi = number / 10;
+        NSInteger ge =  number % 10;
+        numberStr = [NSString stringWithFormat:@"%@十%@",[numberDic objectForKey:[NSString stringWithFormat:@"%li",shi]],[numberDic objectForKey:[NSString stringWithFormat:@"%li",ge]]] ;
+    }else if (number < 1000){
+        NSInteger bai = number / 100;
+        NSInteger shi = number % 100 / 10;
+        NSInteger ge =  number % 100 % 10;
+        numberStr = [NSString stringWithFormat:@"%@百%@十%@",[numberDic objectForKey:[NSString stringWithFormat:@"%li",bai]],[numberDic objectForKey:[NSString stringWithFormat:@"%li",shi]],[numberDic objectForKey:[NSString stringWithFormat:@"%li",ge]]] ;
+    }
+    return numberStr;
 }
 #pragma mark - Xml
 
@@ -436,6 +468,46 @@
 }
 - (NSString *)yj_URLQueryAllowedCharacterSet{
     return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+}
++ (NSString *)yj_deleteURLDoubleSlashWithUrlStr:(NSString *)urlStr{
+    if (urlStr && urlStr.length > 0 && [urlStr containsString:@"://"]) {
+        NSArray *urlArr = [urlStr componentsSeparatedByString:@"://"];
+       NSString *lastStr = [urlArr.lastObject stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+       while ([lastStr containsString:@"//"]) {
+           lastStr = [lastStr stringByReplacingOccurrencesOfString:@"//" withString:@"/"];
+       }
+       urlStr = [NSString stringWithFormat:@"%@://%@",urlArr.firstObject,lastStr];
+    }
+    return urlStr;
+}
+- (NSString *)yj_htmlDecode{
+    if (self && self.length > 0) {
+        NSString *html = self;
+        for (NSString *keyStr in YJHTMLEscapeMap().allKeys) {
+            if ([html containsString:keyStr]) {
+                html = [html stringByReplacingOccurrencesOfString:keyStr withString:[YJHTMLEscapeMap() objectForKey:keyStr]];
+            }
+        }
+        return html;
+    }
+    return @"";
+}
++ (BOOL)yj_isNum:(NSString *)checkedNumString{
+    if (!checkedNumString || checkedNumString.length == 0) {
+        return NO;
+    }
+    checkedNumString = [checkedNumString stringByTrimmingCharactersInSet:[NSCharacterSet decimalDigitCharacterSet]];
+    if(checkedNumString.length > 0) {
+        return NO;
+    }
+    return YES;
+}
++ (BOOL)yj_predicateMatchWithText:(NSString *)text matchFormat:(NSString *)matchFormat{
+    if (!text || text.length == 0) {
+        return NO;
+    }
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF MATCHES %@", matchFormat];
+    return [predicate evaluateWithObject:text];
 }
 @end
 

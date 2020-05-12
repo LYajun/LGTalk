@@ -28,6 +28,7 @@
 
 /* 分别为:选中cell的text、cell的index、cell对应的Button。 */
 @property (nonatomic,copy) void (^handleSelectDataBlock) (NSString *selectTitle, NSUInteger selectIndex ,NSUInteger selectButtonTag);
+@property (nonatomic,copy) void (^handleTwoSelectDataBlock) (NSString *selectTitle, NSIndexPath *selectIndexPath ,NSUInteger selectButtonTag);
 /* 二维数组，存放每个Button对应下的TableView数据。。 */
 @property (nonatomic,strong) NSArray *menuDataArray;
 /** 行高 */
@@ -58,4 +59,11 @@
 @property (nonatomic,copy) NSString *content;
 @property (nonatomic,assign) BOOL  isSelected;
 
+@end
+
+@interface LGTdownMenuHeader : UITableViewHeaderFooterView
+
+@property (nonatomic,copy) NSString *content;
+@property (nonatomic,assign) BOOL  isSelected;
+@property (nonatomic,copy) void (^selectBlock) (void);
 @end

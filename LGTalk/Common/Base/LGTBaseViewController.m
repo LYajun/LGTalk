@@ -10,7 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "LGTActivityIndicatorView.h"
 #import "LGTExtension.h"
-
+#import "LGTalkManager.h"
 
 
 
@@ -95,6 +95,7 @@
     [self navBar_leftItemPressed:sender];
 }
 - (void)navBar_leftItemPressed:(UIBarButtonItem *)sender{
+    [[LGTalkManager defaultManager] resetParams];
     if (self.navBar_leftItemType == LGTNavBarLeftItemTypeBack){
         [self.navigationController popViewControllerAnimated:YES];
     }else{

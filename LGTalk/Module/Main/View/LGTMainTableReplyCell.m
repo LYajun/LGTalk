@@ -134,7 +134,7 @@
         }else{
             [attr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
         }
-        [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@":"]];
+        [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@": "]];
         [attr appendAttributedString:quesModel.Content_Attr];
         [attr lgt_addParagraphLineSpacing:5];
         self.msgContentL.attributedText = attr;
@@ -157,7 +157,7 @@
              [userNameToAttr lgt_setColor:LGT_ColorWithHexA(0x1379EC,0.9)];
          }
         [attr appendAttributedString:userNameToAttr];
-        [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@":"]];
+        [attr appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@": "]];
         [attr appendAttributedString:quesModel.Content_Attr];
         [attr lgt_addParagraphLineSpacing:5];
         self.msgContentL.attributedText = attr;

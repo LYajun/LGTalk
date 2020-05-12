@@ -29,6 +29,7 @@
 @property (nonatomic,copy) NSString *SubjectName;
 /** 教师ID */
 @property (nonatomic,copy) NSString *TeacherID;
+@property (nonatomic,copy) NSString *classID;
 /** 教师名 */
 @property (nonatomic,copy) NSString *TeacherName;
 /** 资料ID */
@@ -48,4 +49,5 @@
 
 /** 系统ID */
 @property (nonatomic,copy) NSString *SysID;
+
 @end

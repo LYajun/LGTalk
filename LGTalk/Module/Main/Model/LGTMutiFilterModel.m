@@ -7,6 +7,16 @@
 //
 
 #import "LGTMutiFilterModel.h"
+@implementation LGTTraditionMaterialChapterTextModel
+
+@end
+
+@implementation LGTTraditionMaterialChapterModel
++ (NSDictionary *)mj_objectClassInArray{
+    return @{@"textTitle":[LGTTraditionMaterialChapterTextModel class]};
+}
+@end
+
 
 @implementation LGTMutiFilterSubModel
 
@@ -15,6 +25,8 @@
 
 @implementation LGTMutiFilterModel
 + (NSDictionary *)mj_objectClassInArray{
-    return @{@"TeachMaterilaAllDatas":[LGTMutiFilterSubModel class]};
+    return @{@"TeachMaterilaAllDatas":[LGTMutiFilterSubModel class],
+             @"chapterList":[LGTTraditionMaterialChapterModel class]
+             };
 }
 @end

@@ -10,6 +10,9 @@
 #import <objc/runtime.h>
 #import "LGTExtension.h"
 #import "LGTConst.h"
+#import "LGTalkManager.h"
+#import <YJExtensions/YJExtensions.h>
+#import <Masonry/Masonry.h>
 
 #define Kscreen_width  [UIScreen mainScreen].bounds.size.width
 #define Kscreen_height [UIScreen mainScreen].bounds.size.height
@@ -75,6 +78,9 @@
 @property (nonatomic,strong) UIButton  *tempButton;
 
 @property (nonatomic,assign) CGFloat btnWidth;
+
+@property (nonatomic,strong) LGTdownMenuCell *currentSelCell;
+@property (nonatomic,strong) LGTdownMenuHeader *currentSelHeader;
 @end
 
 @implementation LGTPullDownMenu
@@ -100,6 +106,9 @@
     _rowHeight = IsIPad ? 50 : 40;
     _maxDisplayRowNumber = 5;
     _tableViewMaxHeight = _rowHeight * _maxDisplayRowNumber;
+    if ([LGTalkManager defaultManager].mutiFilterIndexPath) {
+        _tableViewMaxHeight = _rowHeight * 8;
+    }
 }
 -(void)configBaseInfo
 {
@@ -174,7 +183,13 @@
     self.tableView.delegate=self;
     self.tableView.dataSource=self;
     self.tableView.rowHeight= self.rowHeight;
+    if ([LGTalkManager defaultManager].mutiFilterIndexPath) {
+        self.tableView.sectionHeaderHeight = self.rowHeight;
+    }else{
+        self.tableView.sectionHeaderHeight = 0.01;
+    }
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    [self.tableView registerClass:LGTdownMenuHeader.class forHeaderFooterViewReuseIdentifier:NSStringFromClass(LGTdownMenuHeader.class)];
     return self.tableView;
 }
 
@@ -182,11 +197,49 @@
 #pragma mark  --  <代理方法>
 #pragma mark  --  <UITableViewDelegate,UITableViewDataSource>
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    if ([self.tableDataArray.firstObject isKindOfClass:NSDictionary.class]) {
+        return self.tableDataArray.count;
+    }
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if ([self.tableDataArray.firstObject isKindOfClass:NSDictionary.class]) {
+        NSDictionary *dic = self.tableDataArray[section];
+        NSArray *arr = [dic objectForKey:@"list"];
+        return arr.count;
+    }
     return self.tableDataArray.count;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if ([self.tableDataArray.firstObject isKindOfClass:NSDictionary.class]) {
+        LGTdownMenuHeader *headerView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass(LGTdownMenuHeader.class)];
+        NSString *objcTitle = KOBJCGetObject(self.tempButton);
+         NSDictionary *dic = self.tableDataArray[section];
+        headerView.content = [dic objectForKey:@"title"];
+        if ([objcTitle isEqualToString:headerView.content]) {
+            headerView.isSelected = YES;
+            self.currentSelHeader = headerView;
+        }else{
+            headerView.isSelected = NO;
+        }
+        if (section == 0) {
+            __weak typeof(self) weakSelf = self;
+            headerView.selectBlock = ^{
+                NSString *refer = @"全部来源";
+                [weakSelf.tempButton setTitle:refer forState:UIControlStateNormal];
+                [weakSelf setBtnWidth:weakSelf.tempButton title:refer];
+                
+                KOBJCSetObject(self.tempButton, refer);
+                if (weakSelf.handleTwoSelectDataBlock) {
+                    weakSelf.handleTwoSelectDataBlock(@"", nil, weakSelf.tempButton.tag - KTitleButtonTag);
+                }
+                [weakSelf takeBackTableView];
+            };
+        }
+        return headerView;
+    }
+    return nil;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -195,29 +248,51 @@
     if (!cell) {
         cell =[[LGTdownMenuCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    cell.content = self.tableDataArray[indexPath.row];
-    NSString *objcTitle = KOBJCGetObject(self.tempButton);
-    cell.isShowSeparator = YES;
-    if (indexPath.row == self.tableDataArray.count-1) {
-        cell.isShowSeparator = NO;
-    }
-    cell.separatorOffset = IsIPad ? 20 : 10;
-    if (self.currentIndex > 0) {
-        if (indexPath.row == self.currentIndex) {
+    if ([self.tableDataArray.firstObject isKindOfClass:NSDictionary.class]) {
+        NSDictionary *dic = self.tableDataArray[indexPath.section];
+        NSArray *arr = [dic objectForKey:@"list"];
+        cell.content = arr[indexPath.row];
+        NSString *objcTitle = KOBJCGetObject(self.tempButton);
+        cell.isShowSeparator = YES;
+        if (indexPath.section == self.tableDataArray.count-1 && indexPath.row == arr.count-1) {
+            cell.isShowSeparator = NO;
+        }
+        cell.separatorOffset = IsIPad ? 30 : 20;
+        NSString *refer = [NSString stringWithFormat:@"第%li单元 %@",indexPath.section,cell.content];
+        if ([refer isEqualToString:objcTitle]) {
             cell.isSelected = YES;
             cell.sepColor = LGT_ColorWithHex(0x2FB7FC);
         }else{
-            cell.isSelected=NO;
+            cell.isSelected = NO;
             cell.sepColor = LGT_ColorWithHex(0xE0E0E0);
         }
+        return cell;
     }else{
-        if ([cell.content isEqualToString:objcTitle]) {
-            cell.isSelected = YES;
-            cell.sepColor = LGT_ColorWithHex(0x2FB7FC);
-        }else{
-            cell.isSelected=NO;
-            cell.sepColor = LGT_ColorWithHex(0xE0E0E0);
+        cell.content = self.tableDataArray[indexPath.row];
+        NSString *objcTitle = KOBJCGetObject(self.tempButton);
+        cell.isShowSeparator = YES;
+        if (indexPath.row == self.tableDataArray.count-1) {
+            cell.isShowSeparator = NO;
         }
+        cell.separatorOffset = IsIPad ? 20 : 10;
+        if (self.currentIndex > 0) {
+            if (indexPath.row == self.currentIndex) {
+                cell.isSelected = YES;
+                cell.sepColor = LGT_ColorWithHex(0x2FB7FC);
+            }else{
+                cell.isSelected=NO;
+                cell.sepColor = LGT_ColorWithHex(0xE0E0E0);
+            }
+        }else{
+            if ([cell.content isEqualToString:objcTitle]) {
+                cell.isSelected = YES;
+                cell.sepColor = LGT_ColorWithHex(0x2FB7FC);
+            }else{
+                cell.isSelected=NO;
+                cell.sepColor = LGT_ColorWithHex(0xE0E0E0);
+            }
+        }
+        
     }
     
     return cell;
@@ -231,14 +306,24 @@
     LGTdownMenuCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     cell.isSelected = YES;
     
-    [self.tempButton setTitle:cell.content forState:UIControlStateNormal];
-    [self setBtnWidth:self.tempButton title:cell.content];
-    
-    KOBJCSetObject(self.tempButton, cell.content);
-    
-    if (self.handleSelectDataBlock) {
-        self.handleSelectDataBlock(cell.content,indexPath.row,self.tempButton.tag - KTitleButtonTag);
+    if ([LGTalkManager defaultManager].mutiFilterIndexPath) {
+        NSString *refer = [NSString stringWithFormat:@"第%li单元 %@",indexPath.section,cell.content];
+        [self.tempButton setTitle:refer forState:UIControlStateNormal];
+        [self setBtnWidth:self.tempButton title:refer];
+        KOBJCSetObject(self.tempButton, refer);
+        if (self.handleTwoSelectDataBlock) {
+            self.handleTwoSelectDataBlock(refer, indexPath, self.tempButton.tag - KTitleButtonTag);
+        }
+    }else{
+        [self.tempButton setTitle:cell.content forState:UIControlStateNormal];
+        [self setBtnWidth:self.tempButton title:cell.content];
+        KOBJCSetObject(self.tempButton, cell.content);
+
+        if (self.handleSelectDataBlock) {
+            self.handleSelectDataBlock(cell.content,indexPath.row,self.tempButton.tag - KTitleButtonTag);
+        }
     }
+    
     
     [self takeBackTableView];
     
@@ -333,15 +418,32 @@
         //设置默认选中第一项。
         if ([KOBJCGetObject(self.tempButton) length]<1) {
             
-            NSString *title = self.tableDataArray.firstObject;
-            KOBJCSetObject(self.tempButton, title);
+            if ([self.tableDataArray.firstObject isKindOfClass:NSDictionary.class]) {
+                NSDictionary *titleDic  =  self.tableDataArray.firstObject;
+                NSString *title =  [titleDic objectForKey:@"title"];
+                KOBJCSetObject(self.tempButton, title);
+            }else{
+                NSString *title = self.tableDataArray.firstObject;
+                KOBJCSetObject(self.tempButton, title);
+            }
             
         }
 
         [self.tableView reloadData];
-       
-        CGFloat tableViewHeight =  self.tableDataArray.count * self.rowHeight < self.tableViewMaxHeight ?
-        self.tableDataArray.count * self.rowHeight : self.tableViewMaxHeight;
+        CGFloat tableViewHeight = 0;
+        if ([self.tableDataArray.firstObject isKindOfClass:NSDictionary.class]) {
+            NSInteger count = 0;
+            for (NSDictionary *dic in self.tableDataArray) {
+                NSArray *arr = [dic objectForKey:@"list"];
+                count += arr.count;
+            }
+            count += self.tableDataArray.count;
+            tableViewHeight = count * self.rowHeight < self.tableViewMaxHeight ?
+            count * self.rowHeight : self.tableViewMaxHeight;
+        }else{
+            tableViewHeight =  self.tableDataArray.count * self.rowHeight < self.tableViewMaxHeight ?
+            self.tableDataArray.count * self.rowHeight : self.tableViewMaxHeight;
+        }
         
         
         [self expandWithTableViewHeight:tableViewHeight];
@@ -473,6 +575,7 @@
 
 @interface LGTdownMenuCell ()
 @property (strong,nonatomic) UILabel *contentL;
+
 @end
 @implementation LGTdownMenuCell
 
@@ -511,9 +614,14 @@
 }
 - (UILabel *)contentL{
     if (!_contentL) {
-        _contentL = [[UILabel alloc] initWithFrame:CGRectMake(IsIPad ? 25 : 10, 3, Kscreen_width-80, self.frame.size.height-6)];
+        if ([LGTalkManager defaultManager].mutiFilterIndexPath) {
+            _contentL = [[UILabel alloc] initWithFrame:CGRectMake(IsIPad ? 35 : 20, 3, Kscreen_width-80, self.frame.size.height-6)];
+            _contentL.textColor = LGT_ColorWithHex(0x989898);
+        }else{
+            _contentL = [[UILabel alloc] initWithFrame:CGRectMake(IsIPad ? 25 : 10, 3, Kscreen_width-80, self.frame.size.height-6)];
+            _contentL.textColor = [UIColor darkGrayColor];
+        }
         _contentL.font = [UIFont systemFontOfSize:IsIPad ? 16 : 14];
-        _contentL.textColor = [UIColor darkGrayColor];
     }
     return _contentL;
 }
@@ -535,9 +643,91 @@
 @end
 
 
+@interface LGTdownMenuHeader ()
+@property (strong,nonatomic) UILabel *contentL;
+@property (nonatomic,strong) UIView *botLineView;
+@property (nonatomic,strong) UIButton *clickBtn;
+@property (nonatomic,strong) UIImageView  *selectImageView;
+@end
 
-
-
+@implementation LGTdownMenuHeader
+- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier{
+    if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = [UIColor whiteColor];
+        [self.contentView addSubview:self.selectImageView];
+        [self.selectImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.contentView);
+            make.size.mas_equalTo(CGSizeMake(24, 16));
+            make.right.equalTo(self.contentView).offset(-15);
+        }];
+        [self.contentView addSubview:self.contentL];
+        [self.contentL mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerY.equalTo(self.contentView);
+            make.right.equalTo(self.selectImageView.mas_left).offset(-15);
+            make.left.equalTo(self.contentView).offset(IsIPad ? 25 : 10);
+            make.top.equalTo(self.contentView).offset(3);
+        }];
+        [self.contentView addSubview:self.botLineView];
+        [self.botLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.bottom.left.equalTo(self.contentView);
+            make.height.mas_equalTo(1);
+        }];
+        [self.contentView addSubview:self.clickBtn];
+        [self.clickBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self.contentView);
+        }];
+    }
+    return self;
+}
+- (void)setContent:(NSString *)content{
+    _content = content;
+    self.contentL.text = content;
+}
+- (void)setIsSelected:(BOOL)isSelected
+{
+    _isSelected = isSelected;
+    if (isSelected) {
+        self.contentL.textColor = LGT_ColorWithHex(0x2FB7FC);
+    }else{
+        self.contentL.textColor = LGT_ColorWithHex(0x252525);
+    }
+    self.selectImageView.hidden = !isSelected;
+}
+- (void)tapAction:(UITapGestureRecognizer *)tap{
+    if (self.selectBlock) {
+        self.isSelected = YES;
+        self.selectBlock();
+    }
+}
+- (UIImageView *)selectImageView{
+    if (!_selectImageView) {
+        _selectImageView = [[UIImageView alloc] initWithImage:[UIImage lgt_imageNamed:@"lgt_filter_select" atDir:@"Main"]];
+    }
+    return _selectImageView;
+}
+- (UIButton *)clickBtn{
+    if (!_clickBtn) {
+        _clickBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_clickBtn addTarget:self action:@selector(tapAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _clickBtn;
+}
+- (UILabel *)contentL{
+    if (!_contentL) {
+        _contentL = [[UILabel alloc] initWithFrame:CGRectZero];
+        _contentL.font = [UIFont systemFontOfSize:IsIPad ? 18 : 16];
+        _contentL.textColor = LGT_ColorWithHex(0x252525);
+    }
+    return _contentL;
+}
+- (UIView *)botLineView{
+    if (!_botLineView) {
+        _botLineView = [[UIView alloc] initWithFrame:CGRectZero];
+        _botLineView.backgroundColor = LGT_ColorWithHex(0xE0E0E0);
+    }
+    return _botLineView;
+}
+@end
 
 
 

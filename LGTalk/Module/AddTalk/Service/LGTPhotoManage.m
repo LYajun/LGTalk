@@ -36,6 +36,7 @@
         picker.sourceType = sourceType;
         //        picker.showsCameraControls = NO;//默认为YES
         picker.cameraDevice=UIImagePickerControllerCameraDeviceRear;//选择前置摄像头或后置摄像头
+        picker.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.ownController presentViewController:picker animated:YES completion:NULL];
         picker.delegate = self;//设置代理
     }else {
@@ -52,6 +53,7 @@
     imagePickerController.filterType = LGTImagePickerControllerFilterTypePhotos;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:imagePickerController];
     navigationController.navigationBar.translucent = NO;
+    navigationController.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.ownController presentViewController:navigationController animated:YES completion:NULL];
 }
 - (void)dismissImagePickerController

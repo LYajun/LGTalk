@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "LGTalk"
-  s.version      = "1.2.1"
+  s.version      = "1.2.2"
   s.summary      = "在线讨论"
 
 
@@ -66,6 +66,6 @@ Pod::Spec.new do |s|
   s.dependency 'LGAlertHUD'
   s.dependency 'YJExtensions'
   s.dependency 'XMLDictionary'
-  s.dependency 'AFNetworking'
+  s.dependency 'YJNetManager'
   s.dependency 'YJPresentAnimation'
 end

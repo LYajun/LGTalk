@@ -154,7 +154,7 @@ static NSInteger maxUploadCount = 3;
     model.AssignmentName = [LGTalkManager defaultManager].assignmentName;
     model.ResID = self.resID;
     model.ResName = self.resName;
-    
+//    model.classID = [LGTalkManager defaultManager].classID;
     model.TeacherID = [LGTalkManager defaultManager].teacherID;
     model.TeacherName = [LGTalkManager defaultManager].teachertName;
     model.SubjectID = [LGTalkManager defaultManager].subjectID;
@@ -204,7 +204,11 @@ static NSInteger maxUploadCount = 3;
     [LGTNet.setRequest(url).setRequestType(LGTRequestTypeUploadPhoto).setUploadModel(uploadModel) startRequestWithProgress:^(NSProgress *progress) {
         NSLog(@"%f",progress.fractionCompleted);
     } success:^(id response) {
-        [selfWeak uploadTalkContentWithImageUrls:[response objectForKey:@"Data"]];
+        if (LGT_IsArrEmpty([response objectForKey:@"Data"])) {
+            [LGAlert showInfoWithStatus:@"上传图片失败"];
+        }else{
+            [selfWeak uploadTalkContentWithImageUrls:[response objectForKey:@"Data"]];
+        }
     } failure:^(NSError *error) {
         [LGAlert showErrorWithError:error];
     }];

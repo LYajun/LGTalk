@@ -89,6 +89,8 @@
     replyModel.UserImg = [LGTalkManager defaultManager].photoPath;
     replyModel.UserName = [LGTalkManager defaultManager].userName;
     replyModel.UserType = [NSString stringWithFormat:@"%li", [LGTalkManager defaultManager].userType];
+    replyModel.TeacherID = [LGTalkManager defaultManager].teacherID;
+//    replyModel.classID = [LGTalkManager defaultManager].classID;
     replyModel.IsComment = self.isCommentSelf;
     if (self.isCommentSelf) {
         if ([model.UserID isEqualToString:[LGTalkManager defaultManager].userID]) {

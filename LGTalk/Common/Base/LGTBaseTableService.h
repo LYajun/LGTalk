@@ -10,6 +10,8 @@
 #import <UIKit/UIKit.h>
 #import "LGTBaseModel.h"
 
+@class LGTMutiFilterModel;
+
 @interface LGTBaseTableService : NSObject
 
 @property (nonatomic,copy) NSString *resID;
@@ -65,5 +67,5 @@
 - (NSArray *)mutiFilterTitleArray;
 - (NSArray *)mutiFilterNameArray;
 - (NSArray *)mutiFilterIDArray;
-
+- (LGTMutiFilterModel *)filterModel;
 @end

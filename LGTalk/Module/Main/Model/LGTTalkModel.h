@@ -81,6 +81,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 新增是否显示全文属性 */
 @property (nonatomic,assign) BOOL isAllContent;
 
+@property (nonatomic,copy) NSString *TeacherID;
+@property (nonatomic,copy) NSString *classID;
 /** 问题回复数组 */
 @property (nonatomic,strong) NSArray<LGTTalkQuesModel *> *CommentList;
 

@@ -29,10 +29,21 @@
 - (void)initParams{
     [LGTNet netMonitoring];
 }
+- (void)resetParams{
+    self.mutiFilterIndexPath = nil;
+    self.traditionInfo = nil;
+}
 - (void)presentKnowledgeControllerBy:(UIViewController *)controller{
-    LGTMainViewController *mainVC = [[LGTMainViewController alloc] init];
-    LGTBaseNavigationController *navi = [[LGTBaseNavigationController alloc] initWithRootViewController:mainVC];
+    LGTBaseNavigationController *navi;
+    if (self.mutiFilterIndexPath) {
+        LGTTraditionMainViewController *mainVC = [[LGTTraditionMainViewController alloc] init];
+        navi = [[LGTBaseNavigationController alloc] initWithRootViewController:mainVC];
+    }else{
+        LGTMainViewController *mainVC = [[LGTMainViewController alloc] init];
+       navi = [[LGTBaseNavigationController alloc] initWithRootViewController:mainVC];
+    }
     navi.transitioningDelegate = self;
+    navi.modalPresentationStyle = UIModalPresentationFullScreen;
     [controller presentViewController:navi animated:YES completion:nil];
 }
 #pragma mark UIViewControllerTransitioningDelegate

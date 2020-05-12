@@ -51,12 +51,26 @@ NS_ASSUME_NONNULL_BEGIN
 /** 系统ID */
 @property (nonatomic,copy) NSString *systemID;
 
+/** 在线讨论版本号 */
+@property (nonatomic,copy) NSString *talkServiceVersion;
+@property (nonatomic,strong) NSArray *talkClassIDArr1;
+@property (nonatomic,strong) NSArray *talkTchIDArr1;
+@property (nonatomic,strong) NSArray *talkClassIDArr2;
+@property (nonatomic,strong) NSArray *talkTchIDArr2;
+/** AI教材 */
 /** 教材筛选Url */
 @property (nonatomic,copy) NSString *mutiFilterUrl;
 /** 当前第几课，0-全部，1-第1课 */
 @property (nonatomic,assign) NSInteger mutiFilterIndex;
-+ (LGTalkManager *)defaultManager;
 
+/** 传统教材 */
+/** 传统教材信息 */
+@property (nonatomic,strong,nullable) NSDictionary *traditionInfo;
+/** 当前第几单元第几课，空0全部 */
+@property (nonatomic,strong,nullable) NSIndexPath *mutiFilterIndexPath;
+
++ (LGTalkManager *)defaultManager;
+- (void)resetParams;
 - (void)presentKnowledgeControllerBy:(UIViewController *)controller;
 @end
 

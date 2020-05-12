@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface LGTTraditionMainViewController : LGTBaseViewController
+
+@end
+
+
+
 @interface LGTMainViewController : LGTBaseViewController
 
 @end

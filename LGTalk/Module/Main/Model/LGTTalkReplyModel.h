@@ -40,4 +40,7 @@
 @property (nonatomic,copy) NSString *QuesThemeID;
 /** 资料ID */
 @property (nonatomic,copy) NSString *ResID;
+
+@property (nonatomic,copy) NSString *TeacherID;
+@property (nonatomic,copy) NSString *classID;
 @end
