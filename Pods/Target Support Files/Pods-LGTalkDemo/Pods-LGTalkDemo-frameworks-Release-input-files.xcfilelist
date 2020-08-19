@@ -1,6 +1,7 @@
 ${PODS_ROOT}/Target Support Files/Pods-LGTalkDemo/Pods-LGTalkDemo-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework
 ${BUILT_PRODUCTS_DIR}/LGAlertHUD/LGAlertHUD.framework
+${BUILT_PRODUCTS_DIR}/LGBundle/LGBundle.framework
 ${BUILT_PRODUCTS_DIR}/LGLog/LGLog.framework
 ${BUILT_PRODUCTS_DIR}/MJExtension/MJExtension.framework
 ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework

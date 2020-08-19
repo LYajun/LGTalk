@@ -28,11 +28,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self layoutUI];
-    [self.tableView loadFirstPage];
-    __weak typeof(self) weakSelf = self;
-    self.tableView.TotalCountBlock = ^(NSInteger count){
-        [weakSelf.pullDownMenu setTitle:[NSString stringWithFormat:@"共%li组讨论",count]];
-    };
+    
+    if ([LGTalkManager defaultManager].noAssignTeachClass) {
+        [self setViewNoDataShow:YES];
+        [self setNoDataTitleStr:@"暂无教学班，请自建教学班或联系管理员"];
+    }else{
+        [self.tableView loadFirstPage];
+        __weak typeof(self) weakSelf = self;
+        self.tableView.TotalCountBlock = ^(NSInteger count){
+            [weakSelf.pullDownMenu setTitle:[NSString stringWithFormat:@"共%li组讨论",count]];
+        };
+    }
+    
 }
 - (void)updateData{
     if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
@@ -47,7 +54,7 @@
 - (void)layoutUI{
     self.navBar_leftItemType = LGTNavBarLeftItemTypeMenu;
     self.marqueeTitle = ([LGTalkManager defaultManager].homeTitle != nil && [LGTalkManager defaultManager].homeTitle.length > 0) ?  [LGTalkManager defaultManager].homeTitle : @"在线讨论";
-    if (![LGTalkManager defaultManager].forbidAddTalk) {
+    if (![LGTalkManager defaultManager].forbidAddTalk && ![LGTalkManager defaultManager].noAssignTeachClass) {
         [self setNavBar_rightItemImages:@[[UIImage lgt_imageNamed:@"add" atDir:@"NavBar"]]];
     }
     
@@ -69,7 +76,9 @@
     
 }
 - (void)loadErrorUpdate{
-    [self.tableView loadFirstPage];
+    if (![LGTalkManager defaultManager].noAssignTeachClass) {
+        [self.tableView loadFirstPage];
+    }
 }
 
 - (void)navBar_rightItemPressed:(UIBarButtonItem *)sender{
@@ -151,11 +160,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self layoutUI];
-    [self.tableView loadFirstPage];
-    __weak typeof(self) weakSelf = self;
-    self.tableView.TotalCountBlock = ^(NSInteger count){
-        [weakSelf.pullDownMenu setTitle:[NSString stringWithFormat:@"共%li组讨论",count]];
-    };
+    if ([LGTalkManager defaultManager].noAssignTeachClass) {
+        [self setViewNoDataShow:YES];
+        [self setNoDataTitleStr:@"暂无教学班，请自建教学班或联系管理员"];
+    }else{
+        [self.tableView loadFirstPage];
+        __weak typeof(self) weakSelf = self;
+        self.tableView.TotalCountBlock = ^(NSInteger count){
+            [weakSelf.pullDownMenu setTitle:[NSString stringWithFormat:@"共%li组讨论",count]];
+        };
+    }
 }
 - (void)updateData{
     if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"]) {
@@ -170,7 +184,7 @@
 - (void)layoutUI{
     self.navBar_leftItemType = LGTNavBarLeftItemTypeMenu;
     self.marqueeTitle = ([LGTalkManager defaultManager].homeTitle != nil && [LGTalkManager defaultManager].homeTitle.length > 0) ?  [LGTalkManager defaultManager].homeTitle : @"在线讨论";
-    if (![LGTalkManager defaultManager].forbidAddTalk) {
+    if (![LGTalkManager defaultManager].forbidAddTalk && ![LGTalkManager defaultManager].noAssignTeachClass) {
         [self setNavBar_rightItemImages:@[[UIImage lgt_imageNamed:@"add" atDir:@"NavBar"]]];
     }
     
@@ -193,7 +207,9 @@
   
 }
 - (void)loadErrorUpdate{
-     [self.tableView loadFirstPage];
+    if (![LGTalkManager defaultManager].noAssignTeachClass) {
+        [self.tableView loadFirstPage];
+    }
 }
 
 - (void)navBar_rightItemPressed:(UIBarButtonItem *)sender{

@@ -49,5 +49,6 @@
 
 /** 系统ID */
 @property (nonatomic,copy) NSString *SysID;
-
+@property (nonatomic,copy) NSString *SchoolID;
+@property (nonatomic,strong) NSArray *ClassIDs;
 @end

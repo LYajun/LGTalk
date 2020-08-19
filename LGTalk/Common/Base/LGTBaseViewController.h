@@ -36,6 +36,7 @@ typedef NS_ENUM(NSUInteger, LGTNavBarLeftItemType) {
 - (void)loadData;
 - (void)updateData;
 
+- (void)setNoDataTitleStr:(NSString *)titleStr;
 - (void)loadErrorUpdate;
 /** 初始化 */
 - (instancetype)initWithServiceName:(NSString *)serviceName;

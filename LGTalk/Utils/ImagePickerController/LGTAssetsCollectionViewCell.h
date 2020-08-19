@@ -13,5 +13,5 @@
 
 @property (nonatomic, strong) ALAsset *asset;
 @property (nonatomic, assign) BOOL showsOverlayViewWhenSelected;
-
+@property (nonatomic, assign) NSInteger index;
 @end

@@ -49,7 +49,7 @@
             NSDictionary *dic = [NSDictionary dictionaryWithXMLString:response];
             NSString *jsonStr = [dic objectForKey:@"__text"];
             if (!LGT_IsStrEmpty(jsonStr)){
-                weakSelf.filterModel = [[LGTMutiFilterModel alloc] initWithJSONString:jsonStr];
+                weakSelf.filterModel = [[LGTMutiFilterModel alloc] initWithJSONString:[NSString stringWithFormat:@"{\"TeachMaterilaAllDatas\":%@}",jsonStr]];
                 if (!LGT_IsArrEmpty(weakSelf.filterModel.TeachMaterilaAllDatas)) {
                     [weakSelf loadTalkDataWithPage:page success:success failed:failed];
                 }else{
@@ -86,7 +86,7 @@
     }];
 }
 - (void)loadTalkDataWithPage:(NSInteger)page success:(void (^)(BOOL))success failed:(void (^)(NSError *))failed{
-  if ([[LGTalkManager defaultManager].systemID isEqualToString:@"930"] && !LGT_IsStrEmpty([LGTalkManager defaultManager].talkServiceVersion) && [LGTalkManager defaultManager].talkServiceVersion.integerValue >= 20200511) {
+  if ([LGTalkManager defaultManager].mutimediaNewApi) {
       [self new_loadTalkDataWithPage:page success:success failed:failed];
   }else{
       [self old_loadTalkDataWithPage:page success:success failed:failed];
@@ -97,12 +97,12 @@
     NSString *urlStr = [LGTNet.apiUrl stringByAppendingString:@"/api/Tutor/GetTutorQuesThemeList"];
     NSDictionary *params = @{
                                 @"AssignmentID":LGT_ApiParams([LGTalkManager defaultManager].assignmentID),
-                                @"ResID ":LGT_ApiParams(self.resID),
+                                @"ResID":LGT_ApiParams(self.resID),
                                 @"TopicIndex":@(-1),
                                 @"PageIndex":@(self.currentPage),
                                 @"PageSize":@(self.pageSize),
-                                @"ClassIDs ":[LGTalkManager defaultManager].talkClassIDArr2,
-                                @"TchIDs ":[LGTalkManager defaultManager].talkTchIDArr2
+                                @"ClassIDs":[LGTalkManager defaultManager].talkClassIDArr1,
+                                @"TchIDs":[LGTalkManager defaultManager].talkTchIDArr1
     };
   
     __weak typeof(self) weakSelf = self; [[YJNetManager defaultManager].setRequest(urlStr).setRequestType(YJRequestTypeMD5POST).setResponseType(YJResponseTypeData).setParameters(params) startRequestWithSuccess:^(id data) {

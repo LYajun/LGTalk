@@ -43,4 +43,7 @@
 
 @property (nonatomic,copy) NSString *TeacherID;
 @property (nonatomic,copy) NSString *classID;
+
+@property (nonatomic,strong) NSArray *ClassIDs;
+@property (nonatomic,strong) NSArray *TchIDs;
 @end

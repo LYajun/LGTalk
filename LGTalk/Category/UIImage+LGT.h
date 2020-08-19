@@ -16,4 +16,5 @@
 + (UIImage *)lgt_imagePathName:(NSString *)name;
 + (UIImage *)lgt_imageWithColor:(UIColor *)color size:(CGSize)size;
 + (UIImage *)lgt_fixOrientation:(UIImage *)aImage;
+- (NSData *)lgt_compressImageOnlength:(CGFloat)length;
 @end

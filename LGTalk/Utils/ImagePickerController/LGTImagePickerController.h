@@ -32,7 +32,7 @@ UIKIT_EXTERN ALAssetsFilter * ALAssetsFilterFromLGTImagePickerControllerFilterTy
 
 @property (nonatomic, strong, readonly) ALAssetsLibrary *assetsLibrary;
 @property (nonatomic, copy, readonly) NSArray *assetsGroups;
-@property (nonatomic, strong, readonly) NSMutableSet *selectedAssetURLs;
+@property (nonatomic, strong, readonly) NSMutableArray *selectedAssetURLs;
 
 @property (nonatomic, weak) id<LGTImagePickerControllerDelegate> delegate;
 @property (nonatomic, copy) NSArray *groupTypes;

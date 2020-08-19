@@ -1,0 +1,6 @@
+framework module LGBundle {
+  umbrella header "LGBundle-umbrella.h"
+
+  export *
+  module * { export * }
+}

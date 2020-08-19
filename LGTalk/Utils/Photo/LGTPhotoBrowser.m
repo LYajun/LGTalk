@@ -86,7 +86,7 @@
     if (!LGT_IsArrEmpty(self.imageNames)){
         cell.imageView.image = [UIImage imageNamed:self.imageNames[indexPath.row]];
     }else{
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrls[indexPath.row]] placeholderImage:[UIImage lgt_imageWithColor:LGT_ColorWithHex(0x999999) size:CGSizeMake(LGT_ScreenWidth, LGT_ScreenHeight)]];
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:[self.imageUrls[indexPath.row] stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] placeholderImage:[UIImage lgt_imageWithColor:LGT_ColorWithHex(0x999999) size:CGSizeMake(LGT_ScreenWidth, LGT_ScreenHeight)]];
     }
     return cell;
 }

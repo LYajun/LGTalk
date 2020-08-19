@@ -50,12 +50,16 @@
         [self hideOverlayView];
     }
 }
-
+- (void)setIndex:(NSInteger)index{
+    _index = index;
+    if (self.overlayView) {
+        self.overlayView.index = index;
+    }
+}
 - (void)showOverlayView
 {
     LGTAssetsCollectionOverlayView *overlayView = [[LGTAssetsCollectionOverlayView alloc] initWithFrame:self.contentView.bounds];
     overlayView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
     [self.contentView addSubview:overlayView];
     self.overlayView = overlayView;
 }

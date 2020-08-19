@@ -15,7 +15,6 @@
 typedef NS_ENUM(NSInteger,LGTRequestType){
     LGTRequestTypeGET,
     LGTRequestTypePOST,
-    LGTRequestTypeUploadPhoto,
     LGTRequestTypeMD5GET,
     LGTRequestTypeMD5POST,
 };
@@ -25,20 +24,6 @@ typedef NS_ENUM(NSInteger,LGTResponseType){
     LGTResponseTypeString,
     LGTResponseTypeData,
 };
-
-@interface LGTUploadModel : NSObject
-/** 数据流 */
-@property (nonatomic,strong) NSArray *uploadDatas;
-/** //给定数据流的数据名 */
-@property (nonatomic,strong) NSString *name;
-/** 文件名 */
-@property (nonatomic,strong) NSArray *fileNames;
-/** 文件类型 常用数据流类型：
- 1、"image/png" 图片
- 2、“video/quicktime” 视频流
- */
-@property (nonatomic,strong) NSString *fileType;
-@end
 
 
 @interface LGTNetworking : NSObject
@@ -67,11 +52,9 @@ typedef NS_ENUM(NSInteger,LGTResponseType){
 
 /** 填充请求头 */
 - (LGTNetworking* (^)(NSDictionary * HTTPHeaderDic))setHTTPHeader;
-/** 上传文件模型 */
-- (LGTNetworking* (^)(LGTUploadModel *uploadModel))setUploadModel;
 
-/** 网络监控 */
-- (void)netMonitoring;
+
+
 /** 断开网络 */
 - (void)cancelAllRequest;
 

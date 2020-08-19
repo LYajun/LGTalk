@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface LGTAssetsCollectionCheckmarkView : UIView
-
+@property (nonatomic, assign) NSInteger index;
 @end

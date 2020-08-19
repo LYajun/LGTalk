@@ -9,19 +9,16 @@
 #import "LGTNetworking.h"
 #import "LGTConst.h"
 #import "LGTExtension.h"
-#import <AFNetworking/AFNetworking.h>
+#import <YJNetManager/YJNetMonitoring.h>
 #import "LGTalkManager.h"
-@implementation LGTUploadModel
 
-@end
-static NSString *LGTNetStatus = @"LGTNetStatus";
+
 @interface LGTNetworking ()
 @property (nonatomic,copy) NSString * url;
 @property (nonatomic,assign) LGTRequestType wRequestType;
 @property (nonatomic,assign) LGTResponseType wResponseType;
 @property (nonatomic,copy) NSDictionary *parameters;
 @property (nonatomic,copy) NSDictionary * wHTTPHeader;
-@property (nonatomic,strong) LGTUploadModel *uploadModel;
 @property (nonatomic,assign) NSTimeInterval timeout;
 @property (nonatomic,strong) NSMutableArray *dataTaskkArr;
 @end
@@ -35,29 +32,7 @@ static NSString *LGTNetStatus = @"LGTNetStatus";
     });
     return macro;
 }
-- (void)netMonitoring{
-    NSUserDefaults *userDefaults =[NSUserDefaults standardUserDefaults];
-    [userDefaults setInteger:2 forKey:LGTNetStatus];
-    [userDefaults synchronize];
-    [[AFNetworkReachabilityManager sharedManager] setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
-        switch (status) {
-            case AFNetworkReachabilityStatusReachableViaWWAN:
-                NSLog(@"使用手机网络");
-                break;
-            case AFNetworkReachabilityStatusReachableViaWiFi:
-                NSLog(@"使用WIFI");
-                break;
-            case AFNetworkReachabilityStatusNotReachable:
-                NSLog(@"没有网络");
-                break;
-            default:
-                break;
-        }
-        //        [userDefaults setInteger:status forKey:netStatus];
-        //        [userDefaults synchronize];
-    }];
-    [[AFNetworkReachabilityManager sharedManager] startMonitoring];
-}
+
 - (void)cancelAllRequest{
     for (NSURLSessionDataTask *dataTask in self.dataTaskkArr) {
         [dataTask cancel];
@@ -71,7 +46,7 @@ static NSString *LGTNetStatus = @"LGTNetStatus";
 
 - (void)startRequestWithProgress:(void (^)(NSProgress *))progress success:(void (^)(id))success failure:(void (^)(NSError *))failure{
      NSUserDefaults *userDefaults =[NSUserDefaults standardUserDefaults];
-    if ([[userDefaults objectForKey:LGTNetStatus] integerValue] <= 0) {
+    if ([YJNetMonitoring shareMonitoring].netStatus <= 0) {
         failure([NSError lgt_localErrorWithCode:LGTLocalErrorNoNetwork description:@"当前无网络连接"]);
     }else{
         [self _startRequestWithProgress:progress success:success failure:failure];
@@ -89,9 +64,6 @@ static NSString *LGTNetStatus = @"LGTNetStatus";
             case LGTRequestTypePOST:
                 [self postRequestWithSuccess:success failure:failure];
                 break;
-            case LGTRequestTypeUploadPhoto:
-                [self uploadPhotoWithProgress:progress success:success failure:failure];
-                break;
             case LGTRequestTypeMD5GET:
                 [self md5GetRequestWithSuccess:success failure:failure];
                 break;
@@ -106,29 +78,7 @@ static NSString *LGTNetStatus = @"LGTNetStatus";
 }
 
 #pragma mark - Private
-- (void)uploadPhotoWithProgress:(void(^)(NSProgress * progress))progress success:(void(^)(id response))success failure:(void (^)(NSError * error))failure{
-    WeakSelf;
-    [[AFHTTPSessionManager manager] POST:self.url parameters:self.parameters constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (int i = 0; i < selfWeak.uploadModel.uploadDatas.count; i++) {
-            NSData *imageData = selfWeak.uploadModel.uploadDatas[i];
-            NSString *imageName = selfWeak.uploadModel.fileNames[i];
-            [formData appendPartWithFileData:imageData name:[NSString stringWithFormat:@"%@%i",selfWeak.uploadModel.name,i] fileName:imageName mimeType:selfWeak.uploadModel.fileType];
-        }
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            progress(uploadProgress);
-        });
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            success(responseObject);
-        });
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            failure(error);
-        });
-    }];
-}
+
 - (void)getRequestWithSuccess:(void(^)(id response))success failure:(void (^)(NSError * error))failure{
     NSString *urlStr = self.url;
     if (self.parameters) {
@@ -301,7 +251,6 @@ static NSString *LGTNetStatus = @"LGTNetStatus";
     _wResponseType = LGTResponseTypeJSON;
     _parameters = nil;
     _wHTTPHeader = nil;
-    _uploadModel = nil;
     _timeout = 15;
 }
 #pragma mark - getter
@@ -327,12 +276,7 @@ static NSString *LGTNetStatus = @"LGTNetStatus";
         return self;
     };
 }
-- (LGTNetworking *(^)(LGTUploadModel *))setUploadModel{
-    return ^LGTNetworking * (LGTUploadModel *uploadModel) {
-        self.uploadModel = uploadModel;
-        return self;
-    };
-}
+
 - (LGTNetworking *(^)(NSString *))setRequest{
     return ^LGTNetworking* (NSString * url) {
         self.url = url;

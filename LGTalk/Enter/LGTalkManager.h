@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** 是否静止新建讨论功能 默认：NO*/
 @property (nonatomic,assign) BOOL forbidAddTalk;
 
+@property (nonatomic,assign) BOOL noAssignTeachClass;
+
 /** 用户ID */
 @property (nonatomic,copy) NSString *userID;
 /** 用户名 */
@@ -72,6 +74,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (LGTalkManager *)defaultManager;
 - (void)resetParams;
 - (void)presentKnowledgeControllerBy:(UIViewController *)controller;
+
+- (BOOL)mutimediaNewApi;
+
+- (NSBundle *)lgBundle;
+- (NSArray *)loadingImgs;
 @end
 
 NS_ASSUME_NONNULL_END

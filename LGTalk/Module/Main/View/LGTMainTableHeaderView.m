@@ -131,7 +131,6 @@
     }];
 }
 - (void)configByTalkModel:(LGTTalkModel *)talkModel{
-    self.msgContentL.numberOfLines =
     self.allContentBtn.hidden = !talkModel.tableHeaderShowAllContentEnbale;
     self.allContentBtn.selected = talkModel.isAllContent;
     [self.allContentBtn mas_updateConstraints:^(MASConstraintMaker *make) {

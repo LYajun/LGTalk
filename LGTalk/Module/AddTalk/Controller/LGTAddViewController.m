@@ -19,7 +19,7 @@
 #import "LGTalkManager.h"
 #import "LGTNetworking.h"
 #import "LGTWrittingImageViewer.h"
-
+#import <YJNetManager/YJNetManager.h>
 static NSInteger maxUploadCount = 3;
 @interface LGTAddViewController ()<UICollectionViewDelegate,UICollectionViewDataSource,LGTPhotoManageDelegate,LGTBaseTextViewDelegate,UIGestureRecognizerDelegate>
 @property (nonatomic,strong)UICollectionView *collectionView;
@@ -144,6 +144,7 @@ static NSInteger maxUploadCount = 3;
     model.UserID = [LGTalkManager defaultManager].userID;
     model.UserImg = [LGTalkManager defaultManager].photoPath;
     model.UserName = [LGTalkManager defaultManager].userName;
+    model.SchoolID = [LGTalkManager defaultManager].schoolID;
     NSString *content = self.textView.text;
     if (!LGT_IsStrEmpty(content)) {
         content = [NSString lgt_HTML:content];
@@ -154,7 +155,13 @@ static NSInteger maxUploadCount = 3;
     model.AssignmentName = [LGTalkManager defaultManager].assignmentName;
     model.ResID = self.resID;
     model.ResName = self.resName;
-//    model.classID = [LGTalkManager defaultManager].classID;
+    if ([LGTalkManager defaultManager].mutimediaNewApi) {
+        if ([LGTalkManager defaultManager].userType == 2) {
+            model.ClassIDs = [LGTalkManager defaultManager].talkClassIDArr2;
+        }else{
+            model.ClassIDs = @[];
+        }
+    }
     model.TeacherID = [LGTalkManager defaultManager].teacherID;
     model.TeacherName = [LGTalkManager defaultManager].teachertName;
     model.SubjectID = [LGTalkManager defaultManager].subjectID;
@@ -187,12 +194,13 @@ static NSInteger maxUploadCount = 3;
     
 }
 - (void)uploadImageAction{
-    LGTUploadModel *uploadModel = [[LGTUploadModel alloc] init];
+    YJUploadModel *uploadModel = [[YJUploadModel alloc] init];
     NSMutableArray *imageDatas = [NSMutableArray array];
     NSMutableArray *fileNames = [NSMutableArray array];
     for (UIImage *image in self.imageArr) {
         [fileNames addObject:[NSString stringWithFormat:@"%.f-%li.png",[[NSDate date] timeIntervalSince1970],imageDatas.count]];
-        [imageDatas addObject:UIImageJPEGRepresentation([UIImage lgt_fixOrientation:image], 0.5)];
+        NSData *imgData = [image lgt_compressImageOnlength:200];
+        [imageDatas addObject:imgData];
     }
     uploadModel.uploadDatas = imageDatas;;
     uploadModel.name = @"file";
@@ -201,7 +209,7 @@ static NSInteger maxUploadCount = 3;
     NSString *url = [LGTNet.apiUrl stringByAppendingString:@"/api/Common/UploadImg"];
     WeakSelf;
     [LGAlert showIndeterminateWithStatus:@"上传图片..."];
-    [LGTNet.setRequest(url).setRequestType(LGTRequestTypeUploadPhoto).setUploadModel(uploadModel) startRequestWithProgress:^(NSProgress *progress) {
+    [[YJNetManager defaultManager].setRequest(url).setRequestType(YJRequestTypeUpload).setUploadModel(uploadModel) startRequestWithProgress:^(NSProgress *progress) {
         NSLog(@"%f",progress.fractionCompleted);
     } success:^(id response) {
         if (LGT_IsArrEmpty([response objectForKey:@"Data"])) {

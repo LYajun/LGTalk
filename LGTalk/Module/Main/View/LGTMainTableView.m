@@ -18,6 +18,7 @@
 #import "LGTTalkReplyModel.h"
 #import "LGTNetworking.h"
 #import <LGAlertHUD/YJAnswerAlertView.h>
+#import <YJNetManager/YJNetManager.h>
 
 @interface LGTMainTableView ()<LGTChatBoxDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,assign) BOOL isCommentSelf;
@@ -90,7 +91,15 @@
     replyModel.UserName = [LGTalkManager defaultManager].userName;
     replyModel.UserType = [NSString stringWithFormat:@"%li", [LGTalkManager defaultManager].userType];
     replyModel.TeacherID = [LGTalkManager defaultManager].teacherID;
-//    replyModel.classID = [LGTalkManager defaultManager].classID;
+    if ([LGTalkManager defaultManager].mutimediaNewApi) {
+        if ([LGTalkManager defaultManager].userType == 2) {
+            replyModel.ClassIDs = [LGTalkManager defaultManager].talkClassIDArr1;
+            replyModel.TchIDs = [LGTalkManager defaultManager].talkTchIDArr1;
+        }else{
+            replyModel.ClassIDs = [LGTalkManager defaultManager].talkClassIDArr1;
+            replyModel.TchIDs = @[[LGTalkManager defaultManager].userID];
+        }
+    }
     replyModel.IsComment = self.isCommentSelf;
     if (self.isCommentSelf) {
         if ([model.UserID isEqualToString:[LGTalkManager defaultManager].userID]) {
@@ -126,12 +135,13 @@
 }
 #pragma mark - Service
 - (void)uploadImages:(NSArray *)imgs sendContent:(NSString *)sendContent{
-    LGTUploadModel *uploadModel = [[LGTUploadModel alloc] init];
+    YJUploadModel *uploadModel = [[YJUploadModel alloc] init];
     NSMutableArray *imageDatas = [NSMutableArray array];
     NSMutableArray *fileNames = [NSMutableArray array];
     for (UIImage *image in imgs) {
         [fileNames addObject:[NSString stringWithFormat:@"%.f-%li.png",[[NSDate date] timeIntervalSince1970],imageDatas.count]];
-        [imageDatas addObject:UIImageJPEGRepresentation([UIImage lgt_fixOrientation:image], 0.5)];
+        NSData *imgData = [image lgt_compressImageOnlength:200];
+        [imageDatas addObject:imgData];
     }
     uploadModel.uploadDatas = imageDatas;;
     uploadModel.name = @"file";
@@ -140,7 +150,7 @@
     NSString *url = [LGTNet.apiUrl stringByAppendingString:@"/api/Common/UploadImg"];
     WeakSelf;
     [LGAlert showIndeterminateWithStatus:@"上传图片..."];
-    [LGTNet.setRequest(url).setRequestType(LGTRequestTypeUploadPhoto).setUploadModel(uploadModel) startRequestWithProgress:^(NSProgress *progress) {
+    [[YJNetManager defaultManager].setRequest(url).setRequestType(YJRequestTypeUpload).setUploadModel(uploadModel) startRequestWithProgress:^(NSProgress *progress) {
         NSLog(@"%f",progress.fractionCompleted);
     } success:^(id response) {
         [selfWeak uploadTalkContentWithImageUrls:[response objectForKey:@"Data"] sendContent:sendContent];
@@ -199,6 +209,9 @@
                 [selfWeak loadFirstPage];
             }else{
                 [selfWeak reloadData];
+                if (selfWeak.TotalCountBlock) {
+                    selfWeak.TotalCountBlock(selfWeak.service.models.count);
+                }
             }
         }else{
             [LGAlert showErrorWithStatus:response.Msg];

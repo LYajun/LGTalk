@@ -29,6 +29,9 @@ PODS:
   - LGAlertHUD/YJSheetView (1.1.3):
     - Masonry
     - YJExtensions
+  - LGBundle/Bundle (1.0.4):
+    - LGBundle/Manager
+  - LGBundle/Manager (1.0.4)
   - LGLog (1.0.2):
     - LGLog/LGLogManager (= 1.0.2)
     - LGLog/YJCocoaLumberjack (= 1.0.2)
@@ -76,6 +79,7 @@ PODS:
 
 DEPENDENCIES:
   - LGAlertHUD
+  - LGBundle/Bundle
   - Masonry
   - MJExtension
   - MJRefresh
@@ -89,6 +93,7 @@ SPEC REPOS:
   trunk:
     - AFNetworking
     - LGAlertHUD
+    - LGBundle
     - LGLog
     - Masonry
     - MJExtension
@@ -104,6 +109,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
   LGAlertHUD: d14fa1d2ab68418cf8f0a1fcb1a8d9eee6a4841b
+  LGBundle: adaa76cfc3924da41dbac1e9779ce00fa2e85d01
   LGLog: a58e542c6c99755d1b8eca492b2acf70a3115731
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 635f2c663dcb1bf76fa4b715b2570a5710aec545
@@ -116,6 +122,6 @@ SPEC CHECKSUMS:
   YJNetManager: de44dffe2182de1b1128b646338096ba0626d2c9
   YJPresentAnimation: 58af2bfff17028cb286ecd442d418af8997f8740
 
-PODFILE CHECKSUM: 9e0c4d0d293e2c1534b62c81c2de724659b18742
+PODFILE CHECKSUM: c98626821b7b9972b460bf7c58e694bf4918a3da
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.9.2

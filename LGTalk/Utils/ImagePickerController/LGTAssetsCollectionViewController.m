@@ -17,7 +17,8 @@
 @interface LGTAssetsCollectionViewController ()
 
 @property (nonatomic, strong) NSMutableArray *assets;
-
+@property (nonatomic, strong) NSMutableArray *assetIndexArr;
+@property (nonatomic, strong) NSMutableArray *assetUrlIndexArr;
 @property (nonatomic, assign) NSInteger numberOfPhotos;
 @property (nonatomic, assign) NSInteger numberOfVideos;
 
@@ -91,7 +92,8 @@
     
     // Load assets
     self.assets = [NSMutableArray array];
-    
+    self.assetIndexArr = [NSMutableArray array];
+    self.assetUrlIndexArr = [NSMutableArray array];
     __weak typeof(self) weakSelf = self;
     [self.assetsGroup enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop) {
         if (result) {
@@ -142,9 +144,10 @@
         NSURL *assetURL = [asset valueForProperty:ALAssetPropertyAssetURL];
         
         if ([assetURL isEqual:URL]) {
+            [self.assetUrlIndexArr addObject:assetURL];
+            [self.assetIndexArr addObject:@(i)];
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
             [self.collectionView selectItemAtIndexPath:indexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-            
             return;
         }
     }
@@ -200,7 +203,12 @@
     
     ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
     cell.asset = asset;
-    
+    if (self.assetIndexArr.count > 0 && [self.assetIndexArr containsObject:@(indexPath.row)]) {
+         NSInteger index = [self.assetIndexArr indexOfObject:@(indexPath.row)];
+        NSURL *assetURL = [self.assetUrlIndexArr objectAtIndex:index];
+        NSInteger urlIndex = [self.imagePickerController.selectedAssetURLs indexOfObject:assetURL];
+        cell.index = urlIndex+1;
+    }
     return cell;
 }
 
@@ -260,7 +268,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-    
+    LGTAssetsCollectionViewCell *cell = (LGTAssetsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    cell.index = self.imagePickerController.selectedAssetURLs.count + 1;
+    [self.assetIndexArr addObject:@(indexPath.row)];
     // Validation
     if (self.allowsMultipleSelection) {
         self.navigationItem.rightBarButtonItem.enabled = [self validateNumberOfSelections:(self.imagePickerController.selectedAssetURLs.count + 1)];
@@ -275,7 +285,20 @@
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     ALAsset *asset = [self.assets objectAtIndex:indexPath.row];
-    
+     LGTAssetsCollectionViewCell *deselectCell = (LGTAssetsCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+    NSArray *cellArr = [collectionView visibleCells];
+    for (LGTAssetsCollectionViewCell *cell in cellArr) {
+        if (cell.index > 0 && cell.index != deselectCell.index) {
+            if (deselectCell.index == 1) {
+                cell.index -= 1;
+            }else if (deselectCell.index == 2){
+                if (cell.index > deselectCell.index) {
+                    cell.index = 2;
+                }
+            }
+        }
+    }
+    [self.assetIndexArr removeObject:@(indexPath.row)];
     // Validation
     if (self.allowsMultipleSelection) {
         self.navigationItem.rightBarButtonItem.enabled = [self validateNumberOfSelections:(self.imagePickerController.selectedAssetURLs.count - 1)];

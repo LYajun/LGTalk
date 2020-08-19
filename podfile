@@ -11,4 +11,5 @@ pod 'YJExtensions'
 pod 'XMLDictionary'
 pod 'YJNetManager'
 pod 'YJPresentAnimation'
+pod 'LGBundle/Bundle'
 end

@@ -11,7 +11,7 @@
 #import "LGTActivityIndicatorView.h"
 #import "LGTExtension.h"
 #import "LGTalkManager.h"
-
+#import <YJExtensions/YJExtensions.h>
 
 
 
@@ -26,6 +26,7 @@
 @property (strong, nonatomic) UILabel *marqueeTitleLabel;
 
 @property (nonatomic,strong) UIButton *backBtn;
+@property (nonatomic,strong) UILabel *loadNoDataLab;
 @end
 
 @implementation LGTBaseViewController
@@ -139,6 +140,11 @@
 }
 
 #pragma mark loadData
+- (void)setNoDataTitleStr:(NSString *)titleStr{
+    if (self.loadNoDataLab) {
+        self.loadNoDataLab.text = titleStr;
+    }
+}
 - (void)loadData{
     [self loadDataWithCompletion:nil];
 }
@@ -209,14 +215,31 @@
     if (!_viewLoading) {
         _viewLoading = [[UIView alloc]init];
         _viewLoading.backgroundColor = self.view.backgroundColor;
-        LGTActivityIndicatorView *activityIndicatorView = [[LGTActivityIndicatorView alloc] initWithType:LGTActivityIndicatorAnimationTypeBallPulse tintColor:LGT_ColorWithHex(0x989898)];
-        [_viewLoading addSubview:activityIndicatorView];
-        __weak typeof(self) weakSelf = self;
-        [activityIndicatorView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.center.equalTo(weakSelf.viewLoading);
-            make.width.height.mas_equalTo(100);
+         UIImageView *gifImageView = [[UIImageView alloc]  initWithFrame:CGRectZero];
+        gifImageView.animationImages = [LGTalkManager defaultManager].loadingImgs;
+        gifImageView.animationDuration = [LGTalkManager defaultManager].loadingImgs.count * 0.05;
+        [gifImageView startAnimating];
+        [_viewLoading addSubview:gifImageView];
+        
+        [gifImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.viewLoading);
+            make.centerY.equalTo(self.viewLoading).offset(-10);
+            make.width.mas_equalTo(140);
+            make.height.equalTo(gifImageView.mas_width).multipliedBy(1.01);
         }];
-        [activityIndicatorView startAnimating];
+        
+        
+        UILabel *loadingGifLab = [[UILabel alloc]init];
+        loadingGifLab.font = [UIFont systemFontOfSize:14];
+        loadingGifLab.textAlignment = NSTextAlignmentCenter;
+        loadingGifLab.textColor = LGT_ColorWithHex(0x989898);
+        loadingGifLab.text = @"努力加载中...";
+        
+        [_viewLoading addSubview:loadingGifLab];
+        [loadingGifLab mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.width.equalTo(self.viewLoading);
+            make.top.equalTo(gifImageView.mas_bottom).offset(10);
+        }];
     }
     return _viewLoading;
 }
@@ -225,23 +248,28 @@
     if (!_viewNoData) {
         _viewNoData = [[UIView alloc]init];
         _viewNoData.backgroundColor = self.view.backgroundColor;
-        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage lgt_imageNamed:@"task_statusView_empty" atDir:@"Empty"]];
+        NSString *imgName = @"empty_1";
+        if (IsIPad) {
+            imgName = [imgName stringByAppendingString:@"_ipad"];
+        }
+        UIImageView *img = [[UIImageView alloc] initWithImage:[UIImage yj_imageNamed:imgName atDir:@"empty" atBundle:[LGTalkManager defaultManager].lgBundle]];
         [_viewNoData addSubview:img];
         __weak typeof(self) weakSelf = self;
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(weakSelf.viewNoData);
-            make.centerY.equalTo(weakSelf.viewNoData).offset(-40);
+            make.centerY.equalTo(weakSelf.viewNoData).offset(IsIPad ? -70 : -50);
         }];
         UILabel *lab = [[UILabel alloc] init];
         lab.tag = 11;
         lab.font = [UIFont systemFontOfSize:14];
         lab.textAlignment = NSTextAlignmentCenter;
         lab.textColor =  LGT_ColorWithHex(0x989898);
-        lab.text = @"什么都没有，去其他地方看看吧~";
+        lab.text = @"暂无内容";
+        self.loadNoDataLab = lab;
         [_viewNoData addSubview:lab];
         [lab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.width.equalTo(self.viewNoData);
-            make.top.equalTo(img.mas_bottom).offset(18);
+            make.centerY.equalTo(weakSelf.viewNoData).offset(20);
         }];
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(loadErrorUpdate)];
@@ -253,7 +281,7 @@
     if (!_viewLoadError) {
         _viewLoadError = [[UIView alloc]init];
         _viewLoadError.backgroundColor = self.view.backgroundColor;
-        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage lgt_imageNamed:@"task_statusView_error" atDir:@"Empty"]];
+        UIImageView *img = [[UIImageView alloc]initWithImage:[UIImage yj_imageNamed: @"error_1" atDir:@"error" atBundle:[LGTalkManager defaultManager].lgBundle]];
         [_viewLoadError addSubview:img];
         __weak typeof(self) weakSelf = self;
         [img mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -265,7 +293,7 @@
         lab.font = [UIFont systemFontOfSize:14];
         lab.textAlignment = NSTextAlignmentCenter;
         lab.textColor = LGT_ColorWithHex(0x989898);
-        lab.text = @"加载失败，轻触刷新";;
+        lab.text = @"数据加载失败，轻触刷新";;
         [_viewLoadError addSubview:lab];
         [lab mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.width.equalTo(self.viewLoadError);

@@ -43,5 +43,8 @@
     
     return self;
 }
-
+- (void)setIndex:(NSInteger)index{
+    _index = index;
+    self.checkmarkView.index = index;
+}
 @end

@@ -37,7 +37,7 @@ ALAssetsFilter * ALAssetsFilterFromLGTImagePickerControllerFilterType(LGTImagePi
 
 @property (nonatomic, strong, readwrite) ALAssetsLibrary *assetsLibrary;
 @property (nonatomic, copy, readwrite) NSArray *assetsGroups;
-@property (nonatomic, strong, readwrite) NSMutableSet *selectedAssetURLs;
+@property (nonatomic, strong, readwrite) NSMutableArray *selectedAssetURLs;
 
 @end
 
@@ -55,7 +55,7 @@ ALAssetsFilter * ALAssetsFilterFromLGTImagePickerControllerFilterType(LGTImagePi
     
     if (self) {
         // Property settings
-        self.selectedAssetURLs = [NSMutableSet set];
+        self.selectedAssetURLs = [NSMutableArray array];
         
         self.groupTypes = @[
                             @(ALAssetsGroupSavedPhotos),
@@ -251,7 +251,10 @@ ALAssetsFilter * ALAssetsFilterFromLGTImagePickerControllerFilterType(LGTImagePi
                                 // Add asset
                                 if (asset) {
                                     [assets addObject:asset];
-                                    
+                                    ALAssetRepresentation *representation = [asset defaultRepresentation];
+
+                                   NSString *imageFileName = [representation filename];
+                                    NSLog(@"imageFileName:%@",imageFileName);
                                     // Check if the loading finished
                                     if (assets.count == weakSelf.selectedAssetURLs.count) {
                                         // Delegate

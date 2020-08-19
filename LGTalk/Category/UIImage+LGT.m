@@ -119,4 +119,15 @@
     CGImageRelease(cgimg);
     return img;
 }
+- (NSData *)lgt_compressImageOnlength:(CGFloat)length{
+    NSInteger minL = length * 1024;
+    CGFloat compress = 1.0;
+    CGFloat minCompress = 0.1;
+    NSData *imgData = UIImageJPEGRepresentation(self,compress);
+    while (imgData && imgData.length > minL && compress > minCompress) {
+        compress -= 0.1;
+        imgData = UIImageJPEGRepresentation(self,compress);
+    }
+    return imgData;
+}
 @end

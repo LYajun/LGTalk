@@ -35,6 +35,9 @@
     while ([_Content_Attr.string hasSuffix:@"\n"]) {
         [_Content_Attr deleteCharactersInRange:NSMakeRange(_Content_Attr.string.length-1, 1)];
     }
+    while ([_Content_Attr.string hasPrefix:@"\n"]) {
+        [_Content_Attr deleteCharactersInRange:NSMakeRange(0, 1)];
+    }
     [_Content_Attr lgt_setFont:15];
 }
 - (CGFloat)tableCellHeight{
@@ -101,6 +104,9 @@
     _Content_Attr = Content.lgt_htmlImgFrameAdjust.lgt_toHtmlMutableAttributedString;
     while ([_Content_Attr.string hasSuffix:@"\n"]) {
         [_Content_Attr deleteCharactersInRange:NSMakeRange(_Content_Attr.string.length-1, 1)];
+    }
+    while ([_Content_Attr.string hasPrefix:@"\n"]) {
+        [_Content_Attr deleteCharactersInRange:NSMakeRange(0, 1)];
     }
     [_Content_Attr lgt_setFont:17];
     [_Content_Attr lgt_addParagraphLineSpacing:5];

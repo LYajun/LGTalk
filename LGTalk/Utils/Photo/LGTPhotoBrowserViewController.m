@@ -63,7 +63,7 @@
         self.imageView.image = [UIImage imageNamed:self.imageName];
     }else{
         __weak typeof(self) weakSelf = self;
-        [self.imageView sd_setImageWithURL:[NSURL URLWithString:self.imageUrl] placeholderImage:[UIImage lgt_imageNamed:@"yj_img_placeholder" atDir:@"Main"] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
+        [self.imageView sd_setImageWithURL:[NSURL URLWithString:[self.imageUrl stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]] placeholderImage:[UIImage lgt_imageNamed:@"yj_img_placeholder" atDir:@"Main"] options:0 progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (expectedSize > 0) {
                     weakSelf.progressView.titleProgress = receivedSize * 1.0 / expectedSize;
